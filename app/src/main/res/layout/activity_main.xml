@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.you.ezuyou.Main.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123123"
+            android:textSize="30dp"/>
+    </android.support.v7.widget.Toolbar>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:id="@+id/bt_menu"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/menu1"
+                style="@style/menu"
+                android:text="租赁" />
+
+            <TextView
+                android:id="@+id/menu2"
+                style="@style/menu"
+                android:text="攻略" />
+            <TextView
+                android:id="@+id/menu3"
+                style="@style/menu"
+                android:text="发布\n出售" />
+            <TextView
+                android:id="@+id/menu4"
+                style="@style/menu"
+                android:text="社区" />
+            <TextView
+                android:id="@+id/menu5"
+                style="@style/menu"
+                android:text="我的" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_above="@id/bt_menu" />
+    </RelativeLayout>
+</LinearLayout>

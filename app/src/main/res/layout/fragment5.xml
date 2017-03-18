@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.you.ezuyou.My.CircleImageView
+            android:id="@+id/my_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/image"/>
+
+        <TextView
+            android:id="@+id/my_name"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="名字"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/my_gerxx"
+            style="@style/wo"
+            android:text="个人信息" />
+
+        <TextView
+            android:id="@+id/my_shoucj"
+            style="@style/wo"
+            android:text="收藏夹"/>
+        <TextView
+            android:id="@+id/my_lisxx"
+            style="@style/wo"
+            android:text="历史信息"/>
+        <TextView
+            android:id="@+id/my_wodgl"
+            style="@style/wo"
+            android:text="我的攻略"/>
+        <TextView
+            android:id="@+id/my_zhengz"
+            style="@style/wo"
+            android:text="正在出租/出售"/>
+    </LinearLayout>
+
+</LinearLayout>
