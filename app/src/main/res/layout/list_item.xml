@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="108dp"
+    android:divider=""
+    android:padding="4dp">
 
     <ImageView
-        android:layout_width="118dp"
-        android:layout_height="118dp"
-        android:src="@drawable/image"
-        android:id="@+id/imageView" />
+        android:id="@+id/list_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/image" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +19,7 @@
         android:padding="8dp"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/list_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="标准二人帐篷"/>
@@ -39,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/list_rent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20元/天"/>
@@ -51,6 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/list_sell"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="160元"/>
@@ -62,6 +68,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/list_introduce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1231231231231312156615a1f1sd5af15sf56a156a1f56s51f65sad"/>
