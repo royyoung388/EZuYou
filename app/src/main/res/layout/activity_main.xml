@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.you.ezuyou.Main.MainActivity">
 
@@ -30,7 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:orientation="horizontal"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:divider="@drawable/main_divider"
+            android:showDividers="middle">
 
             <TextView
                 android:id="@+id/menu1"
@@ -54,6 +56,14 @@
                 style="@style/menu"
                 android:text="我的" />
         </LinearLayout>
+
+        <Button
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/main_circlebt"
+            android:layout_alignParentRight="true"
+            android:layout_margin="4dp"
+            android:layout_above="@id/bt_menu"/>
 
         <FrameLayout
             android:id="@+id/frame"

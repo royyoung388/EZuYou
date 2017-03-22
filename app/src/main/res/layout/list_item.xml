@@ -1,76 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="108dp"
-    android:divider=""
-    android:padding="4dp">
+    android:layout_height="130dp">
 
-    <ImageView
-        android:id="@+id/list_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/image" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/silver"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/list_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="标准二人帐篷"/>
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/image" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:padding="8dp"
+            android:orientation="vertical">
             <TextView
+                android:id="@+id/list_name"
+                android:textSize="23dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="价格:"/>
+                android:text="标准二人帐篷"/>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+                <TextView
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="价格:"/>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/list_rent"
+                    android:orientation="vertical">
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="20元/天"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                        android:orientation="horizontal">
+                        <TextView
+                            android:textSize="18dp"
+                            android:id="@+id/list_rent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20元/天"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/list_sell"
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="160元"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textSize="18dp"
+                            android:id="@+id/list_sell"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="160元"/>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/list_introduce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1231231231231312156615a1f1sd5af15sf56a156a1f56s51f65sad"/>
+            <TextView
+                android:textSize="16dp"
+                android:id="@+id/list_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1231231231231312156615a1f1sd5af15sf56a156a1f56s51f65sad"/>
+        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
