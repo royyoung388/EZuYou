@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.you.ezuyou.Fragment.MyFragment2;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //UI Objects
     private TextView menu1, menu2, menu3, menu4, menu5;
+    private Button menu3_bt;
 
     //Fragment Object
     private MyFragment1 fg1;
@@ -73,12 +75,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menu1 = (TextView) findViewById(R.id.menu1);
         menu2 = (TextView) findViewById(R.id.menu2);
         menu3 = (TextView) findViewById(R.id.menu3);
+        menu3_bt = (Button) findViewById(R.id.menu3_bt);
         menu4 = (TextView) findViewById(R.id.menu4);
         menu5 = (TextView) findViewById(R.id.menu5);
 
         menu1.setOnClickListener(this);
         menu2.setOnClickListener(this);
         menu3.setOnClickListener(this);
+        menu3_bt.setOnClickListener(this);
         menu4.setOnClickListener(this);
         menu5.setOnClickListener(this);
     }
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         menu1.setSelected(false);
         menu2.setSelected(false);
         menu3.setSelected(false);
+        menu3_bt.setSelected(false);
         menu4.setSelected(false);
         menu5.setSelected(false);
     }
@@ -128,9 +133,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     fTransaction.show(fg2);
                 }
                 break;
-            case R.id.menu3:
+            case R.id.menu3_bt:
                 setSelected();
-                menu3.setSelected(true);
+                //menu3.setSelected(true);
+                //menu3_bt.setSelected(true);
                 if(fg3 == null){
                     fg3 = new MyFragment3();
                     fTransaction.add(R.id.frame,fg3);
