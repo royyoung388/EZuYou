@@ -42,7 +42,7 @@ public class Item_Adapter extends android.widget.BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        convertView = LayoutInflater.from(context).inflate(R.layout.home_list_item, parent, false);
         ImageView list_image = (ImageView) convertView.findViewById(R.id.list_image);
         TextView list_name = (TextView) convertView.findViewById(R.id.list_name);
         TextView list_rent = (TextView) convertView.findViewById(R.id.list_rent);

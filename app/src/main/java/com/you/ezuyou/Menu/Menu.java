@@ -38,49 +38,25 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        toolbar.inflateMenu(R.menu.menu_main);//设置右上角的填充菜单
-        setSupportActionBar(toolbar);
-
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.ab_search:
-                        startActivity(new Intent(Menu.this, Search.class));
-                        break;
-                }
-                return true;
-            }
-        });
+        setContentView(R.layout.menu);
 
         fManager = getFragmentManager();
         bindViews();
         menu1.performClick();   //模拟一次点击，既进去后选择第一项
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     //UI组件初始化与事件绑定
     private void bindViews() {
         menu1 = (TextView) findViewById(R.id.menu1);
         menu2 = (TextView) findViewById(R.id.menu2);
-        menu3 = (TextView) findViewById(R.id.menu3);
+//        menu3 = (TextView) findViewById(R.id.menu3);
         menu3_bt = (Button) findViewById(R.id.menu3_bt);
         menu4 = (TextView) findViewById(R.id.menu4);
         menu5 = (TextView) findViewById(R.id.menu5);
 
         menu1.setOnClickListener(this);
         menu2.setOnClickListener(this);
-        menu3.setOnClickListener(this);
+//        menu3.setOnClickListener(this);
         menu3_bt.setOnClickListener(this);
         menu4.setOnClickListener(this);
         menu5.setOnClickListener(this);
@@ -90,7 +66,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     private void setSelected(){
         menu1.setSelected(false);
         menu2.setSelected(false);
-        menu3.setSelected(false);
+//        menu3.setSelected(false);
         menu3_bt.setSelected(false);
         menu4.setSelected(false);
         menu5.setSelected(false);
@@ -104,8 +80,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         if(fg4 != null)fragmentTransaction.hide(fg4);
         if(fg5 != null)fragmentTransaction.hide(fg5);
     }
-
-
 
     @Override
     public void onClick(View v) {
