@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by Administrator on 2017/2/28.
  */
 
-public class MyFragment1 extends Fragment {
+public class Home extends Fragment {
 
     private List<Item> Data;
     private int[] image = new int[] {R.drawable.image, R.drawable.image, R.drawable.image, R.drawable.image, R.drawable.image};
@@ -29,7 +29,7 @@ public class MyFragment1 extends Fragment {
     private String[] introduce = new String[] {"这是一个双人帐篷1", "这是一个双人帐篷2", "这是一个双人帐篷3",
             "这是一个双人帐篷4", "这是一个双人帐篷5"};
 
-    public MyFragment1() {
+    public Home() {
         Data = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Item item = new Item(image[i], name[i], rent[i], sell[i], introduce[i]);

@@ -4,8 +4,7 @@
     <item>
         <shape android:shape="oval" >
             <solid android:color="@color/white" />
-            <size android:width="25dp" android:height="25dp"/>
-            <stroke android:width="1dp"
+            <stroke android:width="1px"
                 android:color="@color/black"
                 android:dashWidth="0dp"
                 android:dashGap="0dp" >
@@ -19,8 +18,7 @@
             <item android:state_pressed="true">
                 <shape android:shape="oval" >
                     <solid android:color="@color/lightsalmon" />
-                    <size android:width="24dp" android:height="24dp"/>
-                    <stroke android:width="1dp"
+                    <stroke android:width="1px"
                         android:color="@color/black"
                         android:dashWidth="0dp"
                         android:dashGap="0dp" >
@@ -32,8 +30,7 @@
             <item>
                 <shape android:shape="oval" >
                     <solid android:color="@color/darkorange" />
-                    <size android:width="24dp" android:height="24dp"/>
-                    <stroke android:width="1dp"
+                    <stroke android:width="1px"
                         android:color="@color/black"
                         android:dashWidth="0dp"
                         android:dashGap="0dp" >
@@ -43,5 +40,20 @@
 
         </selector>
     </item>
+
+    <item android:height="3dp" android:width="50dp" android:gravity="center">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+
+    <item android:height="50dp" android:width="3dp" android:gravity="center">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/white"/>
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+
 
 </layer-list>

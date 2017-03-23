@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.you.ezuyou.Main.MainActivity">
+    tools:context="com.you.ezuyou.Menu.Menu">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -58,7 +58,7 @@
             android:id="@+id/menu3_bt"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/main_circlebt"
+            android:background="@drawable/menu_circlebt"
             android:layout_centerInParent="true"
             android:layout_marginBottom="-40dp"
             android:layout_above="@id/bt_menu" />

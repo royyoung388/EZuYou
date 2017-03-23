@@ -34,24 +34,24 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/my_gerxx"
+            android:id="@+id/my_information"
             style="@style/wo"
             android:text="个人信息" />
 
         <TextView
-            android:id="@+id/my_shoucj"
+            android:id="@+id/my_favorite"
             style="@style/wo"
             android:text="收藏夹"/>
         <TextView
-            android:id="@+id/my_lisxx"
+            android:id="@+id/my_history"
             style="@style/wo"
             android:text="历史信息"/>
         <TextView
-            android:id="@+id/my_wodgl"
+            android:id="@+id/my_strategy"
             style="@style/wo"
             android:text="我的攻略"/>
         <TextView
-            android:id="@+id/my_zhengz"
+            android:id="@+id/my_purchase"
             style="@style/wo"
             android:text="正在出租/出售"/>
     </LinearLayout>

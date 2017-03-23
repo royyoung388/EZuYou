@@ -6,7 +6,7 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.you.ezuyou.Main.MainActivity;
+import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.R;
 
 
@@ -37,7 +37,7 @@ public class Welcome extends AppCompatActivity{
             }
             //结束时
             public void onFinish() {
-                startActivity(new Intent(Welcome.this, MainActivity.class));
+                startActivity(new Intent(Welcome.this, Menu.class));
                 finish();
             }
         }.start();;

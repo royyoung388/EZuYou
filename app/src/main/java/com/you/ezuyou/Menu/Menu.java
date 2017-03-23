@@ -1,4 +1,4 @@
-package com.you.ezuyou.Main;
+package com.you.ezuyou.Menu;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,25 +13,25 @@ import android.widget.TextView;
 
 import com.you.ezuyou.Fragment.MyFragment2;
 import com.you.ezuyou.Fragment.MyFragment4;
-import com.you.ezuyou.Home.MyFragment1;
-import com.you.ezuyou.My.MyFragment5;
+import com.you.ezuyou.Home.Home;
+import com.you.ezuyou.My.My;
 import com.you.ezuyou.Fragment.MyFragment3;
 import com.you.ezuyou.R;
 import com.you.ezuyou.Rearch.Search;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class Menu extends AppCompatActivity implements View.OnClickListener {
 
     //UI Objects
     private TextView menu1, menu2, menu3, menu4, menu5;
     private Button menu3_bt;
 
     //Fragment Object
-    private MyFragment1 fg1;
+    private Home fg1;
     private MyFragment2 fg2;
     private MyFragment3 fg3;
     private MyFragment4 fg4;
-    private MyFragment5 fg5;
+    private My fg5;
 
     private FragmentManager fManager;
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.ab_search:
-                        startActivity(new Intent(MainActivity.this, Search.class));
+                        startActivity(new Intent(Menu.this, Search.class));
                         break;
                 }
                 return true;
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setSelected();
                 menu1.setSelected(true);
                 if(fg1 == null){
-                    fg1 = new MyFragment1();
+                    fg1 = new Home();
                     fTransaction.add(R.id.frame,fg1);
                 }else{
                     fTransaction.show(fg1);
@@ -158,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setSelected();
                 menu5.setSelected(true);
                 if(fg5 == null){
-                    fg5 = new MyFragment5();
+                    fg5 = new My();
                     fTransaction.add(R.id.frame,fg5);
                 }else{
                     fTransaction.show(fg5);
