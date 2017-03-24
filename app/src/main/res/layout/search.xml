@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:iconifiedByDefault="false"
-        android:queryHint="请输入搜索内容">
+        android:queryHint="请输入搜索关键字">
     </SearchView>
 
     <LinearLayout
