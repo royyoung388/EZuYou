@@ -44,21 +44,37 @@
         </selector>
     </item>
 
-    <item android:gravity="center">
-        <shape android:shape="rectangle">
+    <item
+        android:gravity="center"
+        android:top="15dp"
+        android:bottom="15dp"
+        android:right="38dp"
+        android:left="38dp">
+        <shape>
+            <corners android:radius="10dp"/>
             <solid android:color="@color/white"/>
-            <corners android:radius="4dp"/>
-            <size android:height="3dp" android:width="50dp"/>
         </shape>
     </item>
 
-    <item android:gravity="center">
-        <shape android:shape="rectangle">
+    <item
+        android:gravity="center"
+        android:top="38dp"
+        android:bottom="38dp"
+        android:right="15dp"
+        android:left="15dp">
+        <shape>
+            <corners android:radius="10dp"/>
             <solid android:color="@color/white"/>
-            <corners android:radius="4dp"/>
-            <size android:height="50dp" android:width="3dp"/>
         </shape>
     </item>
+
+    <!--<item android:gravity="center" android:height="3dp" android:width="50dp">-->
+        <!--<shape android:shape="rectangle">-->
+            <!--<solid android:color="@color/black"/>-->
+            <!--<corners android:radius="4dp"/>-->
+            <!--<size android:height="50dp" android:width="3dp"/>-->
+        <!--</shape>-->
+    <!--</item>-->
 
 
 </layer-list>
