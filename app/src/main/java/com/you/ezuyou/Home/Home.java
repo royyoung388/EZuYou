@@ -13,15 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 
-import com.you.ezuyou.InternetUtils.HomeUtils.HomeUtils;
+import com.you.ezuyou.InternetUtls.HomeUtils.HomeUtils;
 import com.you.ezuyou.R;
 import com.you.ezuyou.Rearch.Search;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -30,9 +27,31 @@ import java.util.List;
 
 public class Home extends Fragment {
 
+    private View view;
+    private ImageView advertisement;
+    private ListView listView;
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                //广告图片
+                case 1:
+                    advertisement.setImageBitmap((Bitmap)msg.obj);
+                    break;
+                //item
+                case 2:
+                    Item_Adapter adapter = new Item_Adapter(((Item)msg.obj).Data, view.getContext());
+                    listView.setAdapter(adapter);
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.home, container, false);
+        view = inflater.inflate(R.layout.home, container, false);
 
         //使用toolbar
         Toolbar home_toolbar = (Toolbar) view.findViewById(R.id.home_toolbar);
@@ -48,16 +67,14 @@ public class Home extends Fragment {
         });
 
         //获取广告图片
-        ImageView advertisement = (ImageView) view.findViewById(R.id.home_image);
-        HomeUtils.GetAdvertisement(advertisement);
+        advertisement = (ImageView) view.findViewById(R.id.home_image);
+        HomeUtils.GetAdvertisement(handler);
 
 
         //使用listview
-        ListView listView = (ListView) view.findViewById(R.id.home_listview);
-        HomeUtils.getHome_Item(view, listView);
+        listView = (ListView) view.findViewById(R.id.home_listview);
+        HomeUtils.getHome_Item(handler);
 
         return view;
     }
-
-
 }

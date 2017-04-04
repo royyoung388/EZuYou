@@ -1,22 +1,18 @@
-package com.you.ezuyou.InternetUtils.HomeUtils;
+package com.you.ezuyou.InternetUtls.HomeUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.Home.Item_Adapter;
-import com.you.ezuyou.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -27,7 +23,7 @@ import java.net.Socket;
 public class HomeUtils {
 
     //获取广告图片
-    public static void GetAdvertisement(final ImageView imageView) {
+    public static void GetAdvertisement(final Handler handler) {
 
         new Thread(new Runnable() {
 
@@ -52,7 +48,13 @@ public class HomeUtils {
                     bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
                     bmp.compress(Bitmap.CompressFormat.PNG, 100, outPut);
 
-                    imageView.setImageBitmap(bmp);
+                    //imageView.setImageBitmap(bmp);
+
+                    //广告图片
+                    Message message = new Message();
+                    message.what = 1;
+                    message.obj = bmp;
+                    handler.sendMessage(message);
 
                     outPut.close();
                 } catch (IOException e) {
@@ -69,7 +71,7 @@ public class HomeUtils {
     }
 
     //获取image
-    public static void getImage(final View view, final ListView listView, final String home_item, final int count) {
+    public static void getImage(final Handler handler, final String home_item, final int count) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -102,8 +104,13 @@ public class HomeUtils {
 
                     Item item = new Item(image, home_item);
 
-                    Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());
-                    listView.setAdapter(adapter);
+                    //Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());
+                    //listView.setAdapter(adapter);
+
+                    Message message = new Message();
+                    message.what = 2;
+                    message.obj = item;
+                    handler.sendMessage(message);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -126,7 +133,7 @@ public class HomeUtils {
     }
 
     //获取Home_Item
-    public static void getHome_Item(final View view, final ListView listView) {
+    public static void getHome_Item(final Handler handler) {
 
         new Thread(new Runnable() {
             @Override
@@ -142,7 +149,7 @@ public class HomeUtils {
                     home_item += dataInput.readUTF();
 
                     int count = Item.getSize(home_item);
-                    getImage(view, listView, home_item, count);
+                    getImage(handler, home_item, count);
 
 //                    Item item = new Item(image, home_item);
 //                    Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());

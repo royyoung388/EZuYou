@@ -27,6 +27,9 @@
         <activity android:name=".My.My_History"></activity>
         <activity android:name=".My.My_Strategy"></activity>
         <activity android:name=".My.My_Purchase"></activity>
+
+        <activity android:name=".Login.Login"></activity>
+        <activity android:name=".Login.Login_sign"></activity>
     </application>
 
 </manifest>
