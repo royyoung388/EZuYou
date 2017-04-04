@@ -48,6 +48,7 @@ public class LoginUtils {
                         });
                     } else if (string.equals("right")) {
                         pwd.getContext().startActivity(new Intent(pwd.getContext(), Menu.class));
+                        ((Activity)pwd.getContext()).finish();
                     }
 
                 } catch (IOException e) {
@@ -87,7 +88,7 @@ public class LoginUtils {
                             }
                         });
                     } else {
-                        name.getContext().startActivity(new Intent(name.getContext(), Login.class));
+                        ((Activity)name.getContext()).finish();
                     }
 
                 } catch (IOException e) {
