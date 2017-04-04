@@ -49,7 +49,7 @@ public class Item_Adapter extends android.widget.BaseAdapter{
         TextView list_sell = (TextView) convertView.findViewById(R.id.list_sell);
         TextView list_introduce = (TextView) convertView.findViewById(R.id.list_introduce);
 
-        list_image.setImageResource(Data.get(position).getImage());
+        list_image.setImageBitmap(Data.get(position).getImage());
         list_name.setText(Data.get(position).getName());
         list_rent.setText(Data.get(position).getRent());
         list_sell.setText(Data.get(position).getSell());

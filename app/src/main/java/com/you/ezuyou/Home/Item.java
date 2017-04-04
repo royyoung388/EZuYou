@@ -1,6 +1,6 @@
 package com.you.ezuyou.Home;
 
-import com.you.ezuyou.R;
+import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +13,12 @@ import java.util.regex.Pattern;
 
 public class Item {
 
-    private int image;
+    private Bitmap image;
     private String name, rent, sell, introduce;
 
     public List<Item> Data = new ArrayList<>();
 
-    public Item(int image, String name, String sell, String rent, String introduce) {
+    public Item(Bitmap image, String name, String sell, String rent, String introduce) {
         this.image = image;
         this.name = name;
         this.sell = sell;
@@ -26,7 +26,7 @@ public class Item {
         this.introduce = introduce;
     }
 
-    public Item(int[] image, String string) {
+    public Item(Bitmap[] image, String string) {
         Pattern pattern = Pattern.compile("\\{\\s*name:(\\S*?);\\s*" +
                                             "sell:(\\S*?);\\s*" +
                                             "rent:(\\S*?);\\s*" +
@@ -52,15 +52,15 @@ public class Item {
         System.out.println(i);
     }
 
-    public int getImage() {
+    public Bitmap getImage() {
         return image;
     }
 
     public String getName() {
         return name;
     }
-    private String getName(String string) {
-        Pattern pattern = Pattern.compile("name:(\\S);");
+    /*private String getName(String string) {
+        Pattern pattern = Pattern.compile("name:(\\S*?);");
         Matcher matcher = pattern.matcher(string);
         String name = "";
         while (matcher.find()) {
@@ -68,12 +68,12 @@ public class Item {
         }
 
         return name;
-    }
+    }*/
 
     public String getRent() {
         return rent;
     }
-    private String getRent(String string) {
+    /*private String getRent(String string) {
         Pattern pattern = Pattern.compile("rent:(\\S);");
         Matcher matcher = pattern.matcher(string);
 
@@ -82,12 +82,12 @@ public class Item {
             rent += matcher.group();
         }
         return rent;
-    }
+    }*/
 
     public String getSell() {
         return sell;
     }
-    private String getSell(String string) {
+    /*private String getSell(String string) {
         Pattern pattern = Pattern.compile("sell:(\\S);");
         Matcher matcher = pattern.matcher(string);
 
@@ -96,12 +96,12 @@ public class Item {
             sell += matcher.group();
         }
         return sell;
-    }
+    }*/
 
     public String getIntroduce() {
         return introduce;
     }
-    private String getIntroduce(String string) {
+    /*private String getIntroduce(String string) {
         Pattern pattern = Pattern.compile("introduce:(\\S);");
         Matcher matcher = pattern.matcher(string);
 
@@ -110,5 +110,18 @@ public class Item {
             introduce += matcher.group();
         }
         return introduce;
+    }*/
+
+    public static int getSize(String string) {
+        Pattern pattern = Pattern.compile("\\{\\s*name:(\\S*?);\\s*" +
+                "sell:(\\S*?);\\s*" +
+                "rent:(\\S*?);\\s*" +
+                "introduce:(\\S*?);\\s*\\},");
+        Matcher matcher = pattern.matcher(string);
+        int i = 0;
+        while (matcher.find()) {
+            i++;
+        }
+        return i;
     }
 }

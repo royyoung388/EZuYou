@@ -30,10 +30,6 @@ import java.util.List;
 
 public class Home extends Fragment {
 
-    private int[] image = new int[]{R.drawable.image, R.drawable.image, R.drawable.image, R.drawable.image, R.drawable.image};
-
-    public Home() {}
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home, container, false);
@@ -58,7 +54,7 @@ public class Home extends Fragment {
 
         //使用listview
         ListView listView = (ListView) view.findViewById(R.id.home_listview);
-        HomeUtils.getHome_Item(view, listView, image);
+        HomeUtils.getHome_Item(view, listView);
 
         return view;
     }
