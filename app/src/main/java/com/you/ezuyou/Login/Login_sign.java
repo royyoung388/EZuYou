@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.you.ezuyou.InternetUtls.LoginUtils.LoginUtils;
+import com.you.ezuyou.InternetUtls.LoginUtils;
 import com.you.ezuyou.R;
 
 /**

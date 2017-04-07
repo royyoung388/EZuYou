@@ -13,10 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.you.ezuyou.InternetUtls.HomeUtils.HomeUtils;
+import com.you.ezuyou.InternetUtls.HomeUtils;
 import com.you.ezuyou.R;
 import com.you.ezuyou.Rearch.Search;
 

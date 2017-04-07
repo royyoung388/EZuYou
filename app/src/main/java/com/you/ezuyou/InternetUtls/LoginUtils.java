@@ -1,4 +1,4 @@
-package com.you.ezuyou.InternetUtls.LoginUtils;
+package com.you.ezuyou.InternetUtls;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import java.net.Socket;
 public class LoginUtils {
 
     //处理登录
-    public static void start_Login(final String username, final String userpwd, final EditText pwd) {
+    public static synchronized void start_Login(final String username, final String userpwd, final EditText pwd) {
 
         new Thread(new Runnable() {
             @Override
@@ -30,7 +30,7 @@ public class LoginUtils {
                 Socket socket = null;
 
                 try {
-                    socket = new Socket("172.29.179.1", 30003);
+                    socket = new Socket(Login.IP, 30003);
                     DataOutputStream out = new DataOutputStream(socket.getOutputStream());
                     DataInputStream in = new DataInputStream(socket.getInputStream());
 
@@ -59,7 +59,7 @@ public class LoginUtils {
     }
 
     //处理注册信息
-    public  static void start_sign(final String username, final String userpwd, final EditText name) {
+    public static synchronized void start_sign(final String username, final String userpwd, final EditText name) {
 
         new Thread(new Runnable() {
             @Override
@@ -67,7 +67,7 @@ public class LoginUtils {
                 Socket socket = null;
 
                 try {
-                    socket = new Socket("172.29.179.1", 30004);
+                    socket = new Socket(Login.IP, 30004);
                     DataOutputStream out = new DataOutputStream(socket.getOutputStream());
                     DataInputStream in = new DataInputStream(socket.getInputStream());
 

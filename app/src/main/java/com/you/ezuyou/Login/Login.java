@@ -1,9 +1,11 @@
 package com.you.ezuyou.Login;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -14,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.you.ezuyou.InternetUtls.LoginUtils.LoginUtils;
+import com.you.ezuyou.InternetUtls.LoginUtils;
 import com.you.ezuyou.R;
 
 /**
@@ -26,17 +28,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     private EditText name, pwd;
     private CheckBox remember;
     private Button submit;
-    private TextView sign;
+    private TextView sign, changeip;
 
     private String userName, userPass;
 
     private SharedPreferences sp = null;
 
+    public static String IP = "172.29.179.1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.Login_Toolbar);
         toolbar.setTitle("");
@@ -77,20 +81,25 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         remember = (CheckBox) findViewById(R.id.Login_checkbox);
         submit = (Button) findViewById(R.id.Login_submit);
         sign = (TextView) findViewById(R.id.Login_sign);
+        changeip = (TextView) findViewById(R.id.Login_changeip);
 
         submit.setOnClickListener(this);
         sign.setOnClickListener(this);
+        changeip.setOnClickListener(this);
 
         sp = this.getSharedPreferences("login", Context.MODE_PRIVATE);
-        if (sp != null) {
+        if (!(sp.getString("name",null) == null)) {
             name.setText(sp.getString("name",null));
             pwd.setText(sp.getString("pwd",null));
+        }
+        if (! (sp.getString("IP", null) == null)) {
+            Login.IP = sp.getString("IP", null);
         }
     }
 
     //记住密码
     private void rememer() {
-        sp = getSharedPreferences("login",MODE_PRIVATE);
+        //sp = getSharedPreferences("login",MODE_PRIVATE);
         if (remember.isChecked()) {
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("name",userName);
@@ -115,6 +124,34 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             case R.id.Login_sign:
                 startActivity(new Intent(Login.this, Login_sign.class));
                 break;
+            case R.id.Login_changeip:
+                dialog_changeIP();
+                break;
         }
+    }
+
+    //弹出编辑对话框
+    private void dialog_changeIP() {
+         /*@setView 装入一个EditView
+     */
+        final EditText editText = new EditText(Login.this);
+        editText.setHint("当前IP为" +Login.IP);
+        AlertDialog.Builder inputDialog =
+                new AlertDialog.Builder(Login.this);
+        inputDialog.setTitle("请输入服务器IP地址").setView(editText);
+        inputDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (!editText.getText().toString().equals("")) {
+                            Login.IP = editText.getText().toString();
+
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString("IP",Login.IP);
+                        }
+                        Toast.makeText(Login.this, "修改后IP为" + Login.IP, Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
     }
 }

@@ -126,4 +126,13 @@
         android:text="没有账号？点击这里注册"
         android:textSize="15dp"/>
 
+    <TextView
+        android:id="@+id/Login_changeip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="修改服务器IP"
+        android:textSize="15dp"
+        android:layout_margin="5dp"/>
+
 </RelativeLayout>

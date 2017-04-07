@@ -1,4 +1,4 @@
-package com.you.ezuyou.InternetUtls.HomeUtils;
+package com.you.ezuyou.InternetUtls;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.Home.Item_Adapter;
+import com.you.ezuyou.Login.Login;
+import com.you.ezuyou.Menu.Menu;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -23,7 +25,7 @@ import java.net.Socket;
 public class HomeUtils {
 
     //获取广告图片
-    public static void GetAdvertisement(final Handler handler) {
+    public static synchronized void GetAdvertisement(final Handler handler) {
 
         new Thread(new Runnable() {
 
@@ -34,7 +36,7 @@ public class HomeUtils {
                 Socket socket = null;
 
                 try {
-                    socket = new Socket("172.29.179.1", 30000);
+                    socket = new Socket(Login.IP, 30000);
                     DataInputStream dataInput = new DataInputStream(socket.getInputStream());
                     int size = dataInput.readInt();
                     byte[] data = new byte[size];
@@ -71,7 +73,7 @@ public class HomeUtils {
     }
 
     //获取image
-    public static void getImage(final Handler handler, final String home_item, final int count) {
+    public static synchronized void getImage(final Handler handler, final String home_item, final int count) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -80,7 +82,7 @@ public class HomeUtils {
                 Bitmap[] image = new Bitmap[count];
 
                 try {
-                    socket = new Socket("172.29.179.1", 30002);
+                    socket = new Socket(Login.IP, 30002);
                     DataInputStream dataInput = new DataInputStream(socket.getInputStream());
                     int i = 0;
 
@@ -133,7 +135,7 @@ public class HomeUtils {
     }
 
     //获取Home_Item
-    public static void getHome_Item(final Handler handler) {
+    public static synchronized void getHome_Item(final Handler handler) {
 
         new Thread(new Runnable() {
             @Override
@@ -143,7 +145,7 @@ public class HomeUtils {
                 String home_item = "";
 
                 try {
-                    socket = new Socket("172.29.179.1", 30001);
+                    socket = new Socket(Login.IP, 30001);
                     DataInputStream dataInput = new DataInputStream(socket.getInputStream());
 
                     home_item += dataInput.readUTF();
