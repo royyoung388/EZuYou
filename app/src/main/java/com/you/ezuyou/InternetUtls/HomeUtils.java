@@ -48,7 +48,7 @@ public class HomeUtils {
 
                     ByteArrayOutputStream outPut = new ByteArrayOutputStream();
                     bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
-                    bmp.compress(Bitmap.CompressFormat.PNG, 100, outPut);
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 100, outPut);
 
                     //imageView.setImageBitmap(bmp);
 
@@ -96,7 +96,7 @@ public class HomeUtils {
                         if (size != 0) {
                             ByteArrayOutputStream outPut = new ByteArrayOutputStream();
                             Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
-                            bmp.compress(Bitmap.CompressFormat.PNG, 100, outPut);
+                            bmp.compress(Bitmap.CompressFormat.JPEG, 100, outPut);
                             image[i] = bmp;
                             i++;
                             outPut.close();

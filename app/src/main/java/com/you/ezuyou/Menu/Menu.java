@@ -1,26 +1,35 @@
 package com.you.ezuyou.Menu;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.you.ezuyou.Fragment.MyFragment2;
 import com.you.ezuyou.Fragment.MyFragment4;
 import com.you.ezuyou.Home.Home;
 import com.you.ezuyou.My.My;
-import com.you.ezuyou.Fragment.MyFragment3;
+import com.you.ezuyou.Release.Release;
 import com.you.ezuyou.R;
-import com.you.ezuyou.Rearch.Search;
+import com.you.ezuyou.utils.ImageUtils;
+
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 
-public class Menu extends AppCompatActivity implements View.OnClickListener {
+public class Menu extends BaseActivity implements View.OnClickListener {
 
     //UI Objects
     private TextView menu1, menu2, menu3, menu4, menu5;
@@ -29,7 +38,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     //Fragment Object
     private Home fg1;
     private MyFragment2 fg2;
-    private MyFragment3 fg3;
+    private Release fg3;
     private MyFragment4 fg4;
     private My fg5;
 
@@ -111,7 +120,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 //menu3.setSelected(true);
                 //menu3_bt.setSelected(true);
                 if(fg3 == null){
-                    fg3 = new MyFragment3();
+                    fg3 = new Release();
                     fTransaction.add(R.id.frame,fg3);
                 }else{
                     fTransaction.show(fg3);
@@ -139,5 +148,19 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
         fTransaction.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String imagePath = "";
+        if(requestCode == SELECT_IMAGE_RESULT_CODE && resultCode== RESULT_OK){
+            if(data != null && data.getData() != null){//有数据返回直接使用返回的图片地址
+                imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
+            }else{//无数据使用指定的图片路径
+                imagePath = mImagePath;
+            }
+            mOnFragmentResult.onResult(imagePath);
+        }
     }
 }
