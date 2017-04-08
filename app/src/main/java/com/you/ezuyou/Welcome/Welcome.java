@@ -19,8 +19,6 @@ public class Welcome extends AppCompatActivity{
 
     private TextView counter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +34,7 @@ public class Welcome extends AppCompatActivity{
             public void onTick(long millisUntilFinished) {
                 counter.setText("倒计时: " + millisUntilFinished / 1000);
             }
+
             //结束时
             public void onFinish() {
                 startActivity(new Intent(Welcome.this, Login.class));

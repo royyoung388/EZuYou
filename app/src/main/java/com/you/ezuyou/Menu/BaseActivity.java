@@ -18,6 +18,9 @@ import java.util.Locale;
 /**
  * BaseActivity<br>
  */
+
+//用于选择照片
+
 public class BaseActivity extends AppCompatActivity {
 	
 	/**

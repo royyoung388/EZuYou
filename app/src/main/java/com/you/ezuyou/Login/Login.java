@@ -23,7 +23,7 @@ import com.you.ezuyou.R;
  * Created by Administrator on 2017/4/4.
  */
 
-public class Login extends AppCompatActivity implements View.OnClickListener{
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, pwd;
     private CheckBox remember;
@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     private SharedPreferences sp = null;
 
-    public static String IP = "172.29.179.1";
+    public static String IP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,13 +88,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         changeip.setOnClickListener(this);
 
         sp = this.getSharedPreferences("login", Context.MODE_PRIVATE);
-        if (!(sp.getString("name",null) == null)) {
-            name.setText(sp.getString("name",null));
-            pwd.setText(sp.getString("pwd",null));
+        if (sp.getString("name", null) != null) {
+            name.setText(sp.getString("name", null));
+            pwd.setText(sp.getString("pwd", null));
         }
-        if (! (sp.getString("IP", null) == null)) {
-            Login.IP = sp.getString("IP", null);
-        }
+        if (sp.getString("IP", null) != null) Login.IP = sp.getString("IP", null);
+        else Login.IP = "172.29.179.1";
     }
 
     //记住密码
@@ -102,13 +101,13 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         //sp = getSharedPreferences("login",MODE_PRIVATE);
         if (remember.isChecked()) {
             SharedPreferences.Editor editor = sp.edit();
-            editor.putString("name",userName);
-            editor.putString("pwd",userPass);
+            editor.putString("name", userName);
+            editor.putString("pwd", userPass);
             editor.apply();
         } else {
             SharedPreferences.Editor editor = sp.edit();
-            editor.putString("name",null);
-            editor.putString("pwd",null);
+            editor.putString("name", null);
+            editor.putString("pwd", null);
             editor.apply();
             //重置输入
             pwd.setText(null);
@@ -132,10 +131,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
     //弹出编辑对话框
     private void dialog_changeIP() {
-         /*@setView 装入一个EditView
-     */
+         /*@setView 装入一个EditView*/
         final EditText editText = new EditText(Login.this);
-        editText.setHint("当前IP为" +Login.IP);
+        editText.setHint("当前IP为" + Login.IP);
         AlertDialog.Builder inputDialog =
                 new AlertDialog.Builder(Login.this);
         inputDialog.setTitle("请输入服务器IP地址").setView(editText);
@@ -148,7 +146,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             Login.IP = editText.getText().toString();
 
                             SharedPreferences.Editor editor = sp.edit();
-                            editor.putString("IP",Login.IP);
+                            editor.putString("IP", Login.IP);
+                            editor.apply();
                         }
                         Toast.makeText(Login.this, "修改后IP为" + Login.IP, Toast.LENGTH_SHORT).show();
                     }
