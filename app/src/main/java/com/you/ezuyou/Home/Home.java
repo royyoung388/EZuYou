@@ -15,7 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.you.ezuyou.InternetUtls.HomeUtils;
+import com.you.ezuyou.InternetUtls.HomeUtils.GetAdvertisement;
+import com.you.ezuyou.InternetUtls.HomeUtils.GetHome_Item;
 import com.you.ezuyou.R;
 import com.you.ezuyou.Rearch.Search;
 
@@ -67,13 +68,46 @@ public class Home extends Fragment {
 
         //获取广告图片
         advertisement = (ImageView) view.findViewById(R.id.home_image);
-        HomeUtils.GetAdvertisement(handler);
+        //HomeUtils.GetAdvertisement(handler);
+        Thread getAdvertisement = new GetAdvertisement(handler);
+        getAdvertisement.start();
+        try {
+            getAdvertisement.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         //使用listview
         listView = (ListView) view.findViewById(R.id.home_listview);
-        HomeUtils.getHome_Item(handler);
+        //HomeUtils.getHome_Item(handler);
+        Thread getHome_Item = new GetHome_Item(handler);
+        getHome_Item.start();
+        try {
+            getHome_Item.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return view;
+    }
+
+    //刷新
+    public void Flush() {
+        Thread getAdvertisement = new GetAdvertisement(handler);
+        getAdvertisement.start();
+        try {
+            getAdvertisement.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Thread getHome_Item = new GetHome_Item(handler);
+        getHome_Item.start();
+        try {
+            getHome_Item.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

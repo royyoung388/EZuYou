@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.you.ezuyou.InternetUtls.LoginUtils;
+import com.you.ezuyou.InternetUtls.LoginUtils.Start_Sign;
 import com.you.ezuyou.R;
 
 /**
@@ -54,7 +54,9 @@ public class Login_sign extends AppCompatActivity implements View.OnClickListene
             Toast.makeText(this, "正在注册", Toast.LENGTH_SHORT).show();
 
             //注册
-            LoginUtils.start_sign(userName, userPwd, name);
+            //LoginUtils.start_sign(userName, userPwd, name);
+            Thread start_sign = new Start_Sign(userName, userPwd, name);
+            start_sign.start();
         }
     }
 

@@ -43,7 +43,7 @@ public class BaseActivity extends AppCompatActivity {
 	public void setOnFragmentResult(OnFragmentResult onFragmentResult){
 		mOnFragmentResult = onFragmentResult;
 	}
-	
+
 	/**
 	 * 回调数据给Fragment的接口
 	 */

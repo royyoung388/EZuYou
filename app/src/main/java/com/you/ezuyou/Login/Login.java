@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.you.ezuyou.InternetUtls.LoginUtils;
+import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.R;
 
 /**
@@ -68,7 +68,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         } else {
             Toast.makeText(this, "正在连接", Toast.LENGTH_SHORT).show();
             //登录
-            LoginUtils.start_Login(userName, userPass, pwd);
+            Thread start_Login = new Start_Login(userName, userPass, pwd);
+            start_Login.start();
+            //LoginUtils.start_Login(userName, userPass, pwd);
+
             //实现记住密码
             rememer();
         }

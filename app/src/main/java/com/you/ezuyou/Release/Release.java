@@ -1,6 +1,8 @@
 package com.you.ezuyou.Release;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +15,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.you.ezuyou.InternetUtls.ReleaseUtils;
+import com.you.ezuyou.InternetUtls.ReleaseUtils.Start_Release;
 import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.R;
 
@@ -41,6 +43,9 @@ public class Release extends Fragment implements View.OnClickListener {
      */
     private UploadImageAdapter adapter;
 
+    //接口
+    public Flush_Home flush_home;
+
     //布局
     private EditText edit_name, edit_sell, edit_rent, edit_detil;
     private TextView publish;
@@ -60,8 +65,7 @@ public class Release extends Fragment implements View.OnClickListener {
         uploadGridView.setAdapter(adapter);
         uploadGridView.setOnItemClickListener(mItemClick);
         uploadGridView.setOnItemLongClickListener(mItemLongClick);
-        //设置监听
-        ((Menu) getActivity()).setOnFragmentResult(mOnFragmentResult);
+
 
         //UI
         //输入框
@@ -81,7 +85,19 @@ public class Release extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    //进行接口的活动
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+        if (context != null) {
+            //设置监听
+            ((Menu) getActivity()).setOnFragmentResult(mOnFragmentResult);
+            flush_home = (Flush_Home) context;
+        }
+    }
+
+    //点击上传事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -99,7 +115,29 @@ public class Release extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "详细信息不能为空", Toast.LENGTH_SHORT).show();
                 else if (str_sell.equals("0") && str_rent.equals("0"))
                     Toast.makeText(getActivity(), "详细信息不能为空", Toast.LENGTH_SHORT).show();
-                else ReleaseUtils.start_Release(dataList, str_name, str_sell, str_rent, str_detil);
+                else {
+                    //ReleaseUtils.start_Release(dataList, str_name, str_sell, str_rent, str_detil);
+                    Thread release = new Start_Release(dataList, str_name, str_sell, str_rent, str_detil);
+                    release.start();
+                    try {
+                        release.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    //清除输入
+                    edit_name.setText(null);
+                    edit_sell.setText(null);
+                    edit_rent.setText(null);
+                    edit_detil.setText(null);
+                    //清除图片
+                    dataList.clear();
+                    dataList.addLast(null);// 初始化第一个添加按钮数据
+                    adapter.update(dataList);
+
+                    flush_home.Flush_Item();
+                    Toast.makeText(getActivity(), "上传成功", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
@@ -145,4 +183,9 @@ public class Release extends Fragment implements View.OnClickListener {
             //System.out.println(mImagePath);
         }
     };
+
+    //让home刷新
+    public interface Flush_Home {
+        public void Flush_Item();
+    }
 }
