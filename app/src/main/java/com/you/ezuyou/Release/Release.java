@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,8 @@ public class Release extends Fragment implements View.OnClickListener {
 
     private String str_name, str_sell, str_rent, str_detil;
 
+    //图片个数，根据这个动态变化行数
+    int count = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -168,6 +171,11 @@ public class Release extends Fragment implements View.OnClickListener {
             if (parent.getItemAtPosition(position) != null) { // 长按删除
                 dataList.remove(parent.getItemAtPosition(position));
                 adapter.update(dataList); // 刷新图片
+                count--;
+                if (count % 3 == 0 && count != 6) {
+                    setListViewHeightBasedOnChildren(uploadGridView);
+                    adapter.notifyDataSetChanged();
+                }
             }
             return true;
         }
@@ -179,6 +187,11 @@ public class Release extends Fragment implements View.OnClickListener {
         @Override
         public void onResult(String mImagePath) {
             dataList.addFirst(mImagePath);
+            count++;
+            if (count % 3 == 0 && count != 6) {
+                setListViewHeightBasedOnChildren(uploadGridView);
+                adapter.notifyDataSetChanged();
+            }
             adapter.update(dataList); // 刷新图片
             //System.out.println(mImagePath);
         }
@@ -187,5 +200,35 @@ public class Release extends Fragment implements View.OnClickListener {
     //让home刷新
     public interface Flush_Home {
         public void Flush_Item();
+    }
+
+    //动态改变GridView高度,计算
+    public static void setListViewHeightBasedOnChildren(GridView listView) {
+        // 获取listview的adapter
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
+        // 固定列宽，有多少列
+        int col = listView.getNumColumns();
+        int totalHeight = 0;
+        // i每次加4，相当于listAdapter.getCount()小于等于4时 循环一次，计算一次item的高度，
+        // listAdapter.getCount()小于等于8时计算两次高度相加
+        for (int i = 0; i < listAdapter.getCount(); i += col) {
+            // 获取listview的每一个item
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            // 获取item的高度和
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        // 获取listview的布局参数
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        // 设置高度
+        params.height = totalHeight;
+        // 设置margin
+        //((ViewGroup.MarginLayoutParams) params).setMargins(10, 10, 10, 10);
+        // 设置参数
+        listView.setLayoutParams(params);
     }
 }

@@ -1,6 +1,7 @@
 package com.you.ezuyou.Home;
 
 import android.app.Fragment;
+import android.app.LauncherActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -81,13 +83,24 @@ public class Home extends Fragment {
         //使用listview
         listView = (ListView) view.findViewById(R.id.home_listview);
         //HomeUtils.getHome_Item(handler);
-        Thread getHome_Item = new GetHome_Item(handler);
+        Thread getHome_Item = new GetHome_Item(handler, -1);
         getHome_Item.start();
         try {
             getHome_Item.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        //listview点击事件
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), Home_Item_Detil.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+
+            }
+        });
 
         return view;
     }
@@ -102,7 +115,7 @@ public class Home extends Fragment {
             e.printStackTrace();
         }
 
-        Thread getHome_Item = new GetHome_Item(handler);
+        Thread getHome_Item = new GetHome_Item(handler, -1);
         getHome_Item.start();
         try {
             getHome_Item.join();

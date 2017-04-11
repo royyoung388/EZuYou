@@ -2,6 +2,7 @@ package com.you.ezuyou.InternetUtls.HomeUtils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
@@ -10,6 +11,7 @@ import com.you.ezuyou.Login.Login;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -21,12 +23,13 @@ public class GetImage extends Thread{
 
     private Handler handler;
     private String home_item;
-    private int count;
+    private int count, position;
 
-    public GetImage(Handler handler, String home_item, int count) {
+    public GetImage(Handler handler, String home_item, int count, int position) {
         this.handler = handler;
         this.home_item = home_item;
         this.count = count;
+        this.position = position;
     }
 
     public void run() {
@@ -36,10 +39,15 @@ public class GetImage extends Thread{
         try {
             socket = new Socket(Login.IP, 30002);
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
+            DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
+
+            dataOutputStream.writeInt(position);
+
             int i = 0;
 
             while (true) {
                 int size = dataInput.readInt();
+
                 byte[] data = new byte[size];
                 int len = 0;
                 while (len < size) {
@@ -55,16 +63,23 @@ public class GetImage extends Thread{
                 } else break;
             }
 
-
-            Item item = new Item(image, home_item);
-
-            //Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());
-            //listView.setAdapter(adapter);
-
-            Message message = new Message();
-            message.what = 2;
-            message.obj = item;
-            handler.sendMessage(message);
+            //所有的图片
+            if (position == -1) {
+                Item item = new Item(image, home_item);
+                Message message = new Message();
+                message.what = 2;
+                message.obj = item;
+                handler.sendMessage(message);
+            } else {
+                //获取指定position
+                Message message = new Message();
+                Bundle bundle = new Bundle();
+                bundle.putString("home_item", home_item);
+                bundle.putSerializable("image", image);
+                message.setData(bundle);
+                message.what = 1;
+                handler.sendMessage(message);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
