@@ -26,6 +26,7 @@ public class My extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("fragement5启动");
         View view = inflater.inflate(R.layout.my, container, false);
 
         return view;

@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.you.ezuyou.Chat.Chat_Item;
 import com.you.ezuyou.Fragment.MyFragment2;
-import com.you.ezuyou.Fragment.MyFragment4;
 import com.you.ezuyou.Home.Home;
 import com.you.ezuyou.My.My;
 import com.you.ezuyou.Release.Release;
@@ -26,10 +26,13 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
     //Fragment Object
     private Home fg1;
     private MyFragment2 fg2;
+    private Chat_Item fg4;
     private Release fg3;
-    private MyFragment4 fg4;
     private My fg5;
 
+    public String username;
+
+    //private FragmentTransaction fTransaction;
     private FragmentManager fManager;
 
     @Override
@@ -38,8 +41,21 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
         setContentView(R.layout.menu);
 
         fManager = getFragmentManager();
+
+        //用于启动聊天线程
+        new Chat_Item().sart();
+
         bindViews();
-        menu1.performClick();   //模拟一次点击，既进去后选择第一项
+        //模拟一次点击，既进去后选择第一项
+        menu1.performClick();
+
+        //加载聊天界面，以启动线程
+        /*System.out.println("加载聊天界面，以启动线程");
+        fTransaction = fManager.beginTransaction();
+        fg1 = new Home();
+        fTransaction.add(R.id.frame,fg1);
+        hideAllFragment(fTransaction);*/
+
     }
 
     //UI组件初始化与事件绑定
@@ -60,7 +76,7 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
     }
 
     //重置所有文本的选中状态
-    private void setSelected(){
+    private void setSelected() {
         menu1.setSelected(false);
         menu2.setSelected(false);
 //        menu3.setSelected(false);
@@ -70,36 +86,37 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
     }
 
     //隐藏所有Fragment
-    private void hideAllFragment(FragmentTransaction fragmentTransaction){
-        if(fg1 != null)fragmentTransaction.hide(fg1);
-        if(fg2 != null)fragmentTransaction.hide(fg2);
-        if(fg3 != null)fragmentTransaction.hide(fg3);
-        if(fg4 != null)fragmentTransaction.hide(fg4);
-        if(fg5 != null)fragmentTransaction.hide(fg5);
+    private void hideAllFragment(FragmentTransaction fragmentTransaction) {
+        if (fg1 != null) fragmentTransaction.hide(fg1);
+        if (fg2 != null) fragmentTransaction.hide(fg2);
+        if (fg3 != null) fragmentTransaction.hide(fg3);
+        if (fg4 != null) fragmentTransaction.hide(fg4);
+        if (fg5 != null) fragmentTransaction.hide(fg5);
     }
 
     @Override
     public void onClick(View v) {
         FragmentTransaction fTransaction = fManager.beginTransaction();
         hideAllFragment(fTransaction);
-        switch (v.getId()){
+
+        switch (v.getId()) {
             case R.id.menu1:
                 setSelected();
                 menu1.setSelected(true);
-                if(fg1 == null){
+                if (fg1 == null) {
                     fg1 = new Home();
-                    fTransaction.add(R.id.frame,fg1);
-                }else{
+                    fTransaction.add(R.id.frame, fg1);
+                } else {
                     fTransaction.show(fg1);
                 }
                 break;
             case R.id.menu2:
                 setSelected();
                 menu2.setSelected(true);
-                if(fg2 == null){
+                if (fg2 == null) {
                     fg2 = new MyFragment2();
-                    fTransaction.add(R.id.frame,fg2);
-                }else{
+                    fTransaction.add(R.id.frame, fg2);
+                } else {
                     fTransaction.show(fg2);
                 }
                 break;
@@ -107,30 +124,30 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
                 setSelected();
                 //menu3.setSelected(true);
                 //menu3_bt.setSelected(true);
-                if(fg3 == null){
+                if (fg3 == null) {
                     fg3 = new Release();
-                    fTransaction.add(R.id.frame,fg3);
-                }else{
+                    fTransaction.add(R.id.frame, fg3);
+                } else {
                     fTransaction.show(fg3);
                 }
                 break;
             case R.id.menu4:
                 setSelected();
                 menu4.setSelected(true);
-                if(fg4 == null){
-                    fg4 = new MyFragment4();
-                    fTransaction.add(R.id.frame,fg4);
-                }else{
+                if (fg4 == null) {
+                    fg4 = new Chat_Item();
+                    fTransaction.add(R.id.frame, fg4);
+                } else {
                     fTransaction.show(fg4);
                 }
                 break;
             case R.id.menu5:
                 setSelected();
                 menu5.setSelected(true);
-                if(fg5 == null){
+                if (fg5 == null) {
                     fg5 = new My();
-                    fTransaction.add(R.id.frame,fg5);
-                }else{
+                    fTransaction.add(R.id.frame, fg5);
+                } else {
                     fTransaction.show(fg5);
                 }
                 break;
@@ -138,14 +155,17 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
         fTransaction.commit();
     }
 
+    //与选择图片上传有关
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String imagePath = "";
-        if(requestCode == SELECT_IMAGE_RESULT_CODE && resultCode== RESULT_OK){
-            if(data != null && data.getData() != null){//有数据返回直接使用返回的图片地址
+        if (requestCode == SELECT_IMAGE_RESULT_CODE && resultCode == RESULT_OK) {
+            if (data != null && data.getData() != null) {
+                //有数据返回直接使用返回的图片地址
                 imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
-            }else{//无数据使用指定的图片路径
+            } else {
+                //无数据使用指定的图片路径
                 imagePath = mImagePath;
             }
             mOnFragmentResult.onResult(imagePath);

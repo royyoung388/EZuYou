@@ -5,6 +5,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.you.ezuyou.Login.*;
+import com.you.ezuyou.keyword.KeyWord;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,7 +18,7 @@ import java.net.Socket;
 
 public class Start_Sign extends Thread{
 
-    private String username, userpwd, userschool, userschool_class, usernumber, usersex;
+    private String userid, username, userpwd, userschool, userschool_class, usernumber, usersex;
     EditText name;
 
     public Start_Sign(String username, String userpwd, String userschool, String userschool_class, String usernumber, String usersex, EditText name) {
@@ -35,7 +36,7 @@ public class Start_Sign extends Thread{
         Socket socket = null;
 
         try {
-            socket = new Socket(com.you.ezuyou.Login.Login.IP, 30004);
+            socket = new Socket(com.you.ezuyou.Login.Login.IP, KeyWord.PORT_LOGIN_SIGN);
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());
 

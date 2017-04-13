@@ -14,11 +14,13 @@ import java.util.regex.Pattern;
 public class Item {
 
     private Bitmap image;
-    private String name, rent, sell, introduce;
+    private String id, person, name, rent, sell, introduce;
 
     public List<Item> Data = new ArrayList<>();
 
-    public Item(Bitmap image, String name, String sell, String rent, String introduce) {
+    public Item(Bitmap image, String id, String person, String name, String sell, String rent, String introduce) {
+        this.id = id;
+        this.person = person;
         this.image = image;
         this.name = name;
         this.sell = sell;
@@ -27,10 +29,14 @@ public class Item {
     }
 
     public Item(Bitmap[] image, String string) {
-        Pattern pattern = Pattern.compile("\\{\\s*name:(\\S*?);\\s*" +
+        Pattern pattern = Pattern.compile("\\{\\s*" +
+                                            "id:(\\S*?);\\s*" +
+                                            "person:(\\S*?);\\s*" +
+                                            "name:(\\S*?);\\s*" +
                                             "sell:(\\S*?);\\s*" +
                                             "rent:(\\S*?);\\s*" +
-                                            "introduce:(\\S*?);\\s*\\},");
+                                            "introduce:(\\S*?);\\s*" +
+                                            "\\},\\s*");
         Matcher matcher = pattern.matcher(string);
         int i = 0;
         while (matcher.find()) {
@@ -38,13 +44,18 @@ public class Item {
             System.out.println(matcher.group(2));
             System.out.println(matcher.group(3));
             System.out.println(matcher.group(4));
+            System.out.println(matcher.group(5));
+            System.out.println(matcher.group(6));
+
             Item item = new Item(
                     image[i],
                     matcher.group(1),
                     matcher.group(2),
                     matcher.group(3),
-                    matcher.group(4)
-            );
+                    matcher.group(4),
+                    matcher.group(5),
+                    matcher.group(6)
+                    );
             System.out.println(item);
             Data.add(item);
             i++;
@@ -56,67 +67,35 @@ public class Item {
         return image;
     }
 
+    public String getID() {return id;}
+
+    public String getPerson() {return person;}
+
     public String getName() {
         return name;
     }
-    /*private String getName(String string) {
-        Pattern pattern = Pattern.compile("name:(\\S*?);");
-        Matcher matcher = pattern.matcher(string);
-        String name = "";
-        while (matcher.find()) {
-            name += matcher.group();
-        }
-
-        return name;
-    }*/
 
     public String getRent() {
         return rent;
     }
-    /*private String getRent(String string) {
-        Pattern pattern = Pattern.compile("rent:(\\S);");
-        Matcher matcher = pattern.matcher(string);
-
-        String rent = "";
-        while (matcher.find()) {
-            rent += matcher.group();
-        }
-        return rent;
-    }*/
 
     public String getSell() {
         return sell;
     }
-    /*private String getSell(String string) {
-        Pattern pattern = Pattern.compile("sell:(\\S);");
-        Matcher matcher = pattern.matcher(string);
-
-        String sell = "";
-        while (matcher.find()) {
-            sell += matcher.group();
-        }
-        return sell;
-    }*/
 
     public String getIntroduce() {
         return introduce;
     }
-    /*private String getIntroduce(String string) {
-        Pattern pattern = Pattern.compile("introduce:(\\S);");
-        Matcher matcher = pattern.matcher(string);
-
-        String introduce = "";
-        while (matcher.find()) {
-            introduce += matcher.group();
-        }
-        return introduce;
-    }*/
 
     public static int getSize(String string) {
-        Pattern pattern = Pattern.compile("\\{\\s*name:(\\S*?);\\s*" +
+        Pattern pattern = Pattern.compile("\\{\\s*" +
+                "id:(\\S*?);\\s*" +
+                "person:(\\S*?);\\s*" +
+                "name:(\\S*?);\\s*" +
                 "sell:(\\S*?);\\s*" +
                 "rent:(\\S*?);\\s*" +
-                "introduce:(\\S*?);\\s*\\},");
+                "introduce:(\\S*?);\\s*" +
+                "\\},\\s*");
         Matcher matcher = pattern.matcher(string);
         int i = 0;
         while (matcher.find()) {

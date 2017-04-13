@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
 import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.R;
 
@@ -70,7 +71,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             //登录
             Thread start_Login = new Start_Login(userName, userPass, pwd);
             start_Login.start();
-            //LoginUtils.start_Login(userName, userPass, pwd);
 
             //实现记住密码
             rememer();
@@ -117,6 +117,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    //点击事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

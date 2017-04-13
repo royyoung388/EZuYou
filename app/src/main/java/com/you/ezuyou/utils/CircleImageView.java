@@ -1,4 +1,4 @@
-package com.you.ezuyou.My;
+package com.you.ezuyou.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

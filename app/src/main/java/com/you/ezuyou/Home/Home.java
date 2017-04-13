@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -27,11 +29,12 @@ import com.you.ezuyou.Rearch.Search;
  * Created by Administrator on 2017/2/28.
  */
 
-public class Home extends Fragment {
+public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private View view;
     private ImageView advertisement;
     private ListView listView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private Handler handler = new Handler() {
         @Override
@@ -53,11 +56,21 @@ public class Home extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("fragement1启动");
         view = inflater.inflate(R.layout.home, container, false);
 
         //使用toolbar
         Toolbar home_toolbar = (Toolbar) view.findViewById(R.id.home_toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(home_toolbar);
+
+        //下拉刷新
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.home_swipe);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        //小圈圈的颜色。转一圈换一种颜色，每一圈耗时1s。
+        swipeRefreshLayout.setColorSchemeResources(R.color.red, R.color.green, R.color.blue, R.color.orange);
+        swipeRefreshLayout.setDistanceToTriggerSync(200);
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(getActivity(), R.color.white));
+        swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
 
         //点击搜索栏事件
         LinearLayout search = (LinearLayout) view.findViewById(R.id.home_searh);
@@ -122,5 +135,12 @@ public class Home extends Fragment {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        Flush();
+        // 停止刷新
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

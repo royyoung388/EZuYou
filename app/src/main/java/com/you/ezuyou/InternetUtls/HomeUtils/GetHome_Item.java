@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.Login.Login;
+import com.you.ezuyou.keyword.KeyWord;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -29,7 +30,7 @@ public class GetHome_Item extends Thread {
         String home_item = "";
 
         try {
-            socket = new Socket(Login.IP, 30001);
+            socket = new Socket(Login.IP, KeyWord.PORT_HOME_ITEM);
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 

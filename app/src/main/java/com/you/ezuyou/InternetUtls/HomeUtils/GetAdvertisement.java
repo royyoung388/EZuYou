@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.you.ezuyou.Login.Login;
+import com.you.ezuyou.keyword.KeyWord;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -29,7 +30,7 @@ public class GetAdvertisement extends Thread{
         Socket socket = null;
 
         try {
-            socket = new Socket(Login.IP, 30000);
+            socket = new Socket(Login.IP, KeyWord.PORT_HOME_ADVERTISE);
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             int size = dataInput.readInt();
             byte[] data = new byte[size];

@@ -24,11 +24,14 @@
         <!--android:windowSoftInputMode="stateHidden|adjustUnspecified">-->
         <activity
             android:name=".Menu.Menu"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <activity android:name=".Home.Home_Item_Detil"></activity>
 
         <activity android:name=".Rearch.Search"></activity>
+        
+        <activity android:name=".Chat.Chat_Show"></activity>
+
 
         <activity android:name=".My.My_Information"></activity>
         <activity android:name=".My.My_Favorite"></activity>

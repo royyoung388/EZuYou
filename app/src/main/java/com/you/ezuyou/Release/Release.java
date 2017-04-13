@@ -51,14 +51,30 @@ public class Release extends Fragment implements View.OnClickListener {
     private EditText edit_name, edit_sell, edit_rent, edit_detil;
     private TextView publish;
 
-    private String str_name, str_sell, str_rent, str_detil;
+    private String str_name = null, str_sell = null, str_rent = null, str_detil = null;
 
     //图片个数，根据这个动态变化行数
     int count = 0;
 
+    //单击之后的回传的图片路劲
+    private Menu.OnFragmentResult mOnFragmentResult = new Menu.OnFragmentResult() {
+
+        @Override
+        public void onResult(String mImagePath) {
+            dataList.addFirst(mImagePath);
+            count++;
+            if (count % 3 == 0 && count != 6) {
+                setListViewHeightBasedOnChildren(uploadGridView);
+                adapter.notifyDataSetChanged();
+            }
+            adapter.update(dataList); // 刷新图片
+            //System.out.println(mImagePath);
+        }
+    };
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("fragment3启动");
         View view = inflater.inflate(R.layout.release, container, false);
 
         //这些和上传图片有关
@@ -108,19 +124,23 @@ public class Release extends Fragment implements View.OnClickListener {
 
                 str_detil = edit_detil.getText().toString();
                 str_name = edit_name.getText().toString();
+                str_rent = edit_rent.getText().toString();
+                str_sell = edit_sell.getText().toString();
 
-                if ((str_sell = edit_sell.getText().toString()) == null) str_sell = "0";
-                if ((str_rent = edit_rent.getText().toString()) == null) str_rent = "0";
+                if (str_rent == null || str_rent.equals("")) str_rent = "0";
+                if (str_sell == null || str_sell.equals("")) str_sell = "0";
 
-                if (edit_name == null)
+                if (str_name == null || str_name.equals(""))
                     Toast.makeText(getActivity(), "物品名称不能为空", Toast.LENGTH_SHORT).show();
-                else if (str_detil == null)
+                else if (str_detil == null || str_detil.equals(""))
                     Toast.makeText(getActivity(), "详细信息不能为空", Toast.LENGTH_SHORT).show();
                 else if (str_sell.equals("0") && str_rent.equals("0"))
-                    Toast.makeText(getActivity(), "详细信息不能为空", Toast.LENGTH_SHORT).show();
-                else {
+                    Toast.makeText(getActivity(), "价格输入有误", Toast.LENGTH_SHORT).show();
+                else if (count == 0) {
+                    Toast.makeText(getActivity(), "请上传图片", Toast.LENGTH_SHORT).show();
+                } else {
                     //ReleaseUtils.start_Release(dataList, str_name, str_sell, str_rent, str_detil);
-                    Thread release = new Start_Release(dataList, str_name, str_sell, str_rent, str_detil);
+                    Thread release = new Start_Release(dataList, str_name, str_sell, str_rent, str_detil, edit_name.getContext());
                     release.start();
                     try {
                         release.join();
@@ -181,25 +201,10 @@ public class Release extends Fragment implements View.OnClickListener {
         }
     };
 
-    //单击之后的回传的图片路劲
-    private Menu.OnFragmentResult mOnFragmentResult = new Menu.OnFragmentResult() {
-
-        @Override
-        public void onResult(String mImagePath) {
-            dataList.addFirst(mImagePath);
-            count++;
-            if (count % 3 == 0 && count != 6) {
-                setListViewHeightBasedOnChildren(uploadGridView);
-                adapter.notifyDataSetChanged();
-            }
-            adapter.update(dataList); // 刷新图片
-            //System.out.println(mImagePath);
-        }
-    };
 
     //让home刷新
     public interface Flush_Home {
-        public void Flush_Item();
+        void Flush_Item();
     }
 
     //动态改变GridView高度,计算

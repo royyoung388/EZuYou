@@ -21,9 +21,10 @@ public class MyFragment2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("fragment2启动");
         View view = inflater.inflate(R.layout.fragment2, container, false);
-        TextView txt_content = (TextView) view.findViewById(R.id.text2);
-        txt_content.setText("第二个Fragment");
+        TextView txt_content = (TextView) view.findViewById(R.id.text4);
+        txt_content.setText("第四个Fragment");
         return view;
     }
 }

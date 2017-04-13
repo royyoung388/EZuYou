@@ -47,7 +47,7 @@
             <TextView
                 android:id="@+id/menu4"
                 style="@style/menu"
-                android:text="社区" />
+                android:text="聊天" />
             <TextView
                 android:id="@+id/menu5"
                 style="@style/menu"

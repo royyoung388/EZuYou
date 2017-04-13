@@ -8,6 +8,7 @@ import android.os.Message;
 
 import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.Login.Login;
+import com.you.ezuyou.keyword.KeyWord;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -37,7 +38,7 @@ public class GetImage extends Thread{
         Bitmap[] image = new Bitmap[count];
 
         try {
-            socket = new Socket(Login.IP, 30002);
+            socket = new Socket(Login.IP, KeyWord.PORT_HOME_IMAGE);
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 

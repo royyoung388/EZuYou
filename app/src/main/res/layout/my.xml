@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <com.you.ezuyou.My.CircleImageView
+        <com.you.ezuyou.utils.CircleImageView
             android:id="@+id/my_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
