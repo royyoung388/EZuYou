@@ -1,5 +1,6 @@
 package com.you.ezuyou.Login;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.you.ezuyou.InternetUtls.LoginUtils.Start_Sign;
@@ -21,6 +23,7 @@ import com.you.ezuyou.R;
 public class Login_sign extends AppCompatActivity implements View.OnClickListener{
 
     private EditText name, pwd, repwd, school, school_class, number;
+    private TextView back;
     private RadioGroup group;
     private RadioButton man, women;
     private Button sign;
@@ -32,10 +35,10 @@ public class Login_sign extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_sign);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.Login_sign_Toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.Login_sign_Toolbar);
         toolbar.setTitle("");
         //toolbar.inflateMenu(R.menu.menu_main);//设置右上角的填充菜单
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);*/
 
         bindView();
     }
@@ -85,8 +88,12 @@ public class Login_sign extends AppCompatActivity implements View.OnClickListene
         man = (RadioButton) findViewById(R.id.Login_sign_radio_man);
         women = (RadioButton) findViewById(R.id.Login_sign_radio_woman);
         sign = (Button) findViewById(R.id.Login_sign_submit);
+        back = (TextView) findViewById(R.id.login_sign_back) ;
+        //添加下划线
+        back.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );
 
         sign.setOnClickListener(this);
+        back.setOnClickListener(this);
 
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -100,6 +107,10 @@ public class Login_sign extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.login_sign_back:
+                System.out.println("点击了返回键");
+                finish();
+                break;
             case R.id.Login_sign_submit:
                 check();
                 break;

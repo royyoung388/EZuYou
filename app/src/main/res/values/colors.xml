@@ -10,7 +10,8 @@
     <color name="btn_pressed_color">#3ca0ec</color>
 
     <color name="black">#000000</color><!--黑色 -->
-
+    <color name="hint">#fff6df</color><!--提示文字 -->
+    <color name="login_input">#f46d00</color><!--登录的输入文字 -->
 
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->

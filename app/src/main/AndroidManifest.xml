@@ -40,7 +40,8 @@
         <activity android:name=".My.My_Purchase"></activity>
 
         <activity android:name=".Login.Login"></activity>
-        <activity android:name=".Login.Login_sign"></activity>
+        <activity android:name=".Login.Login_sign"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -84,6 +86,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         remember = (CheckBox) findViewById(R.id.Login_checkbox);
         submit = (Button) findViewById(R.id.Login_submit);
         sign = (TextView) findViewById(R.id.Login_sign);
+        //添加下划线
+        sign.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );
         changeip = (TextView) findViewById(R.id.Login_changeip);
 
         submit.setOnClickListener(this);
