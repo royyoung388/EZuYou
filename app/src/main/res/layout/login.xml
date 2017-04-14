@@ -3,23 +3,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffed90">
+    android:background="@drawable/login_background">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_alignParentTop="true"
-        android:id="@+id/Login_Toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:id="@+id/Login_Toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="?attr/colorPrimary">-->
 
-        <TextView
-            android:id="@+id/Login_tiltle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20dp"
-            android:text="EZuYou"/>
-    </android.support.v7.widget.Toolbar>
+        <!--<TextView-->
+            <!--android:id="@+id/Login_tiltle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:textSize="20dp"-->
+            <!--android:text="EZuYou"/>-->
+    <!--</android.support.v7.widget.Toolbar>-->
 
     <LinearLayout
         android:id="@+id/Login_layout_password"

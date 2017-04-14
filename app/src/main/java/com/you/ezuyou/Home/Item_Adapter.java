@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/20.
  */
 
-public class Item_Adapter extends android.widget.BaseAdapter{
+public class Item_Adapter extends BaseAdapter {
 
     private List<Item> Data;
     private Context context;

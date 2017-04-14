@@ -2,6 +2,7 @@ package com.you.ezuyou.Chat;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -29,7 +30,7 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private String id, useranme, message;
+    //private String id, useranme, message;
     private MyRAdapter myRAdapter = MyRAdapter.getInstance();
 
 
@@ -43,9 +44,9 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
                 case 1:
                     Bundle bundle = msg.getData();
                     //发送方id
-                    id = bundle.getString("id");
-                    useranme = bundle.getString("useranme");
-                    message = bundle.getString("message");
+                    String id = bundle.getString("id");
+                    String useranme = bundle.getString("useranme");
+                    String message = bundle.getString("message");
                     myRAdapter.addItem(id, useranme, message);
                     break;
             }
@@ -76,6 +77,17 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
         recyclerView.addItemDecoration(itemDecoration);
         //recyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(myRAdapter);
+        //点击事件
+        myRAdapter.setOnRecyclerviewClick(new MyRAdapter.OnRecyclerviewClick() {
+            @Override
+            public void OnItemClick(View view, String[] strings) {
+                Intent intent = new Intent(getActivity(), Chat_Show.class);
+                intent.putExtra("id", strings[0]);
+                intent.putExtra("person", strings[1]);
+                intent.putExtra("message", strings[2]);
+                startActivity(intent);
+            }
+        });
 
         //下拉刷新
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.chat_item_swip);

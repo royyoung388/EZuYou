@@ -1,8 +1,8 @@
-package com.you.ezuyou.InternetUtls.HomeUtils;
+package com.you.ezuyou.InternetUtls.StrategyUtils;
 
 import android.os.Handler;
 
-import com.you.ezuyou.Home.Item;
+import com.you.ezuyou.InternetUtls.HomeUtils.GetImage;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.keyword.KeyWord;
 
@@ -12,25 +12,25 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Created by Administrator on 2017/4/9.
+ * Created by Administrator on 2017/4/14.
  */
 
-public class GetHome_Item extends Thread {
+public class GetStrategy_Item extends Thread{
 
     private Handler handler;
     private int position;
 
-    public GetHome_Item(Handler handler, int position) {
+    public GetStrategy_Item(Handler handler, int position) {
         this.handler = handler;
         this.position = position;
     }
 
     public void run() {
         Socket socket = null;
-        String home_item = "";
+        String strategy_item = "";
 
         try {
-            socket = new Socket(Login.IP, KeyWord.PORT_HOME_ITEM);
+            socket = new Socket(Login.IP, KeyWord.PORT_STRATEGY);
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
@@ -38,15 +38,11 @@ public class GetHome_Item extends Thread {
 
             int count = dataInput.readInt();
 
-            home_item += dataInput.readUTF();
+            strategy_item += dataInput.readUTF();
 
-            Thread getimage = new GetImage(handler, home_item, count, position);
+            Thread getimage = new GetImage_Strategy(handler, strategy_item, count, position);
             getimage.start();
             getimage.join();
-
-//                    Item item = new Item(image, home_item);
-//                    Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());
-//                    listView.setAdapter(adapter);
 
             dataInput.close();
         } catch (IOException e) {

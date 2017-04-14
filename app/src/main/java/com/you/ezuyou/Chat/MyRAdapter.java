@@ -19,13 +19,15 @@ import java.util.List;
  * Created by Administrator on 2017/2/1.
  */
 
-public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> {
+public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> implements View.OnClickListener {
 
     private List<String> id, username, message;
 
     //使用单例模式确保实例只有一个
     // 静态实例变量加上volatile
     private static volatile MyRAdapter myRAdapter;
+
+    private OnRecyclerviewClick itemclick = null;
 
     // 双重检查锁
     public static MyRAdapter getInstance() {
@@ -38,8 +40,6 @@ public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> {
         }
         return myRAdapter;
     }
-
-    ;
 
     // 私有化构造函数
     private MyRAdapter() {
@@ -65,6 +65,24 @@ public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> {
         notifyDataSetChanged();
     }
 
+    //继承点击事件
+    @Override
+    public void onClick(View v) {
+        if (itemclick != null) {
+            itemclick.OnItemClick(v, (String[]) v.getTag());
+        }
+    }
+
+    //自定义一个点击的接口
+    public interface OnRecyclerviewClick {
+        void OnItemClick(View view, String[] strings);
+    }
+
+    //暴露给外面，设置接口变量的方法
+    public void setOnRecyclerviewClick(OnRecyclerviewClick listener) {
+        this.itemclick = listener;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView username, message;
@@ -81,12 +99,16 @@ public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.chat_item_item, parent, false);
         ViewHolder vh = new ViewHolder(view);
+        //点击监听
+        view.setOnClickListener(this);
         return vh;
     }
 
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.username.setText(username.get(position));
         holder.message.setText(message.get(position));
+        //使用serTag传数据
+        holder.itemView.setTag(new String[]{id.get(position), username.get(position), message.get(position)});
     }
 
     public int getItemCount() {

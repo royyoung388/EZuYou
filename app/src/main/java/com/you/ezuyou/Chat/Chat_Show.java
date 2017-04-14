@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.you.ezuyou.InternetUtls.ChatUtils.Start_Chat;
 import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
@@ -67,8 +68,10 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.chat_show);
 
         SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
+        //用户id
         userid = sp.getString("id", null);
 
+        //使用Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.chat_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
@@ -77,7 +80,12 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
 
         Intent intent = getIntent();
         person = intent.getStringExtra("person");
+        //对方id
         id = intent.getStringExtra("id");
+
+        //从cha_item启动时，会传入一个历史消息
+        if (!intent.getStringExtra("message").equals("") || intent.getStringExtra("message") != null)
+            AddText(intent.getStringExtra("message"));
 
         title.setText(person);
     }
@@ -85,22 +93,56 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
     //处理聊天过程
     private void Chat_Connection() {
         message = edit.getText().toString();
-        //生成对话框
-        AddText(message);
-        //清除输入框
-        edit.setText("");
+        if (!message.equals("") ||  message != null) {
+            //生成对话框
+            AddText(message);
+            //清除输入框
+            edit.setText("");
 
-        //开启聊天线程
-        Thread chat = new Start_Chat("聊天", id, userid, Start_Login.username, message);
-        chat.start();
-        try {
-            chat.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            //开启聊天线程
+            Thread chat = new Start_Chat("聊天", id, userid, Start_Login.username, message);
+            chat.start();
+            try {
+                chat.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(this, "发送消息不能为空", Toast.LENGTH_SHORT);
         }
-
     }
 
+    /**
+     * 监听Back键按下事件,方法1:
+     * 注意:
+     * super.onBackPressed()会自动调用finish()方法,关闭
+     * 当前Activity.
+     * 若要屏蔽Back键盘,注释该行代码即可
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.out.println("按下了back键   onBackPressed()");
+    }
+
+
+    /**
+     * 监听Back键按下事件,方法2:
+     * 注意:
+     * 返回值表示:是否能完全处理该事件
+     * 在此处返回false,所以会继续传播该事件.
+     * 在具体项目中此处的返回值视情况而定.
+     */
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            System.out.println("按下了back键   onKeyDown()");
+            return false;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+
+    }*/
 
     //绑定控件
     private void BindView() {

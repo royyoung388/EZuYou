@@ -127,6 +127,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
                 Intent intent = new Intent(Home_Item_Detil.this, Chat_Show.class);
                 intent.putExtra("id", item.Data.get(0).getID());
                 intent.putExtra("person", item.Data.get(0).getPerson());
+                intent.putExtra("message", "");
                 startActivity(intent);
                 break;
             case R.id.home_item_detil_bt_rent:

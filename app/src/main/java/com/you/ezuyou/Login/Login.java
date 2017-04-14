@@ -42,11 +42,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-
+        /*//使用toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.Login_Toolbar);
         toolbar.setTitle("");
         //toolbar.inflateMenu(R.menu.menu_main);//设置右上角的填充菜单
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);*/
 
         bindView();
     }

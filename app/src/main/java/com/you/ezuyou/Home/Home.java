@@ -114,7 +114,6 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
 
             }
         });
-
         return view;
     }
 
