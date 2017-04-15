@@ -21,7 +21,7 @@ public class My_History extends AppCompatActivity{
         setContentView(R.layout.my_history);
 
         my_history_toolbar = (Toolbar) findViewById(R.id.my_history_toolbar);
-        my_history_toolbar.setNavigationIcon(R.drawable.goback_dark);
+        my_history_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_history_toolbar);
     }
 

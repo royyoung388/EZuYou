@@ -21,7 +21,7 @@ public class My_Favorite extends AppCompatActivity{
         setContentView(R.layout.my_favorite);
 
         my_favorite_toolbar = (Toolbar) findViewById(R.id.my_favorite_toolbar);
-        my_favorite_toolbar.setNavigationIcon(R.drawable.goback_dark);
+        my_favorite_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_favorite_toolbar);
     }
 

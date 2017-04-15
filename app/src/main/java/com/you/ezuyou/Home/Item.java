@@ -14,12 +14,13 @@ import java.util.regex.Pattern;
 public class Item {
 
     private Bitmap image;
-    private String id, person, name, rent, sell, introduce;
+    private String id, tag, person, name, rent, sell, introduce;
 
     public List<Item> Data = new ArrayList<>();
 
-    public Item(Bitmap image, String id, String person, String name, String sell, String rent, String introduce) {
+    public Item(Bitmap image, String id, String tag, String person, String name, String sell, String rent, String introduce) {
         this.id = id;
+        this.tag = tag;
         this.person = person;
         this.image = image;
         this.name = name;
@@ -31,6 +32,8 @@ public class Item {
     public Item(Bitmap[] image, String string) {
         Pattern pattern = Pattern.compile("\\{\\s*" +
                                             "id:(\\S*?);\\s*" +
+                                            "tag:(\\S*?);\\s*" +
+                                            "status:1;\\s*" +
                                             "person:(\\S*?);\\s*" +
                                             "name:(\\S*?);\\s*" +
                                             "sell:(\\S*?);\\s*" +
@@ -46,6 +49,7 @@ public class Item {
             System.out.println(matcher.group(4));
             System.out.println(matcher.group(5));
             System.out.println(matcher.group(6));
+            System.out.println(matcher.group(7));
 
             Item item = new Item(
                     image[i],
@@ -54,7 +58,8 @@ public class Item {
                     matcher.group(3),
                     matcher.group(4),
                     matcher.group(5),
-                    matcher.group(6)
+                    matcher.group(6),
+                    matcher.group(7)
                     );
             System.out.println(item);
             Data.add(item);
@@ -68,6 +73,8 @@ public class Item {
     }
 
     public String getID() {return id;}
+
+    public String getTag() {return tag;}
 
     public String getPerson() {return person;}
 
@@ -90,6 +97,8 @@ public class Item {
     public static int getSize(String string) {
         Pattern pattern = Pattern.compile("\\{\\s*" +
                 "id:(\\S*?);\\s*" +
+                "tag:(\\S*?);\\s*" +
+                "status:1;\\s*" +
                 "person:(\\S*?);\\s*" +
                 "name:(\\S*?);\\s*" +
                 "sell:(\\S*?);\\s*" +

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -75,6 +76,7 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
         Toolbar toolbar = (Toolbar) findViewById(R.id.chat_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.icon_back);
 
         BindView();
 
@@ -88,6 +90,16 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
             AddText(intent.getStringExtra("message"));
 
         title.setText(person);
+    }
+
+    //setNavigationlcon的点击监听
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //处理聊天过程

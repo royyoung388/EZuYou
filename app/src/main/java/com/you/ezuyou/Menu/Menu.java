@@ -47,7 +47,7 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
         fManager = getFragmentManager();
 
         //用于启动聊天线程
-        new Chat_Item().sart();
+        new Chat_Item().sartChat();
 
         bindViews();
         //模拟一次点击，既进去后选择第一项

@@ -21,7 +21,7 @@ public class My_Strategy extends AppCompatActivity{
         setContentView(R.layout.my_strategy);
 
         my_strategy_toolbar = (Toolbar) findViewById(R.id.my_strategy_toolbar);
-        my_strategy_toolbar.setNavigationIcon(R.drawable.goback_dark);
+        my_strategy_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_strategy_toolbar);
     }
 

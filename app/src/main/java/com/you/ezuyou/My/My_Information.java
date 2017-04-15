@@ -21,7 +21,7 @@ public class My_Information extends AppCompatActivity{
         setContentView(R.layout.my_information);
 
         my_information_toolbar = (Toolbar) findViewById(R.id.my_information_toolbar);
-        my_information_toolbar.setNavigationIcon(R.drawable.goback_dark);
+        my_information_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_information_toolbar);
     }
 

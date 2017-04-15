@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 
+import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.keyword.KeyWord;
 import com.you.ezuyou.utils.CompressBitmap;
@@ -62,7 +63,9 @@ public class Start_Release extends Thread {
 
             System.out.println(sp.getString("id", null));
             out.writeUTF(sp.getString("id", null));
-            out.writeUTF(sp.getString("name", null));
+            //用户的用户名
+            //out.writeUTF(sp.getString("name", null));
+            out.writeUTF(Start_Login.username);
             out.writeUTF(name);
             out.writeUTF(sell);
             out.writeUTF(rent);

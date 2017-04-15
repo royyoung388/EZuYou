@@ -21,7 +21,7 @@ public class My_Purchase extends AppCompatActivity{
         setContentView(R.layout.my_purchase);
 
         my_purchase_toolbar = (Toolbar) findViewById(R.id.my_purchase_toolbar);
-        my_purchase_toolbar.setNavigationIcon(R.drawable.goback_dark);
+        my_purchase_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_purchase_toolbar);
     }
 

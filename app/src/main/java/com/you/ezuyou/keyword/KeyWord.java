@@ -11,4 +11,5 @@ public class KeyWord {
 	public final static int PORT_CHAT_FROM_OTHER = 30007;
 	public final static int PORT_STRATEGY = 30008;
 	public final static int PORT_STRATEGY_IMAGE = 30009;
+	public final static int PORT_MY = 30010;
 }

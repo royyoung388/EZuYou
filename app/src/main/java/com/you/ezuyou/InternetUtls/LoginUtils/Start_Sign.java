@@ -16,7 +16,7 @@ import java.net.Socket;
  * Created by Administrator on 2017/4/9.
  */
 
-public class Start_Sign extends Thread{
+public class Start_Sign extends Thread {
 
     private String userid, username, userpwd, userschool, userschool_class, usernumber, usersex;
     EditText name;
@@ -47,11 +47,11 @@ public class Start_Sign extends Thread{
             out.writeUTF(usernumber);
             out.writeUTF(usersex);
 
-            if (in.readUTF().equals("用户已存在")) {
-                ((Activity)name.getContext()).runOnUiThread(new Runnable() {
+            if (in.readUTF().equals("error")) {
+                ((Activity) name.getContext()).runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ((Activity)name.getContext()).runOnUiThread(new Runnable() {
+                        ((Activity) name.getContext()).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 Toast.makeText(name.getContext(), "用户已存在", Toast.LENGTH_SHORT).show();
@@ -61,7 +61,19 @@ public class Start_Sign extends Thread{
                     }
                 });
             } else {
-                ((Activity)name.getContext()).finish();
+                ((Activity) name.getContext()).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ((Activity) name.getContext()).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText((name.getContext()), "注册成功", Toast.LENGTH_SHORT).show();
+                                name.setText("");
+                            }
+                        });
+                    }
+                });
+                ((Activity) name.getContext()).finish();
             }
 
         } catch (IOException e) {

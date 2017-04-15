@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -57,6 +58,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_item_detil_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.icon_back);
 
         bindView();
 
@@ -71,6 +73,16 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
+    }
+
+    //setNavigationlcon的点击监听
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //绑定控件

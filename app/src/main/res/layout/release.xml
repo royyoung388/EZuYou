@@ -78,7 +78,7 @@
                     android:id="@+id/Release_input_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/login_sign_input"
+                    android:background="@drawable/relase_input"
                     android:hint="请输入物品名称" />
             </LinearLayout>
 
@@ -113,7 +113,7 @@
                         android:id="@+id/Release_input_rent"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/login_sign_input"
+                        android:background="@drawable/relase_input"
                         android:hint="默认为0，即不出租"
                         android:inputType="numberDecimal" />
 
@@ -157,7 +157,7 @@
                         android:id="@+id/Release_input_sell"
                         android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/login_sign_input"
+                        android:background="@drawable/relase_input"
                         android:hint="默认为0，即不卖"
                         android:inputType="numberDecimal" />
 
@@ -194,7 +194,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_margin="6dp"
-                        android:background="@drawable/login_sign_input"
+                        android:background="@drawable/relase_input"
                         android:gravity="left|top"
                         android:hint="请输入详细信息,字数最多200"
                         android:inputType="textMultiLine"
