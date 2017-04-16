@@ -64,6 +64,7 @@ public class Start_My extends Thread{
 
             sp = context.getSharedPreferences("login", Context.MODE_PRIVATE);
 
+            System.out.println(sp.getString("id", null));
             out.writeUTF(sp.getString("id", null));
 
             String my = in.readUTF();
@@ -77,6 +78,12 @@ public class Start_My extends Thread{
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

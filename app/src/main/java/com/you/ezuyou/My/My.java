@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
 import com.you.ezuyou.InternetUtls.MyUtils.Start_My;
 import com.you.ezuyou.R;
 
@@ -23,8 +22,9 @@ import com.you.ezuyou.R;
 public class My extends Fragment implements View.OnClickListener{
 
     private ImageView my_image;
-    private TextView my_name, my_information, my_favorite, my_history, my_strategy, my_purchase;
+    private TextView my_name, my_information, my_favorite, my_history, my_strategy, my_purchase_ing, getMy_purchase_already;
     private View view;
+    private String my = null;
 
     private Handler handler = new Handler() {
         @Override
@@ -33,7 +33,7 @@ public class My extends Fragment implements View.OnClickListener{
             switch (msg.what) {
                 //获取了my信息，刷新界面
                 case 1:
-                    String my = (String) msg.obj;
+                    my = (String) msg.obj;
                     My_Utils_my my_utils_my = new My_Utils_my(my);
                     my_name.setText(my_utils_my.getUsername());
             }
@@ -55,7 +55,8 @@ public class My extends Fragment implements View.OnClickListener{
         my_favorite = (TextView) view.findViewById(R.id.my_favorite);
         my_history = (TextView) view.findViewById(R.id.my_history);
         my_strategy = (TextView) view.findViewById(R.id.my_strategy);
-        my_purchase = (TextView) view.findViewById(R.id.my_purchase);
+        my_purchase_ing = (TextView) view.findViewById(R.id.my_purchase_ing);
+        getMy_purchase_already = (TextView) view.findViewById(R.id.my_purchase_already);
 
         //设置监听器
         my_image.setOnClickListener(this);
@@ -64,23 +65,19 @@ public class My extends Fragment implements View.OnClickListener{
         my_favorite.setOnClickListener(this);
         my_history.setOnClickListener(this);
         my_strategy.setOnClickListener(this);
-        my_purchase.setOnClickListener(this);
+        my_purchase_ing.setOnClickListener(this);
+        getMy_purchase_already.setOnClickListener(this);
 
         //启动线程
         Thread my = new Start_My(handler, getActivity());
         my.start();
+        try {
+            my.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    //初始化控件,并设置监听器
-    private void initView() {
-        
     }
 
     //处理监听动作
@@ -92,19 +89,24 @@ public class My extends Fragment implements View.OnClickListener{
             case R.id.my_name:
                 break;
             case R.id.my_information:
-                startActivity(new Intent(getActivity(), My_Information.class));
+                Intent intent = new Intent(getActivity(), My_Information.class);
+                intent.putExtra("my", my);
+                startActivity(intent);
                 break;
             case R.id.my_favorite:
                 startActivity(new Intent(getActivity(), My_Favorite.class));
                 break;
             case R.id.my_history:
-                startActivity(new Intent(getActivity(), My_History.class));
+                startActivity(new Intent(getActivity(), My_Trade.class));
                 break;
             case R.id.my_strategy:
                 startActivity(new Intent(getActivity(), My_Strategy.class));
                 break;
-            case R.id.my_purchase:
-                startActivity(new Intent(getActivity(), My_Purchase.class));
+            case R.id.my_purchase_ing:
+                startActivity(new Intent(getActivity(), My_Purchase_Ing.class));
+                break;
+            case R.id.my_purchase_already:
+                startActivity(new Intent(getActivity(), My_Purchase_Already.class));
                 break;
         }
     }

@@ -13,14 +13,14 @@ import com.you.ezuyou.R;
 
 public class My_Favorite extends AppCompatActivity{
 
-    private Toolbar my_favorite_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_favorite);
 
-        my_favorite_toolbar = (Toolbar) findViewById(R.id.my_favorite_toolbar);
+        Toolbar my_favorite_toolbar = (Toolbar) findViewById(R.id.my_favorite_toolbar);
+        my_favorite_toolbar.setTitle("");
         my_favorite_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_favorite_toolbar);
     }

@@ -37,6 +37,7 @@ public class Start_Sign extends Thread {
 
         try {
             socket = new Socket(com.you.ezuyou.Login.Login.IP, KeyWord.PORT_LOGIN_SIGN);
+
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());
 
@@ -76,8 +77,17 @@ public class Start_Sign extends Thread {
                 ((Activity) name.getContext()).finish();
             }
 
+            in.close();
+            out.close();
+
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

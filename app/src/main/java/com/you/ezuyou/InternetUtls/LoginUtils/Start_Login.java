@@ -44,6 +44,7 @@ public class Start_Login extends Thread{
 
         try {
             socket = new Socket(com.you.ezuyou.Login.Login.IP, KeyWord.PORT_LOGIN);
+
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());
 
@@ -83,6 +84,12 @@ public class Start_Login extends Thread{
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

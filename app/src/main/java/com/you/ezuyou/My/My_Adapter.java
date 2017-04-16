@@ -1,4 +1,4 @@
-package com.you.ezuyou.Home;
+package com.you.ezuyou.My;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.R;
 
 import java.util.List;
@@ -17,12 +18,12 @@ import java.util.List;
  * Created by Administrator on 2017/3/20.
  */
 
-public class Item_Adapter extends BaseAdapter {
+public class My_Adapter extends BaseAdapter {
 
     private List<Item> Data;
     private Context context;
 
-    public Item_Adapter(List<Item> Data, Context context) {
+    public My_Adapter(List<Item> Data, Context context) {
         this.Data = Data;
         this.context = context;
     }
@@ -44,12 +45,12 @@ public class Item_Adapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = LayoutInflater.from(context).inflate(R.layout.home_item_item, parent, false);
-        ImageView list_image = (ImageView) convertView.findViewById(R.id.list_image);
-        TextView list_name = (TextView) convertView.findViewById(R.id.list_name);
-        TextView list_rent = (TextView) convertView.findViewById(R.id.list_rent);
-        TextView list_sell = (TextView) convertView.findViewById(R.id.list_sell);
-        TextView list_introduce = (TextView) convertView.findViewById(R.id.list_introduce);
+        convertView = LayoutInflater.from(context).inflate(R.layout.my_item, parent, false);
+        ImageView list_image = (ImageView) convertView.findViewById(R.id.my_list_image);
+        TextView list_name = (TextView) convertView.findViewById(R.id.my_list_name);
+        TextView list_rent = (TextView) convertView.findViewById(R.id.my_list_rent);
+        TextView list_sell = (TextView) convertView.findViewById(R.id.my_list_sell);
+        TextView list_introduce = (TextView) convertView.findViewById(R.id.my_list_introduce);
 
         list_image.setImageBitmap(Data.get(position).getImage());
         list_name.setText(Data.get(position).getName());

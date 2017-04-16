@@ -31,6 +31,7 @@ public class GetStrategy_Item extends Thread{
 
         try {
             socket = new Socket(Login.IP, KeyWord.PORT_STRATEGY);
+
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
@@ -45,6 +46,8 @@ public class GetStrategy_Item extends Thread{
             getimage.join();
 
             dataInput.close();
+            dataOutputStream.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

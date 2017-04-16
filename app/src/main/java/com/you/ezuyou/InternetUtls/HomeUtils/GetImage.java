@@ -1,5 +1,7 @@
 package com.you.ezuyou.InternetUtls.HomeUtils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -24,13 +26,17 @@ public class GetImage extends Thread{
 
     private Handler handler;
     private String home_item;
-    private int count, position;
+    private int count, tag;
+    private Context context;
 
-    public GetImage(Handler handler, String home_item, int count, int position) {
+    private SharedPreferences sp;
+
+    public GetImage(Handler handler, String home_item, int count, int tag, Context context) {
         this.handler = handler;
         this.home_item = home_item;
         this.count = count;
-        this.position = position;
+        this.tag = tag;
+        this.context = context;
     }
 
     public void run() {
@@ -39,10 +45,14 @@ public class GetImage extends Thread{
 
         try {
             socket = new Socket(Login.IP, KeyWord.PORT_HOME_IMAGE);
+
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
-            dataOutputStream.writeInt(position);
+            sp = context.getSharedPreferences("login", Context.MODE_PRIVATE);
+
+            dataOutputStream.writeUTF(sp.getString("id", null));
+            dataOutputStream.writeInt(tag);
 
             int i = 0;
 
@@ -64,8 +74,11 @@ public class GetImage extends Thread{
                 } else break;
             }
 
-            //所有的图片
-            if (position == -1) {
+            //-1:获取所有item信息
+            //-2:获取指定id的信息
+            //-3:获取指定id的status为1的信息
+            //-4:获取指定id的status为0的信息
+            if (tag < 0) {
                 Item item = new Item(image, home_item);
                 Message message = new Message();
                 message.what = 2;
@@ -82,6 +95,8 @@ public class GetImage extends Thread{
                 handler.sendMessage(message);
             }
 
+            dataInput.close();
+            dataOutputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

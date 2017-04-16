@@ -31,7 +31,9 @@ public class GetAdvertisement extends Thread{
 
         try {
             socket = new Socket(Login.IP, KeyWord.PORT_HOME_ADVERTISE);
+
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
+
             int size = dataInput.readInt();
             byte[] data = new byte[size];
             int len = 0;

@@ -27,6 +27,7 @@
             android:windowSoftInputMode="adjustResize"></activity>
 
         <activity android:name=".Home.Home_Item_Detil"></activity>
+        <activity android:name=".Home.Home_Pay"></activity>
 
         <activity android:name=".Rearch.Search"></activity>
         
@@ -35,13 +36,15 @@
 
         <activity android:name=".My.My_Information"></activity>
         <activity android:name=".My.My_Favorite"></activity>
-        <activity android:name=".My.My_History"></activity>
+        <activity android:name=".My.My_Trade"></activity>
         <activity android:name=".My.My_Strategy"></activity>
-        <activity android:name=".My.My_Purchase"></activity>
+        <activity android:name=".My.My_Purchase_Ing"></activity>
+        <activity android:name=".My.My_Purchase_Already"></activity>
 
         <activity android:name=".Login.Login"></activity>
         <activity android:name=".Login.Login_sign"
             android:windowSoftInputMode="adjustResize"></activity>
+
     </application>
 
 </manifest>

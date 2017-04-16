@@ -45,15 +45,19 @@
         <TextView
             android:id="@+id/my_history"
             style="@style/wo"
-            android:text="历史信息"/>
+            android:text="我的租售"/>
         <TextView
             android:id="@+id/my_strategy"
             style="@style/wo"
             android:text="我的攻略"/>
         <TextView
-            android:id="@+id/my_purchase"
+            android:id="@+id/my_purchase_ing"
             style="@style/wo"
             android:text="正在出租/出售"/>
+        <TextView
+            android:id="@+id/my_purchase_already"
+            style="@style/wo"
+            android:text="已经出租/出售"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.you.ezuyou.Home;
 
 import android.app.Fragment;
-import android.app.LauncherActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -36,6 +35,8 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    private Item item;
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -46,7 +47,8 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
                     break;
                 //item
                 case 2:
-                    Item_Adapter adapter = new Item_Adapter(((Item)msg.obj).Data, view.getContext());
+                    item = (Item) msg.obj;
+                    Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());
                     listView.setAdapter(adapter);
                     break;
             }
@@ -83,42 +85,28 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
 
         //获取广告图片
         advertisement = (ImageView) view.findViewById(R.id.home_image);
-        //HomeUtils.GetAdvertisement(handler);
-        Thread getAdvertisement = new GetAdvertisement(handler);
-        getAdvertisement.start();
-        try {
-            getAdvertisement.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
         //使用listview
         listView = (ListView) view.findViewById(R.id.home_listview);
         //HomeUtils.getHome_Item(handler);
-        Thread getHome_Item = new GetHome_Item(handler, -1);
-        getHome_Item.start();
-        try {
-            getHome_Item.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        flush();
 
         //listview点击事件
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Home_Item_Detil.class);
-                intent.putExtra("position", position);
+                intent.putExtra("tag", Integer.parseInt(item.Data.get(position).getTag()));
                 startActivity(intent);
-
             }
         });
         return view;
     }
 
     //刷新
-    public void Flush() {
+    public void flush() {
         Thread getAdvertisement = new GetAdvertisement(handler);
         getAdvertisement.start();
         try {
@@ -127,7 +115,7 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
             e.printStackTrace();
         }
 
-        Thread getHome_Item = new GetHome_Item(handler, -1);
+        Thread getHome_Item = new GetHome_Item(handler, -1, getActivity());
         getHome_Item.start();
         try {
             getHome_Item.join();
@@ -138,7 +126,7 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
 
     @Override
     public void onRefresh() {
-        Flush();
+        flush();
         // 停止刷新
         swipeRefreshLayout.setRefreshing(false);
     }

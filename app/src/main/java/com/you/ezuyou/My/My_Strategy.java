@@ -13,14 +13,14 @@ import com.you.ezuyou.R;
 
 public class My_Strategy extends AppCompatActivity{
 
-    private Toolbar my_strategy_toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_strategy);
 
-        my_strategy_toolbar = (Toolbar) findViewById(R.id.my_strategy_toolbar);
+        Toolbar my_strategy_toolbar = (Toolbar) findViewById(R.id.my_strategy_toolbar);
+        my_strategy_toolbar.setTitle("");
         my_strategy_toolbar.setNavigationIcon(R.drawable.icon_back);
         setSupportActionBar(my_strategy_toolbar);
     }

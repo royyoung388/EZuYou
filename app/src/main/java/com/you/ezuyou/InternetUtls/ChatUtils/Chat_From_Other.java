@@ -104,6 +104,7 @@ public class Chat_From_Other extends Thread {
                 handler.sendMessage(meg);
 
                 inputStream.close();
+                client.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 System.out.println("聊天接收运行失败");

@@ -12,4 +12,5 @@ public class KeyWord {
 	public final static int PORT_STRATEGY = 30008;
 	public final static int PORT_STRATEGY_IMAGE = 30009;
 	public final static int PORT_MY = 30010;
+	public final static int PORT_PAY = 30011;
 }

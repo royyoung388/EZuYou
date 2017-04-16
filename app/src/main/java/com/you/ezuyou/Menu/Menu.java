@@ -241,6 +241,6 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
     //刷新home的接口实现
     @Override
     public void Flush_Item() {
-        fg1.Flush();
+        fg1.flush();
     }
 }

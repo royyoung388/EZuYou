@@ -30,6 +30,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
     private TextView name, detile, person, rent, sell;
     private Button bt_chat, bt_sell, bt_rent;
     private LinearLayout linearLayout;
+    private int tag;
 
     private Item item;
 
@@ -44,10 +45,25 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
                     Bitmap[] images = (Bitmap[]) bundle.getSerializable("image");
                     setView(home_item, images);
                     break;
+                case 2:
+                    break;
             }
             super.handleMessage(msg);
         }
     };
+
+    //当从支付界面跳回来时，刷新当前界面
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Thread getHome_item = new GetHome_Item(handler, tag, this);
+        getHome_item.start();
+        try {
+            getHome_item.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +79,9 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         bindView();
 
         Intent intent = getIntent();
-        int position = intent.getIntExtra("position", -1);
+        tag = intent.getIntExtra("tag", -1);
 
-        Thread getHome_item = new GetHome_Item(handler, position);
+        Thread getHome_item = new GetHome_Item(handler, tag, this);
         getHome_item.start();
         try {
             getHome_item.join();
@@ -73,16 +89,6 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
             e.printStackTrace();
         }
 
-    }
-
-    //setNavigationlcon的点击监听
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     //绑定控件
@@ -107,6 +113,8 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
     private void setView(String home_item, Bitmap[] images) {
         //获取item信息并设置
         item = new Item(images, home_item);
+
+        //设置文字
         name.setText(item.Data.get(0).getName());
         person.setText(item.Data.get(0).getPerson());
         if (item.Data.get(0).getRent().equals("0")) {
@@ -118,8 +126,15 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
             sell.setText("0元");
             sell.setTextColor(ContextCompat.getColor(this, R.color.gray));
         } else sell.setText(item.Data.get(0).getSell() + "元");
-
         detile.setText(item.Data.get(0).getIntroduce());
+
+        //设置按钮
+        if (item.Data.get(0).getStatus().equals("0")) {
+            bt_rent.setBackgroundResource(R.color.gray);
+            bt_sell.setBackgroundResource(R.color.gray);
+            bt_rent.setEnabled(false);
+            bt_sell.setEnabled(false);
+        }
 
         //设置image
         imageView1.setImageBitmap(images[0]);
@@ -129,6 +144,16 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
             imageView.setImageBitmap(images[i]);
             linearLayout.addView(imageView);
         }
+    }
+
+    //setNavigationlcon的点击监听
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -143,8 +168,14 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.home_item_detil_bt_rent:
+                Intent intent1 = new Intent(Home_Item_Detil.this, Home_Pay.class);
+                intent1.putExtra("tag", item.Data.get(0).getTag());
+                startActivity(intent1);
                 break;
             case R.id.home_item_detil_bt_sell:
+                Intent intent2 = new Intent(Home_Item_Detil.this, Home_Pay.class);
+                intent2.putExtra("tag", item.Data.get(0).getTag());
+                startActivity(intent2);
                 break;
         }
     }

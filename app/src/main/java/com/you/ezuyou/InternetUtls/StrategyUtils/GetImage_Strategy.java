@@ -40,6 +40,7 @@ public class GetImage_Strategy extends Thread{
 
         try {
             socket = new Socket(Login.IP, KeyWord.PORT_STRATEGY_IMAGE);
+
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
@@ -82,6 +83,9 @@ public class GetImage_Strategy extends Thread{
                 message.what = 1;
                 handler.sendMessage(message);
             }
+
+            dataInput.close();
+            dataOutputStream.close();
 
         } catch (IOException e) {
             e.printStackTrace();

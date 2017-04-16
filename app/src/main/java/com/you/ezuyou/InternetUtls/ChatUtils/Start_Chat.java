@@ -13,7 +13,7 @@ import java.net.Socket;
  * Created by Administrator on 2017/4/12.
  */
 
-public class Start_Chat extends Thread{
+public class Start_Chat extends Thread {
 
     String act, id, userid, username, message;
 
@@ -61,6 +61,12 @@ public class Start_Chat extends Thread{
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -87,8 +87,15 @@ public class Start_Release extends Thread {
                 fis.close();
             }
 
+            out.close();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
