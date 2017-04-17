@@ -35,6 +35,11 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_align_bt" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,16 +58,16 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:horizontalSpacing="4dp"
-                android:verticalSpacing="4dp"
                 android:numColumns="3"
-                android:stretchMode="columnWidth"/>
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="4dp" />
 
 
             <LinearLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -79,15 +84,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/release_input"
-                    android:hint="请输入物品名称" />
+                    android:hint="请输入物品名称"
+                    android:lines="1" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
@@ -115,7 +121,8 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/release_input"
                         android:hint="默认为0，即不出租"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:lines="1" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,10 +134,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
@@ -159,7 +166,8 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/release_input"
                         android:hint="默认为0，即不卖"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:lines="1" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -170,10 +178,10 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
@@ -200,7 +208,7 @@
                         android:inputType="textMultiLine"
                         android:maxLength="200"
                         android:scrollbars="vertical"
-                        android:textSize="22sp" />
+                        android:textSize="20sp" />
                 </ScrollView>
             </LinearLayout>
         </LinearLayout>

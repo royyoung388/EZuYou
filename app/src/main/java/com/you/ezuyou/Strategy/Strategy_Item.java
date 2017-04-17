@@ -16,13 +16,14 @@ import java.util.regex.Pattern;
 public class Strategy_Item {
 
     private Bitmap image;
-    private String id, person, program, money, detil;
+    private String id, tag, person, program, money, detil;
 
     public List<Strategy_Item> Data = new ArrayList<>();
 
-    public Strategy_Item(Bitmap image, String id, String person, String program, String money, String detil) {
+    public Strategy_Item(Bitmap image, String id, String tag, String person, String program, String money, String detil) {
         this.image = image;
         this.id = id;
+        this.tag = tag;
         this.person = person;
         this.program = program;
         this.money = money;
@@ -32,6 +33,7 @@ public class Strategy_Item {
     public Strategy_Item(Bitmap[] image, String string) {
         Pattern pattern = Pattern.compile("\\{\\s*" +
                 "id:(\\S*?);\\s*" +
+                "tag:(\\S*?);\\s*" +
                 "person:(\\S*?);\\s*" +
                 "program:(\\S*?);\\s*" +
                 "money:(\\S*?);\\s*" +
@@ -45,6 +47,7 @@ public class Strategy_Item {
             System.out.println(matcher.group(3));
             System.out.println(matcher.group(4));
             System.out.println(matcher.group(5));
+            System.out.println(matcher.group(6));
 
             Strategy_Item strategy_item = new Strategy_Item(
                     image[i],
@@ -52,7 +55,8 @@ public class Strategy_Item {
                     matcher.group(2),
                     matcher.group(3),
                     matcher.group(4),
-                    matcher.group(5)
+                    matcher.group(5),
+                    matcher.group(6)
             );
             System.out.println(strategy_item);
             Data.add(strategy_item);
@@ -65,9 +69,17 @@ public class Strategy_Item {
         return image;
     }
 
-    public String getId() {return id;}
+    public String getId() {
+        return id;
+    }
 
-    public String getPerson() {return person;}
+    public String getTag() {
+        return tag;
+    }
+
+    public String getPerson() {
+        return person;
+    }
 
     public String getProgram() {
         return program;
@@ -84,6 +96,7 @@ public class Strategy_Item {
     public static int getSize(String string) {
         Pattern pattern = Pattern.compile("\\{\\s*" +
                 "id:(\\S*?);\\s*" +
+                "tag:(\\S*?);\\s*" +
                 "person:(\\S*?);\\s*" +
                 "program:(\\S*?);\\s*" +
                 "money:(\\S*?);\\s*" +

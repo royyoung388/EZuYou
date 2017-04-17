@@ -191,6 +191,7 @@ public class Release extends Fragment implements View.OnClickListener {
             if (parent.getItemAtPosition(position) != null) { // 长按删除
                 dataList.remove(parent.getItemAtPosition(position));
                 adapter.update(dataList); // 刷新图片
+                Toast.makeText(getActivity(), "图片已删除", Toast.LENGTH_SHORT);
                 count--;
                 if (count % 3 == 0 && count != 6) {
                     setListViewHeightBasedOnChildren(uploadGridView);

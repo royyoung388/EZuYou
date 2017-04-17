@@ -87,7 +87,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         submit = (Button) findViewById(R.id.Login_submit);
         sign = (TextView) findViewById(R.id.Login_sign);
         //添加下划线
-        sign.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );
+        sign.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
         changeip = (TextView) findViewById(R.id.Login_changeip);
 
         submit.setOnClickListener(this);
@@ -145,6 +145,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         AlertDialog.Builder inputDialog =
                 new AlertDialog.Builder(Login.this);
         inputDialog.setTitle("请输入服务器IP地址").setView(editText);
+
+        inputDialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
         inputDialog.setPositiveButton("确定",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -159,6 +167,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         }
                         Toast.makeText(Login.this, "修改后IP为" + Login.IP, Toast.LENGTH_SHORT).show();
                     }
-                }).show();
+                });
+        inputDialog.create().show();
     }
 }

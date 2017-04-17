@@ -14,15 +14,16 @@ import java.util.regex.Pattern;
 public class Item {
 
     private Bitmap image;
-    private String id, tag, status, person, name, rent, sell, introduce;
+    private String id, tag, status, person, school, name, rent, sell, introduce;
 
     public List<Item> Data = new ArrayList<>();
 
-    public Item(Bitmap image, String id, String tag, String status, String person, String name, String sell, String rent, String introduce) {
+    public Item(Bitmap image, String id, String tag, String status, String person, String school, String name, String sell, String rent, String introduce) {
         this.id = id;
         this.tag = tag;
         this.status = status;
         this.person = person;
+        this.school = school;
         this.image = image;
         this.name = name;
         this.sell = sell;
@@ -36,6 +37,7 @@ public class Item {
                 "tag:(\\S*?);\\s*" +
                 "status:(\\S*?);\\s*" +
                 "person:(\\S*?);\\s*" +
+                "school:(\\S*?);\\s*" +
                 "name:(\\S*?);\\s*" +
                 "sell:(\\S*?);\\s*" +
                 "rent:(\\S*?);\\s*" +
@@ -52,6 +54,7 @@ public class Item {
             System.out.println(matcher.group(6));
             System.out.println(matcher.group(7));
             System.out.println(matcher.group(8));
+            System.out.println(matcher.group(9));
 
             Item item = new Item(
                     image[i],
@@ -62,7 +65,8 @@ public class Item {
                     matcher.group(5),
                     matcher.group(6),
                     matcher.group(7),
-                    matcher.group(8)
+                    matcher.group(8),
+                    matcher.group(9)
             );
             System.out.println(item);
             Data.add(item);
@@ -91,6 +95,10 @@ public class Item {
         return person;
     }
 
+    public String getSchool() {
+        return school;
+    }
+
     public String getName() {
         return name;
     }
@@ -113,6 +121,7 @@ public class Item {
                 "tag:(\\S*?);\\s*" +
                 "status:(\\S*?);\\s*" +
                 "person:(\\S*?);\\s*" +
+                "school:(\\S*?);\\s*" +
                 "name:(\\S*?);\\s*" +
                 "sell:(\\S*?);\\s*" +
                 "rent:(\\S*?);\\s*" +

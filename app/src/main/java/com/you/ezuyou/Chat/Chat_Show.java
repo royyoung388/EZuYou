@@ -1,5 +1,6 @@
 package com.you.ezuyou.Chat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
 import com.you.ezuyou.InternetUtls.ChatUtils.Start_Chat;
 import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.Login.Login;
@@ -38,7 +40,7 @@ import java.net.Socket;
  * Created by Administrator on 2017/4/12.
  */
 
-public class Chat_Show extends AppCompatActivity implements View.OnClickListener {
+public class Chat_Show extends AppCompatActivity implements View.OnClickListener{
 
     private String person, id, userid, message;
     private TextView title;
@@ -80,6 +82,19 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
 
         BindView();
 
+        Chat_From_Other chat_other = Chat_From_Other.getInstance(handler);
+        chat_other.setAddMessage(new Chat_From_Other.AddMessage() {
+            @Override
+            public void addMeg(final String message) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AddText(message, 0);
+                    }
+                });
+            }
+        });
+
         Intent intent = getIntent();
         person = intent.getStringExtra("person");
         //对方id
@@ -87,7 +102,7 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
 
         //从cha_item启动时，会传入一个历史消息
         if (!intent.getStringExtra("message").equals("") || intent.getStringExtra("message") != null)
-            AddText(intent.getStringExtra("message"));
+            AddText(intent.getStringExtra("message"), 0);
 
         title.setText(person);
     }
@@ -105,9 +120,10 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
     //处理聊天过程
     private void Chat_Connection() {
         message = edit.getText().toString();
-        if (!message.equals("") ||  message != null) {
+        if (!(message.equals("") && message != null)) {
             //生成对话框
-            AddText(message);
+            //自己的，在右边
+            AddText(message, 1);
             //清除输入框
             edit.setText("");
 
@@ -168,22 +184,34 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
     }
 
     //添加textview,即对话框
-    private void AddText(String text) {
-        TextView textView = new TextView(linearLayout.getContext());
-        textView.setText(text);
-        textView.setBackgroundColor(Color.parseColor("#b9b9b9"));
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(dpTopx(8), dpTopx(8), dpTopx(8), dpTopx(8));
-        textView.setLayoutParams(lp);
-        linearLayout.addView(textView);
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+    //0：左边
+    //1：右边
+    private void AddText(String text, int position) {
+        if (!text.equals("") && text != null) {
+            TextView textView = new TextView(linearLayout.getContext());
+            textView.setText(text);
+            textView.setBackgroundResource(R.color.gold);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
+            textView.setPadding(dpTopx(4), dpTopx(4), dpTopx(4), dpTopx(4));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(dpTopx(8), dpTopx(8), dpTopx(8), dpTopx(8));
+            if (position == 0) {
+                textView.setGravity(Gravity.LEFT);
+                lp.gravity = Gravity.LEFT;
+            } else if (position == 1) {
+                textView.setGravity(Gravity.RIGHT);
+                lp.gravity = Gravity.RIGHT;
             }
-        });
+
+            textView.setLayoutParams(lp);
+            linearLayout.addView(textView);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                }
+            });
+        }
     }
 
     //将dp单位换算为px

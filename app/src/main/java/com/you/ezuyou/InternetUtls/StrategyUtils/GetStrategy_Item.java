@@ -2,7 +2,6 @@ package com.you.ezuyou.InternetUtls.StrategyUtils;
 
 import android.os.Handler;
 
-import com.you.ezuyou.InternetUtls.HomeUtils.GetImage;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.keyword.KeyWord;
 
@@ -18,11 +17,13 @@ import java.net.Socket;
 public class GetStrategy_Item extends Thread{
 
     private Handler handler;
-    private int position;
+    private int tag;
+    private String id;
 
-    public GetStrategy_Item(Handler handler, int position) {
+    public GetStrategy_Item(Handler handler, String id, int tag) {
         this.handler = handler;
-        this.position = position;
+        this.id = id;
+        this.tag = tag;
     }
 
     public void run() {
@@ -35,13 +36,14 @@ public class GetStrategy_Item extends Thread{
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
-            dataOutputStream.writeInt(position);
+            dataOutputStream.writeUTF(id);
+            dataOutputStream.writeInt(tag);
 
             int count = dataInput.readInt();
 
             strategy_item += dataInput.readUTF();
 
-            Thread getimage = new GetImage_Strategy(handler, strategy_item, count, position);
+            Thread getimage = new GetStrategy_Image(handler, strategy_item, id, count, tag);
             getimage.start();
             getimage.join();
 

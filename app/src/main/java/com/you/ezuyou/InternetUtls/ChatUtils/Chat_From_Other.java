@@ -1,5 +1,6 @@
 package com.you.ezuyou.InternetUtls.ChatUtils;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,9 @@ public class Chat_From_Other extends Thread {
     private ServerSocket serverSocket;
     private Handler handler;
 
+    //接口变量
+    private AddMessage addMessage;
+
     //使用单例模式确保该线程只有一个
     // 静态实例变量加上volatile
     private static volatile Chat_From_Other chat_from_other;
@@ -35,6 +39,16 @@ public class Chat_From_Other extends Thread {
             }
         }
         return chat_from_other;
+    }
+
+    //接口，用于接收到消息之后显示
+    public interface AddMessage {
+        void addMeg(final String message);
+    }
+
+    //设置接口
+    public void setAddMessage(AddMessage addMessage) {
+        this.addMessage = addMessage;
     }
 
     // 私有化构造函数
@@ -92,6 +106,9 @@ public class Chat_From_Other extends Thread {
                 System.out.println("接收到useranme:" + useranme);
                 String message = inputStream.readUTF();
                 System.out.println("接收到消息:" + message);
+
+                //接口通知
+                addMessage.addMeg(message);
 
                 //接收到新消息，通知给handle，meg = 1
                 Message meg = new Message();

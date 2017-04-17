@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,18 +20,22 @@ import android.widget.TextView;
 import com.you.ezuyou.Chat.Chat_Show;
 import com.you.ezuyou.InternetUtls.HomeUtils.GetHome_Item;
 import com.you.ezuyou.R;
+import com.you.ezuyou.utils.CompressBitmap;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * Created by Administrator on 2017/4/10.
  */
 
-public class Home_Item_Detil extends AppCompatActivity implements View.OnClickListener{
+public class Home_Item_Detil extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView imageView1;
-    private TextView name, detile, person, rent, sell;
+    private TextView name, detile, person, rent, sell, school;
     private Button bt_chat, bt_sell, bt_rent;
     private LinearLayout linearLayout;
     private int tag;
+    private Bitmap bitmap;
 
     private Item item;
 
@@ -99,6 +104,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         detile = (TextView) findViewById(R.id.home_item_detil_detil);
         rent = (TextView) findViewById(R.id.home_item_detil_rent);
         sell = (TextView) findViewById(R.id.home_item_detil_sell);
+        school = (TextView) findViewById(R.id.home_item_detil_school);
         bt_chat = (Button) findViewById(R.id.home_item_detil_bt_chat);
         bt_sell = (Button) findViewById(R.id.home_item_detil_bt_sell);
         bt_rent = (Button) findViewById(R.id.home_item_detil_bt_rent);
@@ -111,12 +117,15 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
 
     //设置View
     private void setView(String home_item, Bitmap[] images) {
+
         //获取item信息并设置
         item = new Item(images, home_item);
 
         //设置文字
         name.setText(item.Data.get(0).getName());
         person.setText(item.Data.get(0).getPerson());
+        school.setText(item.Data.get(0).getSchool());
+
         if (item.Data.get(0).getRent().equals("0")) {
             rent.setText("0元/天");
             rent.setTextColor(ContextCompat.getColor(this, R.color.grey));
@@ -168,13 +177,42 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
                 break;
             case R.id.home_item_detil_bt_rent:
-                Intent intent1 = new Intent(Home_Item_Detil.this, Home_Pay.class);
+                Intent intent1 = new Intent(Home_Item_Detil.this, Home_Pay_Sell.class);
                 intent1.putExtra("tag", item.Data.get(0).getTag());
                 startActivity(intent1);
                 break;
             case R.id.home_item_detil_bt_sell:
-                Intent intent2 = new Intent(Home_Item_Detil.this, Home_Pay.class);
-                intent2.putExtra("tag", item.Data.get(0).getTag());
+
+                Intent intent2 = new Intent(Home_Item_Detil.this, Home_Pay_Sell.class);
+
+                Bundle b = new Bundle();
+                //开启线程对图片进行压缩,然后按照原路径保存
+                bitmap = item.Data.get(0).getImage();
+                /*Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        bitmap = CompressBitmap.compressImage(bitmap);
+                    }
+                });
+                thread.start();
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+                //将图片转化为字节传输，以免过大的图片导致死机
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] bytes = baos.toByteArray();
+                b.putByteArray("image", bytes);
+
+                b.putString("tag", item.Data.get(0).getTag());
+                b.putString("name", item.Data.get(0).getName());
+                b.putString("sell", item.Data.get(0).getSell());
+                b.putString("detil", item.Data.get(0).getIntroduce());
+                b.putString("person", item.Data.get(0).getPerson());
+                b.putString("school", item.Data.get(0).getSchool());
+                intent2.putExtras(b);
                 startActivity(intent2);
                 break;
         }

@@ -1,6 +1,9 @@
 package com.you.ezuyou.Strategy;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,8 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.you.ezuyou.Home.Home_Item_Detil;
 import com.you.ezuyou.InternetUtls.StrategyUtils.GetStrategy_Item;
 import com.you.ezuyou.R;
 
@@ -24,16 +30,22 @@ import com.you.ezuyou.R;
 public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private View view;
+    private TextView release;
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    private SharedPreferences sp;
+
+    private Strategy_Item strategy_item;
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                //item
+                //所有Strategy信息
                 case 2:
-                    Strategy_Adapter adapter = new Strategy_Adapter(((Strategy_Item)msg.obj).Data, view.getContext());
+                    strategy_item = (Strategy_Item) msg.obj;
+                    Strategy_Adapter adapter = new Strategy_Adapter(strategy_item.Data, view.getContext());
                     listView.setAdapter(adapter);
                     break;
             }
@@ -62,32 +74,39 @@ public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshLi
         swipeRefreshLayout.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(getActivity(), R.color.white));
         swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
 
-        //ListView的使用
+        //发布
+        release = (TextView) view.findViewById(R.id.strategy_release);
+
+                //ListView的使用
         listView = (ListView) view.findViewById(R.id.strategy_list);
-        Thread getstrategy = new GetStrategy_Item(handler, -1);
-        getstrategy.start();
-        try {
-            getstrategy.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        flush();
 
         //listview点击事件
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), Home_Item_Detil.class);
-                intent.putExtra("position", position);
+                Intent intent = new Intent(getActivity(), Strategy_Detil.class);
+                intent.putExtra("tag", Integer.parseInt(strategy_item.Data.get(position).getTag()));
                 startActivity(intent);
-
             }
-        });*/
+        });
+
+        //发布
+        release.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Strategy_Release.class));
+            }
+        });
+
         return view;
     }
 
     //刷新
-    public void Flush() {
-        Thread getStrategy = new GetStrategy_Item(handler, -1);
+    public void flush() {
+        sp = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
+        Thread getStrategy = new GetStrategy_Item(handler, sp.getString("id", null), -1);
         getStrategy.start();
         try {
             getStrategy.join();
@@ -98,7 +117,7 @@ public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshLi
 
     @Override
     public void onRefresh() {
-        Flush();
+        flush();
         // 停止刷新
         swipeRefreshLayout.setRefreshing(false);
     }

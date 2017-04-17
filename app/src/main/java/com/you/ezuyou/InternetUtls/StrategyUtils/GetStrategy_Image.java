@@ -21,17 +21,18 @@ import java.net.Socket;
  * Created by Administrator on 2017/4/14.
  */
 
-public class GetImage_Strategy extends Thread{
+public class GetStrategy_Image extends Thread{
 
     private Handler handler;
-    private String strategy_item;
-    private int count, position;
+    private String strategy_item, id;
+    private int count, tag;
 
-    public GetImage_Strategy(Handler handler, String strategy_item, int count, int position) {
+    public GetStrategy_Image(Handler handler, String strategy_item, String id, int count, int tag) {
         this.handler = handler;
         this.strategy_item = strategy_item;
+        this.id = id;
         this.count = count;
-        this.position = position;
+        this.tag = tag;
     }
 
     public void run() {
@@ -44,7 +45,8 @@ public class GetImage_Strategy extends Thread{
             DataInputStream dataInput = new DataInputStream(socket.getInputStream());
             DataOutputStream dataOutputStream = new DataOutputStream(socket.getOutputStream());
 
-            dataOutputStream.writeInt(position);
+            dataOutputStream.writeUTF(id);
+            dataOutputStream.writeInt(tag);
 
             int i = 0;
 
@@ -66,15 +68,16 @@ public class GetImage_Strategy extends Thread{
                 } else break;
             }
 
-            //所有的图片
-            if (position == -1) {
+            //-1:所有的图片
+            //-2:指定id
+            if (tag < 0) {
                 Strategy_Item item = new Strategy_Item(image, strategy_item);
                 Message message = new Message();
                 message.what = 2;
                 message.obj = item;
                 handler.sendMessage(message);
             } else {
-                //获取指定position
+                //获取指定tag
                 Message message = new Message();
                 Bundle bundle = new Bundle();
                 bundle.putString("strategy_item", strategy_item);

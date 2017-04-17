@@ -33,7 +33,6 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
     //private String id, useranme, message;
     private MyRAdapter myRAdapter = MyRAdapter.getInstance();
 
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
