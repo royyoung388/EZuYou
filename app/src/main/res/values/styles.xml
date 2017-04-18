@@ -8,6 +8,7 @@
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/window</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -16,20 +17,21 @@
 
     <style name="menu">
         <item name="android:background">@drawable/menu_bt_bg</item>
-        <item name="android:textColor">@drawable/menu_bt_text</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:gravity">center</item>\
+        <item name="android:padding">8dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
     <style name="wo">
+        <item name="android:background">@drawable/my_frame_black</item>
         <item name="android:textColor">@drawable/my_text</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:textSize">30dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="home_item_bt">
@@ -37,6 +39,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">4dp</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/strategy_release_add</item>
         <item name="android:textSize">20sp</item>
     </style>
@@ -45,16 +48,19 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">right</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+        <item name="android:textColor">@color/commontext</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:layout_margin">8dp</item>
     </style>
 
     <style name="my_information_txtview_txt">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">3</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/detil</item>
         <item name="android:textSize">20sp</item>
     </style>
 </resources>

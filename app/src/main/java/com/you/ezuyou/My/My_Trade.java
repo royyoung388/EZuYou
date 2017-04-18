@@ -14,7 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.you.ezuyou.Home.Home_Item_Detil;
-import com.you.ezuyou.Home.Item;
+import com.you.ezuyou.Home.Home_Item;
 import com.you.ezuyou.InternetUtls.HomeUtils.GetHome_Item;
 import com.you.ezuyou.R;
 
@@ -25,7 +25,7 @@ import com.you.ezuyou.R;
 public class My_Trade extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private SwipeRefreshLayout swipeRefreshLayout;
-    private Item item;
+    private Home_Item homeItem;
     private ListView listView;
 
     private Handler handler = new Handler() {
@@ -34,8 +34,8 @@ public class My_Trade extends AppCompatActivity implements SwipeRefreshLayout.On
             switch (msg.what) {
                 //item
                 case 2:
-                    item = (Item) msg.obj;
-                    My_Adapter adapter = new My_Adapter(item.Data, My_Trade.this);
+                    homeItem = (Home_Item) msg.obj;
+                    My_Adapter adapter = new My_Adapter(homeItem.Data, My_Trade.this);
                     listView.setAdapter(adapter);
                     break;
             }
@@ -69,7 +69,7 @@ public class My_Trade extends AppCompatActivity implements SwipeRefreshLayout.On
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(My_Trade.this, Home_Item_Detil.class);
-                intent.putExtra("tag", Integer.parseInt(item.Data.get(position).getTag()));
+                intent.putExtra("tag", Integer.parseInt(homeItem.Data.get(position).getTag()));
                 startActivity(intent);
             }
         });

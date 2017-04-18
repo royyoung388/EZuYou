@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.you.ezuyou.utils.ImageUtils;
 public class Menu extends BaseActivity implements View.OnClickListener, Release.Flush_Home {
 
     //UI Objects
-    private TextView menu1, menu2, menu3, menu4, menu5;
+    private ImageView menu1, menu2, menu3, menu4, menu5;
     private Button menu3_bt;
 
     //Fragment Object
@@ -64,12 +65,12 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
 
     //UI组件初始化与事件绑定
     private void bindViews() {
-        menu1 = (TextView) findViewById(R.id.menu1);
-        menu2 = (TextView) findViewById(R.id.menu2);
+        menu1 = (ImageView) findViewById(R.id.menu1);
+        menu2 = (ImageView) findViewById(R.id.menu2);
 //        menu3 = (TextView) findViewById(R.id.menu3);
         menu3_bt = (Button) findViewById(R.id.menu3_bt);
-        menu4 = (TextView) findViewById(R.id.menu4);
-        menu5 = (TextView) findViewById(R.id.menu5);
+        menu4 = (ImageView) findViewById(R.id.menu4);
+        menu5 = (ImageView) findViewById(R.id.menu5);
 
         menu1.setOnClickListener(this);
         menu2.setOnClickListener(this);

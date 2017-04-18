@@ -19,7 +19,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="发布请求"
+                android:text="发布信息"
+                android:textColor="@color/white"
                 android:textSize="25sp" />
 
             <TextView

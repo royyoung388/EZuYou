@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:text="我的攻略"
             android:layout_gravity="center"
+            android:textColor="@color/white"
             android:textSize="22sp"/>
     </android.support.v7.widget.Toolbar>
 

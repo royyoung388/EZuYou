@@ -32,6 +32,7 @@
                 android:lines="1"
                 android:ellipsize="end"
                 android:text="姓名"
+                android:textColor="@color/commontext"
                 android:textSize="20sp"/>
             <TextView
                 android:id="@+id/chat_item_item_message"
@@ -42,7 +43,7 @@
                 android:lines="1"
                 android:ellipsize="end"
                 android:text="内容"
-                android:textColor="@color/gray"
+                android:textColor="@color/detil"
                 android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>

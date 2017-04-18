@@ -49,6 +49,13 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
     private LinearLayout linearLayout;
     private ScrollView scrollView;
 
+    private final int MY_MESSAGE = 1;
+    private final int OTHER_MESSAGE = 0;
+
+    private Chat_Item_Adapter chat_item_adapter;
+
+    private FlushChatItem flushChatItem;
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -64,6 +71,15 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
             }
         }
     };
+
+    //设置接口，用于自己发送消息时更新chat_item的消息
+    private interface FlushChatItem {
+        void flushChatItem();
+    }
+    //暴露给外面的设置接口方法
+    private void setFlushChatItem(FlushChatItem flushChatItem) {
+        this.flushChatItem = flushChatItem;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,26 +99,34 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
         BindView();
 
         Chat_From_Other chat_other = Chat_From_Other.getInstance(handler);
+
         chat_other.setAddMessage(new Chat_From_Other.AddMessage() {
             @Override
             public void addMeg(final String message) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        AddText(message, 0);
+                        AddText(message, OTHER_MESSAGE);
                     }
                 });
             }
         });
 
         Intent intent = getIntent();
+
+        //对方姓名
         person = intent.getStringExtra("person");
         //对方id
         id = intent.getStringExtra("id");
-
         //从cha_item启动时，会传入一个历史消息
-        if (!intent.getStringExtra("message").equals("") || intent.getStringExtra("message") != null)
-            AddText(intent.getStringExtra("message"), 0);
+        String message = intent.getStringExtra("message");
+        int status = 0;
+        if (intent.getStringExtra("status") != null && !intent.getStringExtra("status").equals("")) {
+             status = Integer.parseInt(intent.getStringExtra("status"));
+        }
+
+        if (!message.equals("") && intent.getStringExtra("message") != null)
+            AddText(intent.getStringExtra("message"), status);
 
         title.setText(person);
     }
@@ -117,10 +141,11 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
         return super.onOptionsItemSelected(item);
     }
 
-    //处理聊天过程
+    //点击发送，处理聊天过程
     private void Chat_Connection() {
         message = edit.getText().toString();
         if (!(message.equals("") && message != null)) {
+            chat_item_adapter.getInstance().addItem(id, person, message, MY_MESSAGE);
             //生成对话框
             //自己的，在右边
             AddText(message, 1);
@@ -184,21 +209,22 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
     }
 
     //添加textview,即对话框
-    //0：左边
-    //1：右边
+    //0：左边,对方
+    //1：右边，自己
     private void AddText(String text, int position) {
         if (!text.equals("") && text != null) {
             TextView textView = new TextView(linearLayout.getContext());
             textView.setText(text);
             textView.setBackgroundResource(R.color.gold);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-            textView.setPadding(dpTopx(4), dpTopx(4), dpTopx(4), dpTopx(4));
+            textView.setPadding(dpTopx(8), dpTopx(8), dpTopx(8), dpTopx(8));
+            textView.setBackgroundResource(R.drawable.chat_show_textview);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(dpTopx(8), dpTopx(8), dpTopx(8), dpTopx(8));
-            if (position == 0) {
+            lp.setMargins(dpTopx(12), dpTopx(12), dpTopx(12), dpTopx(12));
+            if (position == OTHER_MESSAGE) {
                 textView.setGravity(Gravity.LEFT);
                 lp.gravity = Gravity.LEFT;
-            } else if (position == 1) {
+            } else if (position == MY_MESSAGE) {
                 textView.setGravity(Gravity.RIGHT);
                 lp.gravity = Gravity.RIGHT;
             }

@@ -8,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.R;
 
 import java.util.List;

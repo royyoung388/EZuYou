@@ -2,42 +2,52 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <shape android:shape="oval" >
+        <shape android:shape="oval">
             <solid android:color="@color/white" />
-            <stroke android:width="1px"
-                android:color="@color/black"
-                android:dashWidth="0dp"
-                android:dashGap="0dp" >
-            </stroke>
-            <size android:width="80dp" android:height="80dp"/>
+            <!--<stroke android:width="1px"-->
+            <!--android:color="@color/black"-->
+            <!--android:dashWidth="0dp"-->
+            <!--android:dashGap="0dp" >-->
+            <!--</stroke>-->
+            <size
+                android:width="80dp"
+                android:height="80dp" />
         </shape>
     </item>
 
-    <item android:bottom="3dp" android:right="3dp" android:top="3dp" android:left="3dp">
+    <item
+        android:bottom="3dp"
+        android:left="3dp"
+        android:right="3dp"
+        android:top="3dp">
         <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
             <item android:state_pressed="true">
-                <shape android:shape="oval" >
-                    <solid android:color="@color/lightsalmon" />
-                    <stroke android:width="1px"
-                        android:color="@color/black"
-                        android:dashWidth="0dp"
-                        android:dashGap="0dp" >
-                    </stroke>
-                    <size android:width="80dp" android:height="80dp"/>
+                <shape android:shape="oval">
+                    <solid android:color="#ff6000" />
+                    <!--<stroke android:width="1px"-->
+                    <!--android:color="@color/black"-->
+                    <!--android:dashWidth="0dp"-->
+                    <!--android:dashGap="0dp" >-->
+                    <!--</stroke>-->
+                    <size
+                        android:width="80dp"
+                        android:height="80dp" />
                 </shape>
 
             </item>
 
             <item>
-                <shape android:shape="oval" >
-                    <solid android:color="@color/darkorange" />
-                    <stroke android:width="1px"
-                        android:color="@color/black"
-                        android:dashWidth="0dp"
-                        android:dashGap="0dp" >
-                    </stroke>
-                    <size android:width="80dp" android:height="80dp"/>
+                <shape android:shape="oval">
+                    <solid android:color="#ff8e21" />
+                    <!--<stroke android:width="1px"-->
+                    <!--android:color="@color/black"-->
+                    <!--android:dashWidth="0dp"-->
+                    <!--android:dashGap="0dp" >-->
+                    <!--</stroke>-->
+                    <size
+                        android:width="80dp"
+                        android:height="80dp" />
                 </shape>
             </item>
 
@@ -45,35 +55,35 @@
     </item>
 
     <item
-        android:gravity="center"
-        android:top="15dp"
         android:bottom="15dp"
+        android:gravity="center"
+        android:left="38dp"
         android:right="38dp"
-        android:left="38dp">
+        android:top="15dp">
         <shape>
-            <corners android:radius="10dp"/>
-            <solid android:color="@color/white"/>
+            <corners android:radius="10dp" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 
     <item
-        android:gravity="center"
-        android:top="38dp"
         android:bottom="38dp"
+        android:gravity="center"
+        android:left="15dp"
         android:right="15dp"
-        android:left="15dp">
+        android:top="38dp">
         <shape>
-            <corners android:radius="10dp"/>
-            <solid android:color="@color/white"/>
+            <corners android:radius="10dp" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 
     <!--<item android:gravity="center" android:height="3dp" android:width="50dp">-->
-        <!--<shape android:shape="rectangle">-->
-            <!--<solid android:color="@color/black"/>-->
-            <!--<corners android:radius="4dp"/>-->
-            <!--<size android:height="50dp" android:width="3dp"/>-->
-        <!--</shape>-->
+    <!--<shape android:shape="rectangle">-->
+    <!--<solid android:color="@color/black"/>-->
+    <!--<corners android:radius="4dp"/>-->
+    <!--<size android:height="50dp" android:width="3dp"/>-->
+    <!--</shape>-->
     <!--</item>-->
 
 

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,9 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
-import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.R;
-import com.you.ezuyou.Release.Release;
 
 
 /**
@@ -31,7 +28,10 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     //private String id, useranme, message;
-    private MyRAdapter myRAdapter = MyRAdapter.getInstance();
+    private Chat_Item_Adapter chatItemAdapter = Chat_Item_Adapter.getInstance();
+
+    private final int MY_MESSAGE = 1;
+    private final int OTHER_MESSAGE = 0;
 
     private Handler handler = new Handler() {
         @Override
@@ -46,7 +46,7 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
                     String id = bundle.getString("id");
                     String useranme = bundle.getString("useranme");
                     String message = bundle.getString("message");
-                    myRAdapter.addItem(id, useranme, message);
+                    chatItemAdapter.addItem(id, useranme, message, OTHER_MESSAGE);
                     break;
             }
         }
@@ -75,15 +75,19 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
         RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(itemDecoration);
         //recyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL));
-        recyclerView.setAdapter(myRAdapter);
-        //点击事件
-        myRAdapter.setOnRecyclerviewClick(new MyRAdapter.OnRecyclerviewClick() {
+        recyclerView.setAdapter(chatItemAdapter);
+
+        //item点击事件，启动聊天窗口，在这里实现
+        chatItemAdapter.setOnRecyclerviewClick(new Chat_Item_Adapter.OnRecyclerviewClick() {
             @Override
             public void OnItemClick(View view, String[] strings) {
                 Intent intent = new Intent(getActivity(), Chat_Show.class);
+                //对方id
                 intent.putExtra("id", strings[0]);
+                //对方姓名
                 intent.putExtra("person", strings[1]);
                 intent.putExtra("message", strings[2]);
+                intent.putExtra("status", strings[3]);
                 startActivity(intent);
             }
         });

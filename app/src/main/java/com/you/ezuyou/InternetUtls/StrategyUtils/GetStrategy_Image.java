@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.Strategy.Strategy_Item;
 import com.you.ezuyou.keyword.KeyWord;

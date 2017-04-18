@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.you.ezuyou.Home.Item;
+import com.you.ezuyou.Home.Home_Item;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.keyword.KeyWord;
 
@@ -74,15 +74,15 @@ public class GetImage extends Thread{
                 } else break;
             }
 
-            //-1:获取所有item信息
+            //-1:获取status为1的所有item信息
             //-2:获取指定id的信息
             //-3:获取指定id的status为1的信息
             //-4:获取指定id的status为0的信息
             if (tag < 0) {
-                Item item = new Item(image, home_item);
+                Home_Item homeItem = new Home_Item(image, home_item);
                 Message message = new Message();
                 message.what = 2;
-                message.obj = item;
+                message.obj = homeItem;
                 handler.sendMessage(message);
             } else {
                 //获取指定position

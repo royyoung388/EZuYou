@@ -21,7 +21,7 @@ import android.widget.ListView;
 import com.you.ezuyou.InternetUtls.HomeUtils.GetAdvertisement;
 import com.you.ezuyou.InternetUtls.HomeUtils.GetHome_Item;
 import com.you.ezuyou.R;
-import com.you.ezuyou.Rearch.Search;
+import com.you.ezuyou.Search.Search_Home;
 
 
 /**
@@ -35,7 +35,7 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private Item item;
+    private Home_Item homeItem;
 
     private Handler handler = new Handler() {
         @Override
@@ -47,8 +47,8 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
                     break;
                 //item
                 case 2:
-                    item = (Item) msg.obj;
-                    Item_Adapter adapter = new Item_Adapter(item.Data, view.getContext());
+                    homeItem = (Home_Item) msg.obj;
+                    Item_Adapter adapter = new Item_Adapter(homeItem.Data, view.getContext());
                     listView.setAdapter(adapter);
                     break;
             }
@@ -79,13 +79,12 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Search.class));
+                startActivity(new Intent(getActivity(), Search_Home.class));
             }
         });
 
-        //获取广告图片
+        //广告图片
         advertisement = (ImageView) view.findViewById(R.id.home_image);
-
 
         //使用listview
         listView = (ListView) view.findViewById(R.id.home_listview);
@@ -98,7 +97,7 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Home_Item_Detil.class);
-                intent.putExtra("tag", Integer.parseInt(item.Data.get(position).getTag()));
+                intent.putExtra("tag", Integer.parseInt(homeItem.Data.get(position).getTag()));
                 startActivity(intent);
             }
         });

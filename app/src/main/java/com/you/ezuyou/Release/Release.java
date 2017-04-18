@@ -157,6 +157,9 @@ public class Release extends Fragment implements View.OnClickListener {
                     dataList.clear();
                     dataList.addLast(null);// 初始化第一个添加按钮数据
                     adapter.update(dataList);
+                    //调整高度
+                    setListViewHeightBasedOnChildren(uploadGridView);
+                    adapter.notifyDataSetChanged();
 
                     flush_home.Flush_Item();
                     Toast.makeText(getActivity(), "上传成功", Toast.LENGTH_SHORT).show();

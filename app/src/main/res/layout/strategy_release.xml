@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,7 +9,9 @@
         android:id="@+id/strategy_release_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,6 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_marginLeft="16dp"
                 android:src="@drawable/icon_back" />
 
             <TextView
@@ -26,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="写攻略"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/strategy_release_release"
@@ -67,6 +71,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="标题:"
+                    android:textColor="@color/commontext"
                     android:textSize="20sp" />
 
                 <EditText
@@ -91,6 +96,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="作者:"
+                    android:textColor="@color/commontext"
                     android:textSize="18sp" />
 
                 <TextView
@@ -101,6 +107,7 @@
                     android:layout_weight="2"
                     android:ellipsize="end"
                     android:text="张三"
+                    android:textColor="@color/commontext"
                     android:textSize="18sp" />
 
                 <CheckBox
@@ -110,6 +117,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="匿名"
+                    android:textColor="@color/commontext"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -124,6 +132,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="预算:"
+                    android:textColor="@color/commontext"
                     android:textSize="18sp" />
 
                 <EditText
@@ -163,6 +172,7 @@
                 android:background="@drawable/strategy_release_add"
                 android:elevation="4dp"
                 android:text="添加图片"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
         </LinearLayout>

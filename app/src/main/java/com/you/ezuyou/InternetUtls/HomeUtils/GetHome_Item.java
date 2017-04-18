@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 
-import com.you.ezuyou.Home.Item;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.keyword.KeyWord;
 

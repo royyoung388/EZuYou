@@ -1,13 +1,11 @@
 package com.you.ezuyou.Chat;
 
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
 import com.you.ezuyou.R;
 import com.you.ezuyou.utils.CircleImageView;
 
@@ -19,49 +17,53 @@ import java.util.List;
  * Created by Administrator on 2017/2/1.
  */
 
-public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> implements View.OnClickListener {
+public class Chat_Item_Adapter extends RecyclerView.Adapter<Chat_Item_Adapter.ViewHolder> implements View.OnClickListener {
 
-    private List<String> id, username, message;
+    private List<String> id, username, message, status;
 
     //使用单例模式确保实例只有一个
     // 静态实例变量加上volatile
-    private static volatile MyRAdapter myRAdapter;
+    private static volatile Chat_Item_Adapter chatItemAdapter;
 
     private OnRecyclerviewClick itemclick = null;
 
     // 双重检查锁
-    public static MyRAdapter getInstance() {
-        if (myRAdapter == null) {
-            synchronized (MyRAdapter.class) {
-                if (myRAdapter == null) {
-                    myRAdapter = new MyRAdapter();
+    public static Chat_Item_Adapter getInstance() {
+        if (chatItemAdapter == null) {
+            synchronized (Chat_Item_Adapter.class) {
+                if (chatItemAdapter == null) {
+                    chatItemAdapter = new Chat_Item_Adapter();
                 }
             }
         }
-        return myRAdapter;
+        return chatItemAdapter;
     }
 
     // 私有化构造函数
-    private MyRAdapter() {
+    private Chat_Item_Adapter() {
         id = new ArrayList<>();
         username = new ArrayList<>();
         message = new ArrayList<>();
+        status = new ArrayList<>();
     }
 
     //添加
-    public void addItem(String id, String username, String message) {
+    public void addItem(String id, String username, String message, int status) {
+
         //发送方id
         int index = this.id.indexOf(id);
         if (index != -1) {
             //删除相同的
             this.id.remove(index);
             this.username.remove(index);
-            this.message.remove(index);            ;
+            this.message.remove(index);
+            this.status.remove(index);
         }
         //插入到第一个
         this.id.add(0, id);
         this.username.add(0, username);
         this.message.add(0, message);
+        this.status.add(0, "" + status);
         notifyDataSetChanged();
     }
 
@@ -108,7 +110,8 @@ public class MyRAdapter extends RecyclerView.Adapter<MyRAdapter.ViewHolder> impl
         holder.username.setText(username.get(position));
         holder.message.setText(message.get(position));
         //使用serTag传数据
-        holder.itemView.setTag(new String[]{id.get(position), username.get(position), message.get(position)});
+        holder.itemView.setTag(new String[]{id.get(position), username.get(position), message.get(position), status.get(position)});
+        System.out.println(status.get(position));
     }
 
     public int getItemCount() {

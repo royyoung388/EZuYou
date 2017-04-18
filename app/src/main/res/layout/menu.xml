@@ -41,30 +41,30 @@
                 android:layout_height="56dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:id="@+id/menu1"
                     style="@style/menu"
-                    android:text="租赁" />
+                    android:src="@drawable/menu_icon_home" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/menu2"
                     style="@style/menu"
-                    android:text="攻略" />
+                    android:src="@drawable/menu_icon_strategy" />
 
                 <TextView
                     android:id="@+id/menu3"
                     style="@style/menu"
                     android:text="" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/menu4"
                     style="@style/menu"
-                    android:text="聊天" />
+                    android:src="@drawable/menu_icon_chat" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/menu5"
                     style="@style/menu"
-                    android:text="我的" />
+                    android:src="@drawable/menu_icon_my" />
             </LinearLayout>
 
 

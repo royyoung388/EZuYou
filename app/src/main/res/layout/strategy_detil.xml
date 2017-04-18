@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="攻略详情"
+            android:textColor="@color/white"
             android:textSize="20dp" />
     </android.support.v7.widget.Toolbar>
 
@@ -55,6 +56,7 @@
                     android:layout_margin="16dp"
                     android:gravity="center"
                     android:text="攻略名字"
+                    android:textColor="@color/commontext"
                     android:textSize="24sp" />
 
                 <TextView
@@ -63,6 +65,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="作者:"
+                    android:textColor="@color/detil"
                     android:textSize="20sp" />
 
                 <TextView
@@ -72,6 +75,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="预算:"
+                    android:textColor="@color/detil"
                     android:textSize="18sp" />
 
                 <com.you.ezuyou.utils.JustifyTextView
@@ -86,6 +90,7 @@
                     娇佛教家分店搜if奇偶爱睡觉覅哦啊叫师傅及哦啊今天问
                     额外ajfsdafsafsdfioafsdsds
                     dsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd"
+                    android:textColor="@color/detil"
                     android:textSize="18sp" />
 
             </LinearLayout>

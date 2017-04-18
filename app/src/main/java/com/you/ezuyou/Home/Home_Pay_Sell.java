@@ -19,11 +19,11 @@ import com.you.ezuyou.R;
  * Created by Administrator on 2017/4/15.
  */
 
-public class Home_Pay_Sell extends AppCompatActivity implements View.OnClickListener{
+public class Home_Pay_Sell extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView sure, name, sell, detil, pay, person, school;
-    private ImageView imageView;
-    private String str_tag, str_name, str_sell, str_detil, str_person, str_school;
+    private TextView sure, name, sell, detil, pay, person, school, sex;
+    private ImageView imageView, back;
+    private String str_tag, str_name, str_sell, str_detil, str_person, str_school, str_sex;
     private Bitmap image;
 
     private SharedPreferences sp;
@@ -36,51 +36,63 @@ public class Home_Pay_Sell extends AppCompatActivity implements View.OnClickList
         Bundle bundle = getIntent().getExtras();
 
         //获取图片
-        byte [] bis = bundle.getByteArray("image");
+        byte[] bis = bundle.getByteArray("image");
         image = BitmapFactory.decodeByteArray(bis, 0, bis.length);
 
-        str_tag = bundle.getString("str_tag");
-        str_name = bundle.getString("naem");
-        str_sell = bundle.getString("str_sell");
-        str_detil = bundle.getString("str_detil");
-        str_person = bundle.getString("str_person");
-        str_school = bundle.getString("str_school");
-        
+        str_tag = bundle.getString("tag");
+        str_name = bundle.getString("name");
+        str_sell = bundle.getString("sell");
+        str_detil = bundle.getString("detil");
+        str_person = bundle.getString("person");
+        str_school = bundle.getString("school");
+        //str_sex = bundle.getString("sex");
+
         //使用toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.home_item_pay_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.home_item_pay_sell_toolbar);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.icon_back);
+        //toolbar.setNavigationIcon(R.drawable.icon_back);
 
         bindView();
+
+        setView();
     }
 
     //绑定控件
     private void bindView() {
-        sure = (TextView) findViewById(R.id.home_item_pay_sure);
-        name = (TextView) findViewById(R.id.home_item_pay_name);
-        sell = (TextView) findViewById(R.id.home_item_pay_sell);
-        detil = (TextView) findViewById(R.id.home_item_pay_detil);
-        pay = (TextView) findViewById(R.id.home_item_pay_pay);
-        person = (TextView) findViewById(R.id.home_item_pay_person);
-        school = (TextView)findViewById(R.id.home_item_pay_school);
-        imageView = (ImageView) findViewById(R.id.home_item_pay_image);
+        sure = (TextView) findViewById(R.id.home_item_pay_sell_sure);
+        name = (TextView) findViewById(R.id.home_item_pay_sell_name);
+        sell = (TextView) findViewById(R.id.home_item_pay_sell_sell);
+        detil = (TextView) findViewById(R.id.home_item_pay_sell_detil);
+        pay = (TextView) findViewById(R.id.home_item_pay_sell_pay);
+        person = (TextView) findViewById(R.id.home_item_pay_sell_person);
+        school = (TextView) findViewById(R.id.home_item_pay_sell_school);
+        imageView = (ImageView) findViewById(R.id.home_item_pay_sell_image);
+        back = (ImageView) findViewById(R.id.home_item_pay_sell_back);
 
         sure.setOnClickListener(this);
+        back.setOnClickListener(this);
+    }
 
+    private void setView() {
         name.setText(str_name);
-        sell.setText(str_sell);
+        sell.setText(str_sell + "元");
         detil.setText(str_detil);
-        pay.setText(str_sell);
+        pay.setText(str_sell + "元");
         person.setText(str_person);
         school.setText(str_school);
+
+        imageView.setImageBitmap(image);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.home_item_pay_sure:
+            case R.id.home_item_pay_sell_sure:
                 pay();
+                break;
+            case R.id.home_item_pay_sell_back:
+                finish();
                 break;
         }
     }
@@ -102,12 +114,12 @@ public class Home_Pay_Sell extends AppCompatActivity implements View.OnClickList
     }
 
     //setNavigationlcon的点击监听（左上角第一个）。
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

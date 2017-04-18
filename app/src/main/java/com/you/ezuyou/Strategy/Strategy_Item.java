@@ -2,8 +2,6 @@ package com.you.ezuyou.Strategy;
 
 import android.graphics.Bitmap;
 
-import com.you.ezuyou.Home.Item;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

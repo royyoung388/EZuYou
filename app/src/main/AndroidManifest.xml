@@ -28,8 +28,10 @@
 
         <activity android:name=".Home.Home_Item_Detil"></activity>
         <activity android:name=".Home.Home_Pay_Sell"></activity>
+        <activity android:name=".Home.Home_Pay_Rent"></activity>
 
-        <activity android:name=".Rearch.Search"></activity>
+        <activity android:name=".Search.Search_Home"></activity>
+        <activity android:name=".Search.Search_Strategy"></activity>
 
         <activity android:name=".Chat.Chat_Show"></activity>
 

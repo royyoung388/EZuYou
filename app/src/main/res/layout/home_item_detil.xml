@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="物品详情"
-            android:textSize="20dp" />
+            android:textColor="@color/white"
+            android:textSize="22dp" />
     </android.support.v7.widget.Toolbar>
 
     <View
@@ -72,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
+                android:textColor="@color/commontext"
                 android:text="物品名称"
                 android:textSize="20sp" />
 
@@ -88,6 +90,7 @@
                     android:src="@drawable/image" />
 
                 <TextView
+                    android:textColor="@color/commontext"
                     android:id="@+id/home_item_detil_person"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,6 +108,7 @@
                     android:background="@drawable/home_item_detil_school"
                     android:padding="4dp"
                     android:text="学校"
+                    android:textColor="@color/detil"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -117,8 +121,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="4dp"
                     android:text="价格:"
+                    android:textColor="@color/commontext"
                     android:textSize="20sp" />
 
                 <LinearLayout
@@ -138,22 +144,46 @@
                             android:text="10元/天"
                             android:textColor="@color/orange"
                             android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/home_item_detil_rent_icon"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/home_item_rent" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/home_item_detil_sell"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="4dp"
-                        android:text="10元"
-                        android:textColor="@color/red"
-                        android:textSize="18sp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/home_item_detil_sell"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="4dp"
+                            android:text="10元"
+                            android:textColor="@color/red"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:id="@+id/home_item_detil_sell_icon"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/home_item_sell" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 
             <com.you.ezuyou.utils.MyScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="4dp"
                 android:fillViewport="true">
 
                 <com.you.ezuyou.utils.JustifyTextView
@@ -162,6 +192,7 @@
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="详细信息"
+                    android:textColor="@color/detil"
                     android:textSize="20sp" />
             </com.you.ezuyou.utils.MyScrollView>
         </LinearLayout>

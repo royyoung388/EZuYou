@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFD700</color>
-    <color name="colorPrimaryDark">#FFD700</color>
+    <color name="colorPrimary">#fab80f</color>
+    <color name="colorPrimaryDark">#fab80f</color>
     <color name="colorAccent">#FFA500</color>
     <color name="myred">#eb4f38</color>
+    <color name="window">#fafafa</color>
     <!--<color name="darkgray">#cccc</color>-->
     <color name="color_white">#ffffff</color>
     <color name="btn_press_color">#5677fc</color>
     <color name="btn_pressed_color">#3ca0ec</color>
+    <color name="commontext">#5c5c5c</color>
+    <color name="detil">#919191</color>
+    <color name="budget">#919191</color>
 
     <color name="black">#000000</color><!--黑色 -->
     <color name="hint">#fff6df</color><!--提示文字 -->

@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import com.you.ezuyou.Chat.Chat_Show;
 import com.you.ezuyou.InternetUtls.HomeUtils.GetHome_Item;
 import com.you.ezuyou.R;
-import com.you.ezuyou.utils.CompressBitmap;
 
 import java.io.ByteArrayOutputStream;
 
@@ -30,14 +28,13 @@ import java.io.ByteArrayOutputStream;
 
 public class Home_Item_Detil extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView imageView1;
+    private ImageView imageView, sell_icon, rent_icon;
     private TextView name, detile, person, rent, sell, school;
     private Button bt_chat, bt_sell, bt_rent;
     private LinearLayout linearLayout;
     private int tag;
-    private Bitmap bitmap;
 
-    private Item item;
+    private Home_Item homeItem;
 
     private Handler handler = new Handler() {
         @Override
@@ -98,7 +95,9 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
 
     //绑定控件
     private void bindView() {
-        imageView1 = (ImageView) findViewById(R.id.home_item_detil_image1);
+        imageView = (ImageView) findViewById(R.id.home_item_detil_image1);
+        rent_icon = (ImageView) findViewById(R.id.home_item_detil_rent_icon);
+        sell_icon = (ImageView) findViewById(R.id.home_item_detil_sell_icon);
         name = (TextView) findViewById(R.id.home_item_detil_name);
         person = (TextView) findViewById(R.id.home_item_detil_person);
         detile = (TextView) findViewById(R.id.home_item_detil_detil);
@@ -119,34 +118,42 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
     private void setView(String home_item, Bitmap[] images) {
 
         //获取item信息并设置
-        item = new Item(images, home_item);
+        homeItem = new Home_Item(images, home_item);
 
         //设置文字
-        name.setText(item.Data.get(0).getName());
-        person.setText(item.Data.get(0).getPerson());
-        school.setText(item.Data.get(0).getSchool());
+        name.setText(homeItem.Data.get(0).getName());
+        person.setText(homeItem.Data.get(0).getPerson());
+        school.setText(homeItem.Data.get(0).getSchool());
 
-        if (item.Data.get(0).getRent().equals("0")) {
+        //对0的处理
+        if (homeItem.Data.get(0).getRent().equals("0")) {
+            bt_rent.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_rent.setEnabled(false);
+            rent_icon.setImageResource(R.drawable.home_item_rent_no);
             rent.setText("0元/天");
             rent.setTextColor(ContextCompat.getColor(this, R.color.grey));
-        } else rent.setText(item.Data.get(0).getRent() + "元/天");
+        } else rent.setText(homeItem.Data.get(0).getRent() + "元/天");
 
-        if (item.Data.get(0).getSell().equals("0")) {
+        if (homeItem.Data.get(0).getSell().equals("0")) {
+            bt_sell.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_sell.setEnabled(false);
+            sell_icon.setImageResource(R.drawable.home_item_sell_no);
             sell.setText("0元");
             sell.setTextColor(ContextCompat.getColor(this, R.color.gray));
-        } else sell.setText(item.Data.get(0).getSell() + "元");
-        detile.setText(item.Data.get(0).getIntroduce());
+        } else sell.setText(homeItem.Data.get(0).getSell() + "元");
+        detile.setText(homeItem.Data.get(0).getIntroduce());
 
         //设置按钮
-        if (item.Data.get(0).getStatus().equals("0")) {
-            bt_rent.setBackgroundResource(R.color.gray);
-            bt_sell.setBackgroundResource(R.color.gray);
+        //对status的处理
+        if (homeItem.Data.get(0).getStatus().equals("0")) {
+            bt_rent.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_sell.setBackgroundResource(R.drawable.home_item_detil_grey);
             bt_rent.setEnabled(false);
             bt_sell.setEnabled(false);
         }
 
         //设置image
-        imageView1.setImageBitmap(images[0]);
+        imageView.setImageBitmap(images[0]);
         for (int i = 0; i < images.length; i++) {
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -171,48 +178,59 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
             //联系按钮
             case R.id.home_item_detil_bt_chat:
                 Intent intent = new Intent(Home_Item_Detil.this, Chat_Show.class);
-                intent.putExtra("id", item.Data.get(0).getID());
-                intent.putExtra("person", item.Data.get(0).getPerson());
+                intent.putExtra("id", homeItem.Data.get(0).getID());
+                intent.putExtra("person", homeItem.Data.get(0).getPerson());
                 intent.putExtra("message", "");
+                intent.putExtra("status", "");
                 startActivity(intent);
                 break;
+
             case R.id.home_item_detil_bt_rent:
-                Intent intent1 = new Intent(Home_Item_Detil.this, Home_Pay_Sell.class);
-                intent1.putExtra("tag", item.Data.get(0).getTag());
+                Intent intent1 = new Intent(Home_Item_Detil.this, Home_Pay_Rent.class);
+
+                Bundle bundle1 = new Bundle();
+                //开启线程对图片进行压缩,然后按照原路径保存
+                Bitmap bitmap1 = homeItem.Data.get(0).getImage();
+
+                //将图片转化为字节传输，以免过大的图片导致死机
+                ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, baos1);
+                byte[] bytes1 = baos1.toByteArray();
+                bundle1.putByteArray("image", bytes1);
+
+                bundle1.putString("tag", homeItem.Data.get(0).getTag());
+                bundle1.putString("name", homeItem.Data.get(0).getName());
+                bundle1.putString("rent", homeItem.Data.get(0).getRent());
+                bundle1.putString("detil", homeItem.Data.get(0).getIntroduce());
+                bundle1.putString("person", homeItem.Data.get(0).getPerson());
+                bundle1.putString("school", homeItem.Data.get(0).getSchool());
+                //b.putString("sex", item.Data.get(0).getsex());
+                intent1.putExtras(bundle1);
                 startActivity(intent1);
                 break;
+
             case R.id.home_item_detil_bt_sell:
 
                 Intent intent2 = new Intent(Home_Item_Detil.this, Home_Pay_Sell.class);
 
-                Bundle b = new Bundle();
+                Bundle bundle2 = new Bundle();
                 //开启线程对图片进行压缩,然后按照原路径保存
-                bitmap = item.Data.get(0).getImage();
-                /*Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        bitmap = CompressBitmap.compressImage(bitmap);
-                    }
-                });
-                thread.start();
-                try {
-                    thread.join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
-                //将图片转化为字节传输，以免过大的图片导致死机
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] bytes = baos.toByteArray();
-                b.putByteArray("image", bytes);
+                Bitmap bitmap2 = homeItem.Data.get(0).getImage();
 
-                b.putString("tag", item.Data.get(0).getTag());
-                b.putString("name", item.Data.get(0).getName());
-                b.putString("sell", item.Data.get(0).getSell());
-                b.putString("detil", item.Data.get(0).getIntroduce());
-                b.putString("person", item.Data.get(0).getPerson());
-                b.putString("school", item.Data.get(0).getSchool());
-                intent2.putExtras(b);
+                //将图片转化为字节传输，以免过大的图片导致死机
+                ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+                bitmap2.compress(Bitmap.CompressFormat.JPEG, 100, baos2);
+                byte[] bytes2 = baos2.toByteArray();
+                bundle2.putByteArray("image", bytes2);
+
+                bundle2.putString("tag", homeItem.Data.get(0).getTag());
+                bundle2.putString("name", homeItem.Data.get(0).getName());
+                bundle2.putString("sell", homeItem.Data.get(0).getSell());
+                bundle2.putString("detil", homeItem.Data.get(0).getIntroduce());
+                bundle2.putString("person", homeItem.Data.get(0).getPerson());
+                bundle2.putString("school", homeItem.Data.get(0).getSchool());
+                //b.putString("sex", item.Data.get(0).getsex());
+                intent2.putExtras(bundle2);
                 startActivity(intent2);
                 break;
         }

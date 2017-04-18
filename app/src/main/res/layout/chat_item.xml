@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="消息列表"
+            android:textColor="@color/white"
             android:textSize="22sp" />
     </android.support.v7.widget.Toolbar>
 

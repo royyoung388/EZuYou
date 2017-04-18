@@ -11,14 +11,14 @@ import java.util.regex.Pattern;
  * Created by Administrator on 2017/3/20.
  */
 
-public class Item {
+public class Home_Item {
 
     private Bitmap image;
     private String id, tag, status, person, school, name, rent, sell, introduce;
 
-    public List<Item> Data = new ArrayList<>();
+    public List<Home_Item> Data = new ArrayList<>();
 
-    public Item(Bitmap image, String id, String tag, String status, String person, String school, String name, String sell, String rent, String introduce) {
+    public Home_Item(Bitmap image, String id, String tag, String status, String person, String school, String name, String sell, String rent, String introduce) {
         this.id = id;
         this.tag = tag;
         this.status = status;
@@ -31,7 +31,7 @@ public class Item {
         this.introduce = introduce;
     }
 
-    public Item(Bitmap[] image, String string) {
+    public Home_Item(Bitmap[] image, String string) {
         Pattern pattern = Pattern.compile("\\{\\s*" +
                 "id:(\\S*?);\\s*" +
                 "tag:(\\S*?);\\s*" +
@@ -56,7 +56,7 @@ public class Item {
             System.out.println(matcher.group(8));
             System.out.println(matcher.group(9));
 
-            Item item = new Item(
+            Home_Item homeItem = new Home_Item(
                     image[i],
                     matcher.group(1),
                     matcher.group(2),
@@ -68,8 +68,8 @@ public class Item {
                     matcher.group(8),
                     matcher.group(9)
             );
-            System.out.println(item);
-            Data.add(item);
+            System.out.println(homeItem);
+            Data.add(homeItem);
             i++;
         }
         System.out.println(i);

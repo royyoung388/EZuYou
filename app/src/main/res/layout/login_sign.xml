@@ -51,6 +51,8 @@
                     android:textColor="@color/login_input"
                     android:textColorHint="@color/hint" />
 
+                <requestFocus />
+
                 <EditText
                     android:id="@+id/Login_sign_password"
                     android:layout_width="250dp"
@@ -177,6 +179,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:text="返回登录"
                     android:textColor="#ff6200"
                     android:textSize="14sp" />

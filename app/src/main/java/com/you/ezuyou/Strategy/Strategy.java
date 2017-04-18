@@ -15,22 +15,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.you.ezuyou.Home.Home_Item_Detil;
 import com.you.ezuyou.InternetUtls.StrategyUtils.GetStrategy_Item;
 import com.you.ezuyou.R;
+import com.you.ezuyou.Search.Search_Strategy;
 
 
 /**
  * Created by Administrator on 2017/2/28.
  */
 
-public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private View view;
-    private TextView release;
+    private ImageView release;
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -75,9 +76,17 @@ public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshLi
         swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
 
         //发布
-        release = (TextView) view.findViewById(R.id.strategy_release);
+        release = (ImageView) view.findViewById(R.id.strategy_release);
+        //点击搜索栏事件
+        LinearLayout search = (LinearLayout) view.findViewById(R.id.strategy_searh);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Search_Strategy.class));
+            }
+        });
 
-                //ListView的使用
+        //ListView的使用
         listView = (ListView) view.findViewById(R.id.strategy_list);
 
         flush();

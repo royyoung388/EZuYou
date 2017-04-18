@@ -74,8 +74,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="4dp"
+            android:layout_marginTop="8dp"
             android:checked="true"
+            android:textColor="@color/commontext"
             android:text="记住密码"
             android:textSize="16sp" />
 
@@ -83,6 +84,7 @@
             android:id="@+id/Login_submit"
             android:layout_width="150dp"
             android:layout_height="35dp"
+            android:layout_marginTop="8dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/login_buttom"
             android:text="log  in"

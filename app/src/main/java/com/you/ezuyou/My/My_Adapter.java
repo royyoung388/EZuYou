@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.you.ezuyou.Home.Item;
+import com.you.ezuyou.Home.Home_Item;
 import com.you.ezuyou.R;
 
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
 
 public class My_Adapter extends BaseAdapter {
 
-    private List<Item> Data;
+    private List<Home_Item> Data;
     private Context context;
 
-    public My_Adapter(List<Item> Data, Context context) {
+    public My_Adapter(List<Home_Item> Data, Context context) {
         this.Data = Data;
         this.context = context;
     }
@@ -47,6 +47,8 @@ public class My_Adapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = LayoutInflater.from(context).inflate(R.layout.my_item, parent, false);
         ImageView list_image = (ImageView) convertView.findViewById(R.id.my_list_image);
+        ImageView item_rent_icon = (ImageView) convertView.findViewById(R.id.my_list_icon_rent);
+        ImageView item_sell_icon = (ImageView) convertView.findViewById(R.id.my_list_icon_sell);
         TextView list_name = (TextView) convertView.findViewById(R.id.my_list_name);
         TextView list_rent = (TextView) convertView.findViewById(R.id.my_list_rent);
         TextView list_sell = (TextView) convertView.findViewById(R.id.my_list_sell);
@@ -58,8 +60,15 @@ public class My_Adapter extends BaseAdapter {
         list_sell.setText(Data.get(position).getSell() + "元");
         list_introduce.setText(Data.get(position).getIntroduce());
 
-        if (Data.get(position).getRent().equals("0")) list_rent.setTextColor(ContextCompat.getColor(list_name.getContext(), R.color.gray));
-        if (Data.get(position).getSell().equals("0")) list_sell.setTextColor(ContextCompat.getColor(list_name.getContext(), R.color.gray));
+        //不出租
+        if (Data.get(position).getRent().equals("0")) {
+            list_rent.setTextColor(ContextCompat.getColor(list_name.getContext(), R.color.gray));
+            item_rent_icon.setImageResource(R.drawable.home_item_rent_no);
+        }
+        if (Data.get(position).getSell().equals("0")) {
+            list_sell.setTextColor(ContextCompat.getColor(list_name.getContext(), R.color.gray));
+            item_sell_icon.setImageResource(R.drawable.home_item_sell_no);
+        }
         return convertView;
     }
 }
