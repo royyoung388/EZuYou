@@ -55,7 +55,7 @@ public class Chat_Item extends Fragment implements SwipeRefreshLayout.OnRefreshL
     //其他类通过该方法启动聊天线程
     public void sartChat() {
         //通过单例模式获取实例，监听接收消息
-        Thread chatfromother = Chat_From_Other.getInstance(handler);
+        Chat_From_Other.getInstance(handler);
     }
 
     public Chat_Item() {

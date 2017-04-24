@@ -2,6 +2,7 @@ package com.you.ezuyou.My;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,20 +12,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.you.ezuyou.InternetUtls.HomeUtils.GetHome_Item;
 import com.you.ezuyou.InternetUtls.MyUtils.Start_My;
 import com.you.ezuyou.R;
+
+import java.io.ByteArrayOutputStream;
 
 
 /**
  * Created by Administrator on 2017/3/9.
  */
 
-public class My extends Fragment implements View.OnClickListener{
+public class My extends Fragment implements View.OnClickListener {
 
     private ImageView my_image;
     private TextView my_name, my_information, my_favorite, my_history, my_strategy, my_purchase_ing, getMy_purchase_already;
     private View view;
     private String my = null;
+    private Bitmap image;
 
     private Handler handler = new Handler() {
         @Override
@@ -33,14 +38,25 @@ public class My extends Fragment implements View.OnClickListener{
             switch (msg.what) {
                 //获取了my信息，刷新界面
                 case 1:
-                    my = (String) msg.obj;
+                    Bundle bundle = msg.getData();
+                    my = bundle.getString("my");
+                    image = bundle.getParcelable("image");
+                    if (image != null && !image.equals("")) my_image.setImageBitmap(image);
                     My_Utils_my my_utils_my = new My_Utils_my(my);
                     my_name.setText(my_utils_my.getUsername());
+
             }
         }
     };
 
     public My() {
+    }
+
+    //当从我的信息界面跳回来时，刷新当前界面
+    @Override
+    public void onResume() {
+        super.onResume();
+        flush();
     }
 
     @Override
@@ -68,14 +84,7 @@ public class My extends Fragment implements View.OnClickListener{
         my_purchase_ing.setOnClickListener(this);
         getMy_purchase_already.setOnClickListener(this);
 
-        //启动线程
-        Thread my = new Start_My(handler, getActivity());
-        my.start();
-        try {
-            my.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        flush();
 
         return view;
     }
@@ -90,7 +99,20 @@ public class My extends Fragment implements View.OnClickListener{
                 break;
             case R.id.my_information:
                 Intent intent = new Intent(getActivity(), My_Information.class);
-                intent.putExtra("my", my);
+                Bundle bundle = new Bundle();
+                bundle.putString("my", my);
+
+                if (image != null && !image.equals("")) {
+                    //将图片转化为字节传输，以免过大的图片导致死机
+                    ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+                    image.compress(Bitmap.CompressFormat.JPEG, 100, baos1);
+                    byte[] bytes1 = baos1.toByteArray();
+                    bundle.putByteArray("image", bytes1);
+                } else bundle.putByteArray("image", null);
+
+                intent.putExtras(bundle);
+                /*intent.putExtra("my", my);
+                intent.putExtra("image", image);*/
                 startActivity(intent);
                 break;
             case R.id.my_favorite:
@@ -108,6 +130,17 @@ public class My extends Fragment implements View.OnClickListener{
             case R.id.my_purchase_already:
                 startActivity(new Intent(getActivity(), My_Purchase_Already.class));
                 break;
+        }
+    }
+
+    public void flush() {
+        //启动线程
+        Thread my = new Start_My(handler, getActivity());
+        my.start();
+        try {
+            my.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

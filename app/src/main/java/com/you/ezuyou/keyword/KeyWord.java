@@ -17,4 +17,5 @@ public class KeyWord {
 	public final static int PORT_MY_CHANGE_PWD = 30013;
 	public final static int PORT_SEARCH_ITEM = 30014;
 	public final static int PORT_SEARCH_IMAGE = 30015;
+	public final static int PORT_MY_UPLOOAD_IMAGE = 30016;
 }

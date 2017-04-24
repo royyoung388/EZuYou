@@ -89,7 +89,7 @@ public class My_Strategy extends AppCompatActivity implements SwipeRefreshLayout
 
     //刷新
     public void flush() {
-        Thread getStrategy = new GetStrategy_Item(handler, sp.getString("id", null), -1);
+        Thread getStrategy = new GetStrategy_Item(handler, sp.getString("id", null), -2);
         getStrategy.start();
         try {
             getStrategy.join();

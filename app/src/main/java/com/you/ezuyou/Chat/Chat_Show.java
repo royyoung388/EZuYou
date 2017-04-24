@@ -29,6 +29,7 @@ import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.R;
+import com.you.ezuyou.Release.Release;
 import com.you.ezuyou.keyword.KeyWord;
 
 import java.io.DataInputStream;
@@ -40,13 +41,13 @@ import java.net.Socket;
  * Created by Administrator on 2017/4/12.
  */
 
-public class Chat_Show extends AppCompatActivity implements View.OnClickListener{
+public class Chat_Show extends AppCompatActivity implements View.OnClickListener {
 
     private String person, id, userid, message;
     private TextView title;
     private Button send;
     private EditText edit;
-    private LinearLayout linearLayout;
+    private LinearLayout linearLayout = null;
     private ScrollView scrollView;
 
     private final int MY_MESSAGE = 1;
@@ -54,31 +55,37 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
 
     private Chat_Item_Adapter chat_item_adapter;
 
-    private FlushChatItem flushChatItem;
+    //private FlushChatShow flushChatShow;
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
-                //用户输入后，清空输入框
-                case 1:
-                    edit.setText(null);
-                    break;
-                //接收到的
+                /*//用户输入后，清空输入框
                 case 2:
+                    edit.setText(null);
+                    break;*/
+                //接收到的
+                case 1:
+                    String message = (String) msg.obj;
+                    if (linearLayout != null) AddText(message, OTHER_MESSAGE);
                     break;
             }
         }
     };
 
-    //设置接口，用于自己发送消息时更新chat_item的消息
-    private interface FlushChatItem {
-        void flushChatItem();
+    /*//设置接口，用于接收消息时更新消息
+    public interface FlushChatShow {
+        void flushChatShow(String message);
     }
     //暴露给外面的设置接口方法
-    private void setFlushChatItem(FlushChatItem flushChatItem) {
-        this.flushChatItem = flushChatItem;
+    public void setFlushChatShow(FlushChatShow flushChatShow) {
+        this.flushChatShow = flushChatShow;
+    }*/
+
+    public Chat_Show() {
+        Chat_From_Other.getInstance(handler).setHandler(handler);
     }
 
     @Override
@@ -98,9 +105,7 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
 
         BindView();
 
-        Chat_From_Other chat_other = Chat_From_Other.getInstance(handler);
-
-        chat_other.setAddMessage(new Chat_From_Other.AddMessage() {
+        Chat_From_Other.getInstance(handler).setAddMessage(new Chat_From_Other.AddMessage() {
             @Override
             public void addMeg(final String message) {
                 runOnUiThread(new Runnable() {
@@ -122,7 +127,7 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
         String message = intent.getStringExtra("message");
         int status = 0;
         if (intent.getStringExtra("status") != null && !intent.getStringExtra("status").equals("")) {
-             status = Integer.parseInt(intent.getStringExtra("status"));
+            status = Integer.parseInt(intent.getStringExtra("status"));
         }
 
         if (!message.equals("") && intent.getStringExtra("message") != null)

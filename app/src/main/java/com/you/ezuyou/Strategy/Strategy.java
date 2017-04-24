@@ -96,7 +96,7 @@ public class Strategy extends Fragment implements SwipeRefreshLayout.OnRefreshLi
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Strategy_Detil.class);
-                intent.putExtra("tag", Integer.parseInt(strategy_item.Data.get(position).getTag()));
+                intent.putExtra("tag", strategy_item.Data.get(position).getTag());
                 startActivity(intent);
             }
         });

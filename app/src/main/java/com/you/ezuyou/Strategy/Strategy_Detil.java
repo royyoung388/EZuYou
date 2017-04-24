@@ -59,7 +59,7 @@ public class Strategy_Detil extends AppCompatActivity {
         bindView();
 
         Intent intent = getIntent();
-        tag = intent.getIntExtra("tag", -1);
+        tag = Integer.parseInt(intent.getStringExtra("tag"));
 
         sp = this.getSharedPreferences("login", MODE_PRIVATE);
         Thread getStrategy = new GetStrategy_Item(handler, sp.getString("id", null), tag);

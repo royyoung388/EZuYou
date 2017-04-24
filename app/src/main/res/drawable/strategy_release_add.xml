@@ -14,7 +14,7 @@
         android:top="2dp">
         <shape>
             <corners android:radius="8dp" />
-            <solid android:color="@color/gold" />
+            <solid android:color="#fab80f" />
         </shape>
     </item>
 </layer-list>

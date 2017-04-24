@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -120,6 +121,8 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
             Toast.makeText(Strategy_Release.this, "内容不能为空",  Toast.LENGTH_SHORT).show();
         else if (str_money == null || str_money.equals(""))
             Toast.makeText(Strategy_Release.this, "预算不能为空",  Toast.LENGTH_SHORT).show();
+        else if (imagePath == null || imagePath.equals(""))
+            Toast.makeText(Strategy_Release.this, "未上传图片",  Toast.LENGTH_SHORT).show();
         else {
             Thread strategy_release = new Start_Strategy_Release(imagePath, sp.getString("id", null), str_editor, str_title, str_money, str_text);
             strategy_release.start();
@@ -150,12 +153,26 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
                 check();
                 break;
             case R.id.strategy_release_add:
+                if (hasCarema() == false) {
+                    return;
+                }
                 showPictureDailog();
                 break;
             case R.id.strategy_release_back:
                 finish();
                 break;
         }
+    }
+
+    //判断相机是否存在
+    private boolean hasCarema() {
+        PackageManager pm = getPackageManager();
+        if (!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA )
+                && !pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT )) {
+            Toast. makeText(this, "连接不上相机，请检查权限设置", Toast.LENGTH_SHORT).show();
+            return false ;
+        }
+        return true ;
     }
 
     //与选择图片上传有关

@@ -1,16 +1,20 @@
 package com.you.ezuyou.InternetUtls.ChatUtils;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import com.you.ezuyou.Chat.Chat_Show;
+import com.you.ezuyou.Release.Release;
 import com.you.ezuyou.keyword.KeyWord;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/12.
@@ -19,7 +23,7 @@ import java.net.Socket;
 public class Chat_From_Other extends Thread {
 
     private ServerSocket serverSocket;
-    private Handler handler;
+    private Handler handler, handler2 = null;
 
     //接口变量
     private AddMessage addMessage;
@@ -32,15 +36,18 @@ public class Chat_From_Other extends Thread {
     public static Chat_From_Other getInstance(Handler handler) {
         if (chat_from_other == null) {
             synchronized (Chat_From_Other.class) {
-                if (chat_from_other == null) {
-                    chat_from_other = new Chat_From_Other(handler);
-                    chat_from_other.start();
-                }
+                chat_from_other = new Chat_From_Other(handler);
+                chat_from_other.start();
             }
         }
         return chat_from_other;
     }
 
+    public void setHandler(Handler handler) {
+        if (handler != this.handler) {
+            handler2 = handler;
+        }
+    }
     //接口，用于接收到消息之后显示
     public interface AddMessage {
         void addMeg(final String message);
@@ -104,11 +111,18 @@ public class Chat_From_Other extends Thread {
                 //接收name
                 String useranme = inputStream.readUTF();
                 System.out.println("接收到useranme:" + useranme);
-                String message = inputStream.readUTF();
+                final String message = inputStream.readUTF();
                 System.out.println("接收到消息:" + message);
 
                 //接口通知
-                addMessage.addMeg(message);
+                //new Chat_Show();
+                //addMessage.addMeg(message);
+                /*new Chat_Show().setFlushChatShow(new Chat_Show.FlushChatShow() {
+                    @Override
+                    public void flushChatShow(String message1) {
+                        message1 = message;
+                    }
+                });*/
 
                 //接收到新消息，通知给handle，meg = 1
                 Message meg = new Message();
@@ -118,7 +132,14 @@ public class Chat_From_Other extends Thread {
                 bundle.putString("useranme", useranme);
                 bundle.putString("message", message);
                 meg.setData(bundle);
+
                 handler.sendMessage(meg);
+
+                //接收到新消息，通知给handle，meg = 1
+                Message meg2 = new Message();
+                meg2.what = 1;
+                meg2.obj = message;
+                if (handler2 != null) handler2.sendMessage(meg2);
 
                 inputStream.close();
                 client.close();

@@ -97,7 +97,7 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), Home_Item_Detil.class);
-                intent.putExtra("tag", Integer.parseInt(homeItem.Data.get(position).getTag()));
+                intent.putExtra("tag", homeItem.Data.get(position).getTag());
                 startActivity(intent);
             }
         });

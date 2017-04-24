@@ -86,6 +86,7 @@ public class Search_Home_Adapter extends BaseAdapter implements Filterable{
             @Override
             public void onClick(View v) {
                jumpHomeActivity.jumpHome(Data.get(position).getTag());
+                System.out.println(Data.get(position).getTag());
             }
         });
 

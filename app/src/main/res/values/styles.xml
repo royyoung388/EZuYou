@@ -28,20 +28,22 @@
         <item name="android:textColor">@drawable/my_text</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">12dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:padding">4dp</item>
+        <item name="android:padding">6dp</item>
         <item name="android:textSize">24sp</item>
     </style>
 
     <style name="home_item_bt">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">4dp</item>
+        <!--<item name="android:layout_margin">4dp</item>-->
+        <item name="android:padding">4dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/strategy_release_add</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/menu_bt_bg</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="my_information_txtview">

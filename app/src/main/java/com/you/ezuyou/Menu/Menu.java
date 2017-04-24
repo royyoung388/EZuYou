@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.you.ezuyou.Chat.Chat_Item;
+import com.you.ezuyou.Chat.Chat_Show;
 import com.you.ezuyou.Strategy.Strategy;
 import com.you.ezuyou.Home.Home;
 import com.you.ezuyou.My.My;
@@ -49,6 +50,8 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
 
         //用于启动聊天线程
         new Chat_Item().sartChat();
+        //用于启动chatshow
+        new Chat_Show();
 
         bindViews();
         //模拟一次点击，既进去后选择第一项

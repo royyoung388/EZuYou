@@ -126,7 +126,7 @@
                         android:textColor="@color/commontext"
                         android:textSize="18sp" />
 
-                    <com.you.ezuyou.utils.JustifyTextView
+                    <TextView
                         android:id="@+id/home_item_pay_rent_detil"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

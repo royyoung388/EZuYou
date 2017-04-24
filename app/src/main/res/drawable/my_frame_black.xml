@@ -2,14 +2,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <solid android:color="@color/detil" />
+            <solid android:color="#ff8e21" />
         </shape>
     </item>
     <item
         android:bottom="1dp"
         android:top="1dp">
         <shape>
-            <!--    边框里面的颜色    -->
+            <!--    边框里面的颜色 ,即背景色   -->
             <solid android:color="@color/window" />
         </shape>
     </item>

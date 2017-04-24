@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
@@ -14,6 +17,7 @@ import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.keyword.KeyWord;
 
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -23,11 +27,12 @@ import java.net.Socket;
  * Created by Administrator on 2017/4/15.
  */
 
-public class Start_My extends Thread{
+public class Start_My extends Thread {
 
     private SharedPreferences sp;
     private Context context;
     private Handler handler;
+    private Bitmap image = null;
 
     /*//使用单例模式确保该线程只有一个
     // 静态实例变量加上volatile
@@ -69,9 +74,31 @@ public class Start_My extends Thread{
 
             String my = in.readUTF();
 
+            if (in.readUTF().equals("yes")) {
+                int size = in.readInt();
+                System.out.println("size:" + size);
+                byte[] data = new byte[size];
+                int len = 0;
+                while (len < size) {
+                    len += in.read(data, len, size - len);
+                }
+
+                ByteArrayOutputStream outPut = new ByteArrayOutputStream();
+                Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, outPut);
+                image = bmp;
+
+                outPut.close();
+            } else {
+                System.out.println("没有个人头像");
+            }
+
             Message message = new Message();
+            Bundle bundle = new Bundle();
+            bundle.putString("my", my);
+            bundle.putParcelable("image", image);
             message.what = 1;
-            message.obj = my;
+            message.setData(bundle);
             handler.sendMessage(message);
 
             in.close();

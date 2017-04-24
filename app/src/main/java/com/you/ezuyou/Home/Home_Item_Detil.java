@@ -2,6 +2,7 @@ package com.you.ezuyou.Home;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,7 +31,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
 
     private ImageView imageView, sell_icon, rent_icon;
     private TextView name, detile, person, rent, sell, school;
-    private Button bt_chat, bt_sell, bt_rent;
+    private TextView bt_chat, bt_sell, bt_rent;
     private LinearLayout linearLayout;
     private int tag;
 
@@ -81,7 +82,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         bindView();
 
         Intent intent = getIntent();
-        tag = intent.getIntExtra("tag", -1);
+        tag = Integer.parseInt(intent.getStringExtra("tag"));
 
         Thread getHome_item = new GetHome_Item(handler, tag, this);
         getHome_item.start();
@@ -104,10 +105,22 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         rent = (TextView) findViewById(R.id.home_item_detil_rent);
         sell = (TextView) findViewById(R.id.home_item_detil_sell);
         school = (TextView) findViewById(R.id.home_item_detil_school);
-        bt_chat = (Button) findViewById(R.id.home_item_detil_bt_chat);
-        bt_sell = (Button) findViewById(R.id.home_item_detil_bt_sell);
-        bt_rent = (Button) findViewById(R.id.home_item_detil_bt_rent);
+        bt_chat = (TextView) findViewById(R.id.home_item_detil_bt_chat);
+        bt_sell = (TextView) findViewById(R.id.home_item_detil_bt_sell);
+        bt_rent = (TextView) findViewById(R.id.home_item_detil_bt_rent);
         linearLayout = (LinearLayout) findViewById(R.id.home_item_detil_linearlayout);
+
+        Drawable drawable_chat = ContextCompat.getDrawable(this, R.drawable.home_item_detil_chat);
+        Drawable drawable_sell = ContextCompat.getDrawable(this, R.drawable.home_item_detil_sell);
+        Drawable drawable_rent = ContextCompat.getDrawable(this, R.drawable.home_item_detil_rent);
+
+        drawable_chat.setBounds(0, 0, 90, 90);//左上右下，对应的差值是长宽
+        drawable_sell.setBounds(0, 0, 90, 90);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
+        drawable_rent.setBounds(0, 0, 90, 90);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
+
+        bt_chat.setCompoundDrawables(null, drawable_chat, null, null);//左上右下
+        bt_sell.setCompoundDrawables(null, drawable_sell, null, null);//左上右下
+        bt_rent.setCompoundDrawables(null, drawable_rent, null, null);//左上右下
 
         bt_chat.setOnClickListener(this);
         bt_sell.setOnClickListener(this);
@@ -127,7 +140,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
 
         //对0的处理
         if (homeItem.Data.get(0).getRent().equals("0")) {
-            bt_rent.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_rent.setBackgroundResource(R.color.detil);
             bt_rent.setEnabled(false);
             rent_icon.setImageResource(R.drawable.home_item_rent_no);
             rent.setText("0元/天");
@@ -135,7 +148,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         } else rent.setText(homeItem.Data.get(0).getRent() + "元/天");
 
         if (homeItem.Data.get(0).getSell().equals("0")) {
-            bt_sell.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_sell.setBackgroundResource(R.color.detil);
             bt_sell.setEnabled(false);
             sell_icon.setImageResource(R.drawable.home_item_sell_no);
             sell.setText("0元");
@@ -146,8 +159,10 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         //设置按钮
         //对status的处理
         if (homeItem.Data.get(0).getStatus().equals("0")) {
-            bt_rent.setBackgroundResource(R.drawable.home_item_detil_grey);
-            bt_sell.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_rent.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+            bt_sell.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+            /*bt_rent.setBackgroundResource(R.drawable.home_item_detil_grey);
+            bt_sell.setBackgroundResource(R.drawable.home_item_detil_grey);*/
             bt_rent.setEnabled(false);
             bt_sell.setEnabled(false);
         }

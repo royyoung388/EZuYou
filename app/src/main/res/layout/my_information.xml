@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="个人信息"
+            android:textColor="@color/white"
             android:textSize="22sp" />
     </android.support.v7.widget.Toolbar>
 
@@ -29,6 +30,7 @@
         android:orientation="vertical">
 
         <com.you.ezuyou.utils.CircleImageView
+            android:id="@+id/my_information_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
@@ -62,7 +64,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/my_frame_black"
@@ -82,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/my_frame_black"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:gravity="center">
 
             <TextView
@@ -98,7 +100,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_margin="16dp">
 
             <LinearLayout
                 android:layout_width="0dp"
