@@ -56,8 +56,8 @@ public class My_Adapter extends BaseAdapter {
 
         list_image.setImageBitmap(Data.get(position).getImage());
         list_name.setText(Data.get(position).getName());
-        list_rent.setText(Data.get(position).getRent() + "元/天");
-        list_sell.setText(Data.get(position).getSell() + "元");
+        list_rent.setText("¥ " + Data.get(position).getRent());
+        list_sell.setText("¥ " + Data.get(position).getSell());
         list_introduce.setText(Data.get(position).getIntroduce());
 
         //不出租

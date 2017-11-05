@@ -11,23 +11,16 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
 import com.you.ezuyou.InternetUtls.StrategyUtils.Start_Strategy_Release;
-import com.you.ezuyou.Login.Login;
-import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.R;
 import com.you.ezuyou.utils.ImageUtils;
 
@@ -41,11 +34,11 @@ import java.util.Locale;
  * Created by Administrator on 2017/4/16.
  */
 
-public class Strategy_Release extends AppCompatActivity implements View.OnClickListener{
+public class Strategy_Release extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText title, input;
+    private EditText title, budget;
     private CheckBox checkBox;
-    private Button add;
+    private TextView add;
     private TextView release, editor, money;
     private ImageView back;
 
@@ -88,12 +81,12 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
 
     private void bindView() {
         title = (EditText) findViewById(R.id.strategy_release_title);
-        input = (EditText) findViewById(R.id.strategy_release_input);
+        budget = (EditText) findViewById(R.id.strategy_release_budget);
         release = (TextView) findViewById(R.id.strategy_release_release);
         editor = (TextView) findViewById(R.id.strategy_release_editor);
         money = (TextView) findViewById(R.id.strategy_release_money);
         back = (ImageView) findViewById(R.id.strategy_release_back);
-        add = (Button) findViewById(R.id.strategy_release_add);
+        add = (TextView) findViewById(R.id.strategy_release_add);
         checkBox = (CheckBox) findViewById(R.id.strategy_release_checkbox);
 
         //复选框的监听
@@ -112,19 +105,19 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
 
     private void check() {
         str_title = title.getText().toString();
-        str_text = input.getText().toString();
+        str_text = budget.getText().toString();
         str_money = money.getText().toString();
 
         if (str_title == null || str_title.equals(""))
             Toast.makeText(Strategy_Release.this, "标题不能为空", Toast.LENGTH_SHORT).show();
         else if (str_text == null || str_text.equals(""))
-            Toast.makeText(Strategy_Release.this, "内容不能为空",  Toast.LENGTH_SHORT).show();
+            Toast.makeText(Strategy_Release.this, "内容不能为空", Toast.LENGTH_SHORT).show();
         else if (str_money == null || str_money.equals(""))
-            Toast.makeText(Strategy_Release.this, "预算不能为空",  Toast.LENGTH_SHORT).show();
+            Toast.makeText(Strategy_Release.this, "预算不能为空", Toast.LENGTH_SHORT).show();
         else if (imagePath == null || imagePath.equals(""))
-            Toast.makeText(Strategy_Release.this, "未上传图片",  Toast.LENGTH_SHORT).show();
+            Toast.makeText(Strategy_Release.this, "未上传图片", Toast.LENGTH_SHORT).show();
         else {
-            Thread strategy_release = new Start_Strategy_Release(imagePath, sp.getString("id", null), str_editor, str_title, str_money, str_text);
+            Thread strategy_release = new Start_Strategy_Release(imagePath, sp.getString("id", null), str_editor, str_title, str_money, str_text + "元/天");
             strategy_release.start();
             try {
                 strategy_release.join();
@@ -167,12 +160,12 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
     //判断相机是否存在
     private boolean hasCarema() {
         PackageManager pm = getPackageManager();
-        if (!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA )
-                && !pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT )) {
-            Toast. makeText(this, "连接不上相机，请检查权限设置", Toast.LENGTH_SHORT).show();
-            return false ;
+        if (!pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)
+                && !pm.hasSystemFeature(PackageManager.FEATURE_CAMERA_FRONT)) {
+            Toast.makeText(this, "连接不上相机，请检查权限设置", Toast.LENGTH_SHORT).show();
+            return false;
         }
-        return true ;
+        return true;
     }
 
     //与选择图片上传有关
@@ -196,7 +189,7 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
      */
     public void showPictureDailog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setItems(new String[] { "拍摄照片", "选择照片", "取消" },
+        builder.setItems(new String[]{"拍摄照片", "选择照片", "取消"},
                 new DialogInterface.OnClickListener() {
 
                     @Override
@@ -232,12 +225,12 @@ public class Strategy_Release extends AppCompatActivity implements View.OnClickL
             String imageFilePath = getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsolutePath();
             SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss", Locale.CHINA);
             //根据当前时间生成图片的名称
-            String timestamp = "/"+formatter.format(new Date())+".jpg";
-            File imageFile = new File(imageFilePath,timestamp);// 通过路径创建保存文件
+            String timestamp = "/" + formatter.format(new Date()) + ".jpg";
+            File imageFile = new File(imageFilePath, timestamp);// 通过路径创建保存文件
             mImagePath = imageFile.getAbsolutePath();
             Uri imageFileUri = Uri.fromFile(imageFile);// 获取文件的Uri
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageFileUri);// 告诉相机拍摄完毕输出图片到指定的Uri
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);// 告诉相机拍摄完毕输出图片到指定的Uri
             startActivityForResult(intent, SELECT_IMAGE_RESULT_CODE);
         } else {
             Toast.makeText(this, "内存卡不存在!", Toast.LENGTH_LONG).show();

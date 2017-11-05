@@ -28,7 +28,7 @@ import com.you.ezuyou.Search.Search_Home;
  * Created by Administrator on 2017/2/28.
  */
 
-public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private View view;
     private ImageView advertisement;
@@ -43,7 +43,7 @@ public class Home extends Fragment implements SwipeRefreshLayout.OnRefreshListen
             switch (msg.what) {
                 //广告图片
                 case 1:
-                    advertisement.setImageBitmap((Bitmap)msg.obj);
+                    advertisement.setImageBitmap((Bitmap) msg.obj);
                     break;
                 //item
                 case 2:

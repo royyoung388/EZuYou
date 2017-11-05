@@ -29,44 +29,34 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/login_logo" />
+        <!--<ImageView-->
+        <!--android:layout_width="80dp"-->
+        <!--android:layout_height="80dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:src="@drawable/login_logo" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:text="登陆"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
 
         <EditText
             android:id="@+id/Login_name"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            style="@style/signinput"
             android:background="@drawable/login_sign_input"
-            android:gravity="center"
-            android:hint="account"
-            android:inputType="text"
-            android:lines="1"
-            android:padding="8dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/login_input"
-            android:textColorHint="@color/hint" />
+            android:hint="用户名"
+            android:inputType="text" />
 
 
         <EditText
             android:id="@+id/Login_password"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/login_sign_input"
-            android:gravity="center"
-            android:hint="password"
-            android:inputType="numberPassword"
-            android:lines="1"
-            android:padding="8dp"
-            android:selectAllOnFocus="true"
-            android:textColor="@color/login_input"
-            android:textColorHint="@color/hint" />
+            style="@style/signinput"
+            android:hint="密码"
+            android:inputType="numberPassword" />
 
 
         <CheckBox
@@ -74,23 +64,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:checked="true"
-            android:textColor="@color/commontext"
             android:text="记住密码"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/Login_submit"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/login_buttom"
-            android:text="log  in"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="22dp" />
+            style="@style/loginbt"
+            android:text="登陆" />
 
         <TextView
             android:id="@+id/Login_sign"
@@ -98,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="没有账号？点击注册"
-            android:textColor="#ff6200"
-            android:textSize="14sp" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

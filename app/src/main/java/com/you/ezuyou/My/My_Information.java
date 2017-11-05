@@ -67,8 +67,8 @@ public class My_Information extends AppCompatActivity implements View.OnClickLis
     //最终得到的图片路径
     private String imagePath;
 
-    private TextView name, school, school_class, number;
-    private Button changepwd, logout;
+    private TextView name, school, school_class;
+    private TextView changepwd, logout;
     private My_Utils_my my_utils_my;
     private ImageView my_image;
 
@@ -128,9 +128,8 @@ public class My_Information extends AppCompatActivity implements View.OnClickLis
         name = (TextView) findViewById(R.id.my_information_name);
         school = (TextView) findViewById(R.id.my_information_school);
         school_class = (TextView) findViewById(R.id.my_information_school_class);
-        number = (TextView) findViewById(R.id.my_information_number);
-        changepwd = (Button) findViewById(R.id.my_information_bt_changepwd);
-        logout = (Button) findViewById(R.id.my_information_bt_logout);
+        changepwd = (TextView) findViewById(R.id.my_information_bt_changepwd);
+        logout = (TextView) findViewById(R.id.my_information_bt_logout);
         my_image = (ImageView) findViewById(R.id.my_information_image);
 
         changepwd.setOnClickListener(this);
@@ -143,7 +142,6 @@ public class My_Information extends AppCompatActivity implements View.OnClickLis
         name.setText(my_utils_my.getUsername());
         school.setText(my_utils_my.getUserschool());
         school_class.setText(my_utils_my.getUserschool_class());
-        number.setText(my_utils_my.getUsernumber());
     }
 
     //返回键

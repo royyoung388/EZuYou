@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:background="@color/rentred"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <com.you.ezuyou.utils.CircleImageView
             android:id="@+id/my_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/image"/>
+            android:src="@drawable/image" />
 
         <TextView
             android:id="@+id/my_name"
-            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:textColor="@color/commontext"
-            android:text="名字"/>
+            android:layout_marginTop="20dp"
+            android:text="名字"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/my_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/my_school_bg"
+            android:padding="4dp"
+            android:text="武大"
+            android:textColor="@color/rentred"
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -41,24 +53,28 @@
         <TextView
             android:id="@+id/my_favorite"
             style="@style/wo"
-            android:visibility="gone"
-            android:text="收藏夹"/>
+            android:text="收藏夹"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/my_history"
             style="@style/wo"
-            android:text="我的租售"/>
+            android:text="我的租售" />
+
         <TextView
             android:id="@+id/my_strategy"
             style="@style/wo"
-            android:text="我的攻略"/>
+            android:text="我的攻略" />
+
         <TextView
             android:id="@+id/my_purchase_ing"
             style="@style/wo"
-            android:text="正在出租/出售"/>
+            android:text="正在出租/出售" />
+
         <TextView
             android:id="@+id/my_purchase_already"
             style="@style/wo"
-            android:text="已经出租/出售"/>
+            android:text="已经出租/出售" />
     </LinearLayout>
 
 </LinearLayout>

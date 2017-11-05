@@ -20,7 +20,7 @@ import com.you.ezuyou.R;
  * Created by Administrator on 2017/4/4.
  */
 
-public class Login_sign extends AppCompatActivity implements View.OnClickListener{
+public class Login_sign extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, pwd, repwd, school, school_class, number;
     private TextView back;
@@ -59,20 +59,21 @@ public class Login_sign extends AppCompatActivity implements View.OnClickListene
             Toast.makeText(this, "姓名不能为空", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userPwd)) {
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
-        } else if (!userPwd.equals(userrePwd)){
+        } else if (!userPwd.equals(userrePwd)) {
             Toast.makeText(this, "两次密码输入不一致", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userschool)) {
             Toast.makeText(this, "学校不能为空", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userschool_class)) {
             Toast.makeText(this, "学院不能为空", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(usernumber)) {
-            Toast.makeText(this, "学号不能为空", Toast.LENGTH_SHORT).show();
+            //新设计中去掉学号
+//        } else if (TextUtils.isEmpty(usernumber)) {
+//            Toast.makeText(this, "学号不能为空", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "正在注册", Toast.LENGTH_SHORT).show();
 
             //注册
             //LoginUtils.start_sign(userName, userPwd, name);
-            Thread start_sign = new Start_Sign(userName, userPwd, userschool, userschool_class, usernumber, usersex, name);
+            Thread start_sign = new Start_Sign(userName, userPwd, userschool, userschool_class, "usernumber", usersex, name);
             start_sign.start();
         }
     }
@@ -88,12 +89,13 @@ public class Login_sign extends AppCompatActivity implements View.OnClickListene
         man = (RadioButton) findViewById(R.id.Login_sign_radio_man);
         women = (RadioButton) findViewById(R.id.Login_sign_radio_woman);
         sign = (Button) findViewById(R.id.Login_sign_submit);
-        back = (TextView) findViewById(R.id.login_sign_back) ;
+        back = (TextView) findViewById(R.id.login_sign_back);
         //添加下划线
-        back.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG );
+        back.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         sign.setOnClickListener(this);
-        back.setOnClickListener(this);
+        //新的设计中去掉了
+        //back.setOnClickListener(this);
 
         group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -39,61 +40,65 @@
                 android:id="@+id/strategy_detil_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginBottom="6dp"
                 android:background="#e7e7e7"
                 android:src="@drawable/image" />
 
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/strategy_detil_title"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
                     android:gravity="center"
                     android:text="攻略名字"
-                    android:textColor="@color/commontext"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/strategy_detil_editor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="作者:"
-                    android:textColor="@color/detil"
+                    android:textColor="#2c2c2c"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/strategy_detil_money"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:text="预算:"
-                    android:textColor="@color/detil"
+                    android:textColor="@color/rentred"
                     android:textSize="18sp" />
+            </LinearLayout>
 
-                <com.you.ezuyou.utils.JustifyTextView
-                    android:id="@+id/strategy_detil_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:inputType="textMultiLine"
-                    android:lineSpacingMultiplier="1.0"
-                    android:scrollbars="vertical"
-                    android:text="fdsafjasiofis积分等级奥菲斯奥放假哦撒
+            <TextView
+                android:id="@+id/strategy_detil_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="14dp"
+                android:text="作者:"
+                android:textColor="#6a6a6a"
+                android:textSize="16sp" />
+
+            <com.you.ezuyou.utils.JustifyTextView
+                android:id="@+id/strategy_detil_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:inputType="textMultiLine"
+                android:lineSpacingMultiplier="1.1"
+                android:scrollbars="vertical"
+                android:text="fdsafjasiofis积分等级奥菲斯奥放假哦撒
                     娇佛教家分店搜if奇偶爱睡觉覅哦啊叫师傅及哦啊今天问
                     额外ajfsdafsafsdfioafsdsds
                     dsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsd"
-                    android:textColor="@color/detil"
-                    android:textSize="18sp" />
-            </LinearLayout>
+                android:textColor="#6a6a6a"
+                android:textSize="16sp" />
         </LinearLayout>
     </com.you.ezuyou.utils.MyScrollView>
 </LinearLayout>

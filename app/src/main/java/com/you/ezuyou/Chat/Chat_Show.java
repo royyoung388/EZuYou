@@ -1,13 +1,12 @@
 package com.you.ezuyou.Chat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
@@ -18,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,16 +24,7 @@ import android.widget.Toast;
 import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
 import com.you.ezuyou.InternetUtls.ChatUtils.Start_Chat;
 import com.you.ezuyou.InternetUtls.LoginUtils.Start_Login;
-import com.you.ezuyou.Login.Login;
-import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.R;
-import com.you.ezuyou.Release.Release;
-import com.you.ezuyou.keyword.KeyWord;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.net.Socket;
-
 
 /**
  * Created by Administrator on 2017/4/12.
@@ -220,16 +209,17 @@ public class Chat_Show extends AppCompatActivity implements View.OnClickListener
         if (!text.equals("") && text != null) {
             TextView textView = new TextView(linearLayout.getContext());
             textView.setText(text);
-            textView.setBackgroundResource(R.color.gold);
+            textView.setTextColor(ContextCompat.getColor(this, R.color.white));
             textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-            textView.setPadding(dpTopx(8), dpTopx(8), dpTopx(8), dpTopx(8));
-            textView.setBackgroundResource(R.drawable.chat_show_textview);
+            //textView.setPadding(dpTopx(8), dpTopx(8), dpTopx(8), dpTopx(8));
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(dpTopx(12), dpTopx(12), dpTopx(12), dpTopx(12));
+            lp.setMargins(dpTopx(20), dpTopx(20), dpTopx(20), dpTopx(20));
             if (position == OTHER_MESSAGE) {
+                textView.setBackgroundResource(R.drawable.chat_bg_other);
                 textView.setGravity(Gravity.LEFT);
                 lp.gravity = Gravity.LEFT;
             } else if (position == MY_MESSAGE) {
+                textView.setBackgroundResource(R.drawable.chat_bg_self);
                 textView.setGravity(Gravity.RIGHT);
                 lp.gravity = Gravity.RIGHT;
             }

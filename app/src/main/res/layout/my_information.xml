@@ -19,123 +19,110 @@
             android:textSize="22sp" />
     </android.support.v7.widget.Toolbar>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="@drawable/shadow_align_bt" />
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="4dp"-->
+    <!--android:background="@drawable/shadow_align_bt" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.you.ezuyou.utils.CircleImageView
-            android:id="@+id/my_information_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:src="@drawable/image" />
-
-        <TextView
-            android:id="@+id/my_information_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:text="姓名"
-            android:textColor="@color/commontext"
-            android:textSize="24sp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/my_frame_black"
-            android:gravity="center">
+            android:background="@color/rentred"
+            android:gravity="center"
+            android:paddingBottom="80dp">
 
-            <TextView
-                style="@style/my_information_txtview"
-                android:text="学校" />
+            <com.you.ezuyou.utils.CircleImageView
+                android:id="@+id/my_information_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:src="@drawable/image" />
 
-            <TextView
-                android:id="@+id/my_information_school"
-                style="@style/my_information_txtview_txt"
-                android:text="2333" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/my_frame_black"
-            android:gravity="center">
-
-            <TextView
-                style="@style/my_information_txtview"
-                android:text="学院" />
-
-            <TextView
-                android:id="@+id/my_information_school_class"
-                style="@style/my_information_txtview_txt"
-                android:text="2333" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/my_frame_black"
-            android:layout_marginTop="12dp"
-            android:gravity="center">
-
-            <TextView
-                style="@style/my_information_txtview"
-                android:text="学号" />
-
-            <TextView
-                android:id="@+id/my_information_number"
-                style="@style/my_information_txtview_txt"
-                android:text="2333" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="-80dp"
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:background="@drawable/my_information_tv_bg"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/my_information_bt_changepwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/my_bt_bg"
-                    android:gravity="center"
-                    android:text="修改密码"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                <TextView
+                    style="@style/my_information_txtview"
+                    android:text="姓名:" />
+
+                <TextView
+                    android:id="@+id/my_information_name"
+                    style="@style/my_information_txtview"
+                    android:text="姓名" />
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:background="@drawable/my_information_tv_bg"
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/my_information_bt_logout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/my_bt_bg"
-                    android:text="注销账号"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
+                <TextView
+                    style="@style/my_information_txtview"
+                    android:text="学校:" />
+
+                <TextView
+                    android:id="@+id/my_information_school"
+                    style="@style/my_information_txtview"
+                    android:text="2333" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/my_information_tv_bg"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/my_information_txtview"
+                    android:text="学院:" />
+
+                <TextView
+                    android:id="@+id/my_information_school_class"
+                    style="@style/my_information_txtview"
+                    android:text="2333" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_information_bt_changepwd"
+                style="@style/home_item_bt"
+                android:background="@drawable/home_item_detil_rent"
+                android:text="修改密码" />
+
+            <TextView
+                android:id="@+id/my_information_bt_logout"
+                style="@style/home_item_bt"
+                android:background="@drawable/home_item_detil_sell"
+                android:text="注销账号" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

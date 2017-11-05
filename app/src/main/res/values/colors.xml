@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fab80f</color>
-    <color name="colorPrimaryDark">#fab80f</color>
+    <!--<color name="colorPrimary">#fab80f</color>-->
+    <!--<color name="colorPrimaryDark">#fab80f</color>-->
+    <color name="colorPrimary">#f57056</color>
+    <color name="colorPrimaryDark">#f57056</color>
     <color name="colorAccent">#FFA500</color>
     <color name="myred">#eb4f38</color>
-    <color name="window">#f7f7f7</color>
+    <color name="rentred">#f57056</color>
+    <color name="sellblue">#5d8bff</color>
+    <color name="window">#e4e4e4</color>
     <!--<color name="darkgray">#cccc</color>-->
-    <color name="color_white">#ffffff</color>
+    <color name="whitebg">#44ffffff</color>
     <color name="btn_press_color">#5677fc</color>
     <color name="btn_pressed_color">#3ca0ec</color>
     <color name="commontext">#5c5c5c</color>
@@ -14,8 +18,9 @@
     <color name="budget">#919191</color>
 
     <color name="black">#000000</color><!--黑色 -->
-    <color name="hint">#fff6df</color><!--提示文字 -->
-    <color name="login_input">#f46d00</color><!--登录的输入文字 -->
+    <color name="hint">@color/white</color><!--提示文字 -->
+    <color name="login_input">@color/white</color><!--登录的输入文字 -->
+    <color name="averagetext">#ed6e64</color>
 
     <color name="white">#FFFFFF</color><!--白色 -->
     <color name="ivory">#FFFFF0</color><!--象牙色 -->

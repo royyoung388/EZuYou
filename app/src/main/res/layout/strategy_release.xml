@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,150 +32,166 @@
                 android:text="写攻略"
                 android:textColor="@color/white"
                 android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/strategy_release_release"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:text="发布"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
+        android:layout_below="@id/strategy_release_toolbar"
         android:background="@drawable/shadow_align_bt" />
+
+    <LinearLayout
+        android:id="@+id/strategy_release_LL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/strategy_release_add"
+            style="@style/home_item_bt"
+            android:background="@drawable/home_item_detil_rent"
+            android:text="添加图片" />
+
+        <TextView
+            android:id="@+id/strategy_release_release"
+            style="@style/home_item_bt"
+            android:background="@drawable/home_item_detil_sell"
+            android:text="我要发布" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/strategy_release_LL"
+        android:layout_below="@id/strategy_release_toolbar"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingBottom="24dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="标题:"
-                    android:textColor="@color/commontext"
-                    android:textSize="20sp" />
-
-                <EditText
-                    android:id="@+id/strategy_release_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/release_input"
-                    android:hint="请输入标题"
-                    android:lines="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="作者:"
-                    android:textColor="@color/commontext"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/strategy_release_editor"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:ellipsize="end"
-                    android:text="张三"
-                    android:textColor="@color/commontext"
-                    android:textSize="18sp" />
-
-                <CheckBox
-                    android:id="@+id/strategy_release_checkbox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="匿名"
-                    android:textColor="@color/commontext"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="预算:"
-                    android:textColor="@color/commontext"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/strategy_release_money"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:background="@drawable/release_input"
-                    android:hint="请输入预算"
-                    android:lines="1" />
-            </LinearLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="8dp"
-                android:fillViewport="true">
-
-                <EditText
-                    android:id="@+id/strategy_release_input"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
-                    android:background="@drawable/release_input"
-                    android:gravity="left|top"
-                    android:hint="请输入正文内容"
-                    android:inputType="textMultiLine"
-                    android:scrollbars="vertical"
-                    android:textSize="18sp" />
-            </ScrollView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/strategy_release_add"
+                    <TextView
+                        style="@style/release_tv"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="标题:" />
+
+                    <EditText
+                        android:id="@+id/strategy_release_title"
+                        style="@style/release_ev"
+                        android:hint="请输入标题" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/release_tv"
+                        android:text="作者:" />
+
+                    <TextView
+                        android:id="@+id/strategy_release_editor"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="张三"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <CheckBox
+                        android:id="@+id/strategy_release_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/rentred"
+                        android:gravity="center"
+                        android:text="匿名"
+                        android:textColor="@color/commontext"
+                        android:textSize="18sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/release_tv"
+                        android:text="预算:" />
+
+                    <EditText
+                        android:id="@+id/strategy_release_money"
+                        style="@style/release_ev"
+                        android:hint="请输入预算" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/strategy_release_add"
-                android:elevation="4dp"
-                android:text="添加图片"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="正文"
+                    android:textSize="18sp" />
 
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="16dp"
+                    android:fillViewport="true">
+
+                    <EditText
+                        android:id="@+id/strategy_release_budget"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/release_input"
+                        android:gravity="left|top"
+                        android:hint="请输入正文内容"
+                        android:inputType="textMultiLine"
+                        android:padding="6dp"
+                        android:scrollbars="vertical"
+                        android:textSize="18sp" />
+                </ScrollView>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

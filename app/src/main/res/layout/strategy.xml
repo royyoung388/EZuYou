@@ -18,22 +18,25 @@
             <LinearLayout
                 android:id="@+id/strategy_searh"
                 android:layout_width="0dp"
-                android:layout_weight="8"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
+                android:layout_weight="8"
                 android:background="@drawable/home_search_bg"
                 android:gravity="center">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_margin="4dp"
                     android:src="@drawable/home_search_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:hint="搜索攻略"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -41,11 +44,11 @@
                 android:id="@+id/strategy_release"
                 android:layout_width="0dp"
                 android:layout_height="24dp"
-                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:layout_marginRight="14dp"
                 android:layout_marginLeft="-8dp"
-                android:src="@drawable/strategy_write"/>
+                android:layout_marginRight="14dp"
+                android:layout_weight="1"
+                android:src="@drawable/strategy_write" />
 
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
@@ -61,6 +64,7 @@
         android:layout_height="match_parent">
 
         <ListView
+            android:background="@color/white"
             android:id="@+id/strategy_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

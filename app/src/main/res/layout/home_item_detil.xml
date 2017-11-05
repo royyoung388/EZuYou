@@ -31,163 +31,175 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#00ffffff">
-
-        <TextView
-            android:id="@+id/home_item_detil_bt_chat"
-            style="@style/home_item_bt"
-            android:drawableTop="@drawable/home_item_detil_chat"
-            android:text="联系" />
-
-        <TextView
-            android:id="@+id/home_item_detil_bt_sell"
-            style="@style/home_item_bt"
-            android:drawableTop="@drawable/home_item_detil_sell"
-            android:text="买" />
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/home_item_detil_bt_rent"
             style="@style/home_item_bt"
-            android:drawableTop="@drawable/home_item_detil_rent"
-            android:text="租" />
+            android:background="@drawable/home_item_detil_rent"
+            android:text="我要租" />
+
+        <TextView
+            android:id="@+id/home_item_detil_bt_sell"
+            style="@style/home_item_bt"
+            android:background="@drawable/home_item_detil_sell"
+            android:text="我要买" />
     </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/home_item_detil_buttom"
-        android:layout_below="@id/home_item_detil_toolbar">
+        android:layout_below="@id/home_item_detil_toolbar"
+        android:fillViewport="true">
 
         <LinearLayout
             android:id="@+id/home_item_detil_linearlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/home_item_detil_image1"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/image" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <com.you.ezuyou.utils.CircleImageView
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/image" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/home_item_detil_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发布人"
+                        android:textColor="@color/commontext"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/home_item_detil_school"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/home_item_detil_rent"
+                        android:padding="4dp"
+                        android:text="武汉学校"
+                        android:textColor="#bfffffff"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/home_item_detil_bt_chat"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="12dp"
+                    android:gravity="right|center_vertical"
+                    android:text="联系卖家"
+                    android:textColor="#f57056"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@color/white"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/home_item_detil_image1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/image" />
+
+                <LinearLayout
+                    android:id="@+id/home_item_detil_rent_LL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/home_item_detil_rent_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/home_item_rent" />
+
+                    <TextView
+                        android:id="@+id/home_item_detil_rent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text="¥ 10元/天"
+                        android:textColor="#f57056"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_item_detil_rent_LL"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/home_item_detil_sell_icon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:src="@drawable/home_item_sell" />
+
+                    <TextView
+                        android:id="@+id/home_item_detil_sell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text="¥ 1000"
+                        android:textColor="#5d8bff"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/home_item_detil_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textColor="@color/commontext"
+                android:background="@color/white"
+                android:padding="16dp"
                 android:text="物品名称"
+                android:textColor="#2c2c2c"
                 android:textSize="20sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp">
-
-                <com.you.ezuyou.utils.CircleImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/image" />
-
-                <TextView
-                    android:textColor="@color/commontext"
-                    android:id="@+id/home_item_detil_person"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
-                    android:text="发布人"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/home_item_detil_school"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
-                    android:background="@drawable/home_item_detil_school"
-                    android:padding="4dp"
-                    android:text="学校"
-                    android:textColor="@color/detil"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="4dp"
-                    android:text="价格:"
-                    android:textColor="@color/commontext"
-                    android:textSize="20sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/home_item_detil_rent"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:text="10元/天"
-                            android:textColor="@color/orange"
-                            android:textSize="18sp" />
-
-                        <ImageView
-                            android:id="@+id/home_item_detil_rent_icon"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-                            android:src="@drawable/home_item_rent" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/home_item_detil_sell"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="4dp"
-                            android:text="10元"
-                            android:textColor="@color/red"
-                            android:textSize="18sp" />
-
-                        <ImageView
-                            android:id="@+id/home_item_detil_sell_icon"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-                            android:src="@drawable/home_item_sell" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </LinearLayout>
 
             <com.you.ezuyou.utils.MyScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="4dp"
-                android:fillViewport="true">
+                android:background="@color/white"
+                android:fillViewport="true"
+                android:padding="16dp">
 
                 <com.you.ezuyou.utils.JustifyTextView
                     android:id="@+id/home_item_detil_detil"
@@ -195,10 +207,9 @@
                     android:layout_height="wrap_content"
                     android:padding="4dp"
                     android:text="详细信息"
-                    android:textColor="@color/detil"
+                    android:textColor="#6a6a6a"
                     android:textSize="20sp" />
             </com.you.ezuyou.utils.MyScrollView>
         </LinearLayout>
     </ScrollView>
-
 </RelativeLayout>

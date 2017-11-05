@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.you.ezuyou.Chat.Chat_Item;
 import com.you.ezuyou.InternetUtls.ChatUtils.Chat_From_Other;
 import com.you.ezuyou.InternetUtls.ChatUtils.Start_Chat;
+import com.you.ezuyou.Login.Login;
 import com.you.ezuyou.Menu.Menu;
 import com.you.ezuyou.keyword.KeyWord;
 
@@ -43,7 +44,7 @@ public class Start_Login extends Thread{
         Socket socket = null;
 
         try {
-            socket = new Socket(com.you.ezuyou.Login.Login.IP, KeyWord.PORT_LOGIN);
+            socket = new Socket(Login.IP, KeyWord.PORT_LOGIN);
 
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());

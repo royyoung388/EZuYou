@@ -16,19 +16,19 @@
 
     <!-- 阴影部分 -->
     <!-- 个人觉得更形象的表达：top代表下边的阴影高度，left代表右边的阴影宽度。其实也就是相对应的offset，solid中的颜色是阴影的颜色，也可以设置角度等等 -->
-    <item
-        android:bottom="2dp"
-        android:right="2dp">
-        <shape android:shape="rectangle">
-            <solid android:color="#0F000000"/>
-            <!--<padding-->
-            <!--android:top="2dp"-->
-            <!--android:bottom="2dp"-->
-            <!--android:left="2dp"-->
-            <!--android:right="2dp"/>-->
-            <corners android:radius="6dp"/>
-        </shape>
-    </item>
+    <!--<item-->
+        <!--android:bottom="2dp"-->
+        <!--android:right="2dp">-->
+        <!--<shape android:shape="rectangle">-->
+            <!--<solid android:color="#0F000000"/>-->
+            <!--&lt;!&ndash;<padding&ndash;&gt;-->
+            <!--&lt;!&ndash;android:top="2dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:bottom="2dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:left="2dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:right="2dp"/>&ndash;&gt;-->
+            <!--<corners android:radius="6dp"/>-->
+        <!--</shape>-->
+    <!--</item>-->
 
     <!-- 背景部分 -->
     <!-- 形象的表达：bottom代表背景部分在上边缘超出阴影的高度，right代表背景部分在左边超出阴影的宽度（相对应的offset） -->
@@ -37,13 +37,13 @@
         android:top="2dp">
 
         <shape android:shape="rectangle">
-            <solid android:color="#ffc663"/>
+            <solid android:color="#44ffffff"/>
             <padding
                 android:top="6dp"
                 android:bottom="6dp"
                 android:left="6dp"
                 android:right="6dp"/>
-            <corners android:radius="6dp"/>
+            <corners android:radius="14dp"/>
         </shape>
     </item>
 </layer-list>

@@ -2,7 +2,6 @@ package com.you.ezuyou.Home;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -110,17 +108,17 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         bt_rent = (TextView) findViewById(R.id.home_item_detil_bt_rent);
         linearLayout = (LinearLayout) findViewById(R.id.home_item_detil_linearlayout);
 
-        Drawable drawable_chat = ContextCompat.getDrawable(this, R.drawable.home_item_detil_chat);
-        Drawable drawable_sell = ContextCompat.getDrawable(this, R.drawable.home_item_detil_sell);
-        Drawable drawable_rent = ContextCompat.getDrawable(this, R.drawable.home_item_detil_rent);
-
-        drawable_chat.setBounds(0, 0, 90, 90);//左上右下，对应的差值是长宽
-        drawable_sell.setBounds(0, 0, 90, 90);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
-        drawable_rent.setBounds(0, 0, 90, 90);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
-
-        bt_chat.setCompoundDrawables(null, drawable_chat, null, null);//左上右下
-        bt_sell.setCompoundDrawables(null, drawable_sell, null, null);//左上右下
-        bt_rent.setCompoundDrawables(null, drawable_rent, null, null);//左上右下
+//        Drawable drawable_chat = ContextCompat.getDrawable(this, R.drawable.home_item_detil_chat);
+//        Drawable drawable_sell = ContextCompat.getDrawable(this, R.drawable.home_item_detil_sell);
+//        Drawable drawable_rent = ContextCompat.getDrawable(this, R.drawable.home_item_detil_rent);
+//
+//        drawable_chat.setBounds(0, 0, 90, 90);//左上右下，对应的差值是长宽
+//        drawable_sell.setBounds(0, 0, 90, 90);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
+//        drawable_rent.setBounds(0, 0, 90, 90);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
+//
+//        bt_chat.setCompoundDrawables(null, drawable_chat, null, null);//左上右下
+//        bt_sell.setCompoundDrawables(null, drawable_sell, null, null);//左上右下
+//        bt_rent.setCompoundDrawables(null, drawable_rent, null, null);//左上右下
 
         bt_chat.setOnClickListener(this);
         bt_sell.setOnClickListener(this);
@@ -140,27 +138,31 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
 
         //对0的处理
         if (homeItem.Data.get(0).getRent().equals("0")) {
-            bt_rent.setBackgroundResource(R.color.detil);
+            bt_rent.setBackgroundResource(R.drawable.home_item_detil_disable);
             bt_rent.setEnabled(false);
             rent_icon.setImageResource(R.drawable.home_item_rent_no);
-            rent.setText("0元/天");
+            rent.setText("¥ 0/天");
             rent.setTextColor(ContextCompat.getColor(this, R.color.grey));
-        } else rent.setText(homeItem.Data.get(0).getRent() + "元/天");
+        } else
+            rent.setText("¥ " + homeItem.Data.get(0).getRent() + "/天");
 
         if (homeItem.Data.get(0).getSell().equals("0")) {
-            bt_sell.setBackgroundResource(R.color.detil);
+            bt_sell.setBackgroundResource(R.drawable.home_item_detil_disable);
             bt_sell.setEnabled(false);
             sell_icon.setImageResource(R.drawable.home_item_sell_no);
-            sell.setText("0元");
+            sell.setText("¥ 0");
             sell.setTextColor(ContextCompat.getColor(this, R.color.gray));
-        } else sell.setText(homeItem.Data.get(0).getSell() + "元");
+        } else
+            sell.setText("¥ " + homeItem.Data.get(0).getSell());
         detile.setText(homeItem.Data.get(0).getIntroduce());
 
         //设置按钮
         //对status的处理
         if (homeItem.Data.get(0).getStatus().equals("0")) {
-            bt_rent.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
-            bt_sell.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+//            bt_rent.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+//            bt_sell.setBackgroundColor(ContextCompat.getColor(this, R.color.grey));
+            bt_rent.setBackgroundResource(R.drawable.home_item_detil_disable);
+            bt_sell.setBackgroundResource(R.drawable.home_item_detil_disable);
             /*bt_rent.setBackgroundResource(R.drawable.home_item_detil_grey);
             bt_sell.setBackgroundResource(R.drawable.home_item_detil_grey);*/
             bt_rent.setEnabled(false);
@@ -172,6 +174,7 @@ public class Home_Item_Detil extends AppCompatActivity implements View.OnClickLi
         for (int i = 0; i < images.length; i++) {
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            imageView.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
             imageView.setImageBitmap(images[i]);
             linearLayout.addView(imageView);
         }

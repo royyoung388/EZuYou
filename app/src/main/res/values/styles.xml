@@ -5,64 +5,107 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@color/window</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/white</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <!--注册界面输入框-->
+    <style name="signinput">
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:background">@drawable/login_sign_input</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:lines">1</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/login_input</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:selectAllOnFocus">true</item>
+    </style>
+
+    <!--登陆注册按钮-->
+    <style name="loginbt">
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/login_buttom</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/averagetext</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+
     <style name="menu">
-        <item name="android:background">@drawable/menu_bt_bg</item>
+        <item name="android:background">@color/white</item>
         <item name="android:padding">8dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <!--我的界面项目列表-->
     <style name="wo">
-        <item name="android:background">@drawable/my_frame_black</item>
-        <item name="android:textColor">@drawable/my_text</item>
+        <item name="android:drawableRight">@drawable/my_go</item>
+        <item name="android:background">@color/white</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">12dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:padding">6dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
+    <!--物品详情界面的租售按钮-->
     <style name="home_item_bt">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">330dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <!--<item name="android:layout_margin">4dp</item>-->
-        <item name="android:padding">4dp</item>
+        <item name="android:layout_margin">4dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">8dp</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/menu_bt_bg</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
+    <!--我的个人信息界面文字-->
     <style name="my_information_txtview">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">right</item>
-        <item name="android:padding">4dp</item>
-        <item name="android:layout_marginRight">32dp</item>
-        <item name="android:textColor">@color/commontext</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:padding">14dp</item>
+        <item name="android:textColor">#282828</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="my_information_txtview_txt">
-        <item name="android:layout_width">0dp</item>
+    <!--修改密码输入框样式-->
+    <style name="my_edit" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@color/rentred</item>
+        <item name="colorAccent">@color/rentred</item>
+    </style>
+
+    <!--发布信息界面textview-->
+    <style name="release_tv">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!--发布信息界面editview-->
+    <style name="release_ev">
+        <item name="android:padding">4dp</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:textColor">@color/detil</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:background">@drawable/release_input</item>
+        <item name="android:lines">1</item>
     </style>
 </resources>

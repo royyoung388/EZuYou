@@ -27,10 +27,9 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
 
     //UI Objects
     private ImageView menu1, menu2, menu3, menu4, menu5;
-    private Button menu3_bt;
 
     //Fragment Object
-    private Home fg1;
+    private Home fg1 ;
     private Strategy fg2;
     private Chat_Item fg4;
     private Release fg3;
@@ -70,15 +69,13 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
     private void bindViews() {
         menu1 = (ImageView) findViewById(R.id.menu1);
         menu2 = (ImageView) findViewById(R.id.menu2);
-//        menu3 = (TextView) findViewById(R.id.menu3);
-        menu3_bt = (Button) findViewById(R.id.menu3_bt);
+        menu3 = (ImageView) findViewById(R.id.menu3);
         menu4 = (ImageView) findViewById(R.id.menu4);
         menu5 = (ImageView) findViewById(R.id.menu5);
 
         menu1.setOnClickListener(this);
         menu2.setOnClickListener(this);
-//        menu3.setOnClickListener(this);
-        menu3_bt.setOnClickListener(this);
+        menu3.setOnClickListener(this);
         menu4.setOnClickListener(this);
         menu5.setOnClickListener(this);
     }
@@ -87,8 +84,7 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
     private void setSelected() {
         menu1.setSelected(false);
         menu2.setSelected(false);
-//        menu3.setSelected(false);
-        menu3_bt.setSelected(false);
+        menu3.setSelected(false);
         menu4.setSelected(false);
         menu5.setSelected(false);
     }
@@ -190,7 +186,7 @@ public class Menu extends BaseActivity implements View.OnClickListener, Release.
                     fTransaction.show(fg2);
                 }
                 break;
-            case R.id.menu3_bt:
+            case R.id.menu3:
                 setSelected();
                 //menu3.setSelected(true);
                 //menu3_bt.setSelected(true);

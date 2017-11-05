@@ -36,7 +36,7 @@ public class Start_Sign extends Thread {
         Socket socket = null;
 
         try {
-            socket = new Socket(com.you.ezuyou.Login.Login.IP, KeyWord.PORT_LOGIN_SIGN);
+            socket = new Socket(Login.IP, KeyWord.PORT_LOGIN_SIGN);
 
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());

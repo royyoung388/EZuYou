@@ -76,9 +76,9 @@ public class Home_Pay_Sell extends AppCompatActivity implements View.OnClickList
 
     private void setView() {
         name.setText(str_name);
-        sell.setText(str_sell + "元");
+        sell.setText("¥ " + str_sell);
         detil.setText(str_detil);
-        pay.setText(str_sell + "元");
+        pay.setText("¥ " + str_sell);
         person.setText(str_person);
         school.setText(str_school);
 

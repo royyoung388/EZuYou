@@ -81,8 +81,8 @@ public class Home_Pay_Rent extends AppCompatActivity implements View.OnClickList
 
         imageView.setImageBitmap(image);
         name.setText(str_name);
-        rent.setText(str_rent + "元/天");
-        pay.setText(str_rent + "元");
+        rent.setText("¥ " + str_rent + "/天");
+        pay.setText("¥ " + str_rent );
         detil.setText(str_detil);
         person.setText(str_person);
         school.setText(str_school);
@@ -156,9 +156,9 @@ public class Home_Pay_Rent extends AppCompatActivity implements View.OnClickList
                         //判断时间差, 并且设置天数和钱
                         if (daysOfTwo() >= 0) {
                             day.setText((daysOfTwo() == 0) ? "1天" : ("" + daysOfTwo() + "天"));
-                            pay.setText((daysOfTwo() == 0) ? ("" + Integer.parseInt(str_rent) + "元") : ("" + (Integer.parseInt(str_rent) * dayOfMonth) + "元"));
+                            pay.setText((daysOfTwo() == 0) ? ("¥ " + Integer.parseInt(str_rent)) : ("¥ " + (Integer.parseInt(str_rent) * dayOfMonth)));
                         } else {
-                            pay.setText("0元");
+                            pay.setText("¥ " + "0");
                             day.setText("0天");
                             Toast.makeText(Home_Pay_Rent.this, "时间设置有误", Toast.LENGTH_SHORT).show();
                         }
@@ -194,9 +194,9 @@ public class Home_Pay_Rent extends AppCompatActivity implements View.OnClickList
                         //判断时间差, 并且设置天数和钱
                         if (daysOfTwo() >= 0) {
                             day.setText((daysOfTwo() == 0) ? "1天" : ("" + daysOfTwo() + "天"));
-                            pay.setText((daysOfTwo() == 0) ? ("" + Integer.parseInt(str_rent) + "元") : ("" + (Integer.parseInt(str_rent) * dayOfMonth) + "元"));
+                            pay.setText((daysOfTwo() == 0) ? ("¥ " + Integer.parseInt(str_rent)) : ("¥ " + (Integer.parseInt(str_rent) * dayOfMonth)));
                         } else {
-                            pay.setText("0元");
+                            pay.setText("¥ " + "0");
                             day.setText("0天");
                             Toast.makeText(Home_Pay_Rent.this, "时间设置有误", Toast.LENGTH_SHORT).show();
                         }

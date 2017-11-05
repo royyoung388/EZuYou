@@ -1,6 +1,5 @@
 package com.you.ezuyou.Release;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -91,13 +90,13 @@ public class Release extends Fragment implements View.OnClickListener {
         edit_name = (EditText) view.findViewById(R.id.Release_input_name);
         edit_sell = (EditText) view.findViewById(R.id.Release_input_sell);
         edit_rent = (EditText) view.findViewById(R.id.Release_input_rent);
-        edit_detil = (EditText) view.findViewById(R.id.Release_input_detail);
+        edit_detil = (EditText) view.findViewById(R.id.release_input_detail);
         //发布
-        publish = (TextView) view.findViewById(R.id.Release_publish);
+        publish = (TextView) view.findViewById(R.id.release_publish);
         publish.setOnClickListener(this);
 
         //使用Toolbar
-        Toolbar toolbar = (Toolbar) view.findViewById(R.id.Release_toolbar);
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.release_toolbar);
         toolbar.setTitle("");
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 
@@ -116,11 +115,11 @@ public class Release extends Fragment implements View.OnClickListener {
         }
     }
 
-    //点击上传事件
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.Release_publish:
+            //点击上传事件
+            case R.id.release_publish:
 
                 str_detil = edit_detil.getText().toString();
                 str_name = edit_name.getText().toString();

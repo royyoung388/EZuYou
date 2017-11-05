@@ -3,6 +3,7 @@ package com.you.ezuyou.My;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,7 +27,8 @@ import java.io.ByteArrayOutputStream;
 public class My extends Fragment implements View.OnClickListener {
 
     private ImageView my_image;
-    private TextView my_name, my_information, my_favorite, my_history, my_strategy, my_purchase_ing, getMy_purchase_already;
+    private TextView my_name, my_school;
+    private TextView my_information, my_favorite, my_history, my_strategy, my_purchase_ing, getMy_purchase_already;
     private View view;
     private String my = null;
     private Bitmap image;
@@ -44,13 +46,10 @@ public class My extends Fragment implements View.OnClickListener {
                     if (image != null && !image.equals("")) my_image.setImageBitmap(image);
                     My_Utils_my my_utils_my = new My_Utils_my(my);
                     my_name.setText(my_utils_my.getUsername());
-
+                    my_school.setText(my_utils_my.getUserschool());
             }
         }
     };
-
-    public My() {
-    }
 
     //当从我的信息界面跳回来时，刷新当前界面
     @Override
@@ -64,26 +63,8 @@ public class My extends Fragment implements View.OnClickListener {
         System.out.println("fragement5启动");
         view = inflater.inflate(R.layout.my, container, false);
 
-        //初始化控件
-        my_image = (ImageView) view.findViewById(R.id.my_image);
-        my_name = (TextView) view.findViewById(R.id.my_name);
-        my_information = (TextView) view.findViewById(R.id.my_information);
-        my_favorite = (TextView) view.findViewById(R.id.my_favorite);
-        my_history = (TextView) view.findViewById(R.id.my_history);
-        my_strategy = (TextView) view.findViewById(R.id.my_strategy);
-        my_purchase_ing = (TextView) view.findViewById(R.id.my_purchase_ing);
-        getMy_purchase_already = (TextView) view.findViewById(R.id.my_purchase_already);
-
-        //设置监听器
-        my_image.setOnClickListener(this);
-        my_name.setOnClickListener(this);
-        my_information.setOnClickListener(this);
-        my_favorite.setOnClickListener(this);
-        my_history.setOnClickListener(this);
-        my_strategy.setOnClickListener(this);
-        my_purchase_ing.setOnClickListener(this);
-        getMy_purchase_already.setOnClickListener(this);
-
+        initView();
+        initIcon();
         flush();
 
         return view;
@@ -142,5 +123,40 @@ public class My extends Fragment implements View.OnClickListener {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    //设置goIcon的大小
+    private void initIcon() {
+        Drawable drawable = getResources().getDrawable(R.drawable.my_go);
+        drawable.setBounds(0, 0, 26, 48);
+        my_information.setCompoundDrawables(null, null, drawable, null);
+        my_favorite.setCompoundDrawables(null, null, drawable, null);
+        my_history.setCompoundDrawables(null, null, drawable, null);
+        my_strategy.setCompoundDrawables(null, null, drawable, null);
+        my_purchase_ing.setCompoundDrawables(null, null, drawable, null);
+        getMy_purchase_already.setCompoundDrawables(null, null, drawable, null);
+    }
+
+    private void initView() {
+        //初始化控件
+        my_image = (ImageView) view.findViewById(R.id.my_image);
+        my_name = (TextView) view.findViewById(R.id.my_name);
+        my_school = (TextView) view.findViewById(R.id.my_school);
+        my_information = (TextView) view.findViewById(R.id.my_information);
+        my_favorite = (TextView) view.findViewById(R.id.my_favorite);
+        my_history = (TextView) view.findViewById(R.id.my_history);
+        my_strategy = (TextView) view.findViewById(R.id.my_strategy);
+        my_purchase_ing = (TextView) view.findViewById(R.id.my_purchase_ing);
+        getMy_purchase_already = (TextView) view.findViewById(R.id.my_purchase_already);
+
+        //设置监听器
+        my_image.setOnClickListener(this);
+        my_name.setOnClickListener(this);
+        my_information.setOnClickListener(this);
+        my_favorite.setOnClickListener(this);
+        my_history.setOnClickListener(this);
+        my_strategy.setOnClickListener(this);
+        my_purchase_ing.setOnClickListener(this);
+        getMy_purchase_already.setOnClickListener(this);
     }
 }
